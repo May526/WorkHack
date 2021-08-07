@@ -6,18 +6,18 @@ import { AuthContext } from "../../../../auth/AuthProvider";
 
 
 export default function ProjectForm() {
-  const { currentUser } = useContext(AuthContext) ;
-  const { null_project } = useContext(ProjectsContext);
+  const { currentUser }:any = useContext(AuthContext) ;
+  const { null_project }:any = useContext(ProjectsContext);
   const registerProject = useRegisterProject(currentUser);
   const [new_project, setNewProject] = useState(null_project);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event:any) => {
     event.preventDefault();
     registerProject(new_project);
     setNewProject({...null_project});
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event:any) => {
     let copy = {...new_project};
     copy[event.target.name] = event.target.value;
     setNewProject(copy);

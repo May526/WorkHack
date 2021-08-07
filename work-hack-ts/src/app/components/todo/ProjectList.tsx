@@ -5,11 +5,11 @@ import Project from "./projectlist/Project";
 import ProjectForm from "./projectlist/ProjectForm";
 
 export default function ProjectList() {
-  const { projects } = useContext(ProjectsContext);
+  const { projects }:any = useContext(ProjectsContext);
   return (
     <Container>
       {projects &&
-        projects.map((project, index) => {
+        projects.map((project:any, index:number) => {
           return (
             <Row key={index} className="border my-3">
               <Project project={project} />

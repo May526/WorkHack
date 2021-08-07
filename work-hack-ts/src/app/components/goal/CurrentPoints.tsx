@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function CurrentPoints(props) {
+export default function CurrentPoints(props:any) {
   const { tasks } = props;
   let sum=0;
-  tasks.map((task)=>{sum+=parseInt(task.point,10); return null})
+  tasks.map((task:any)=>{sum+=parseInt(task.point,10); return null})
 
   return (
     <div>

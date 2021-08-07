@@ -5,12 +5,13 @@
 import React, { createContext, useCallback, useContext, useMemo } from "react";
 import { AuthContext } from "../../auth/AuthProvider";
 import { useFetchAllData } from "../../database/database_read";
+import {KeyObjToList} from "../../lib/convertTypes";
 
-export const ProjectsContext = createContext();
+export const ProjectsContext = createContext("");
 
-const ProjectsContextProvider = (props) => {
-  const { currentUser } = useContext(AuthContext);
-  const { data } = useFetchAllData();
+const ProjectsContextProvider = (props:any) => {
+  const { currentUser }:any = useContext(AuthContext);
+  const { data }:any = useFetchAllData();
   const projects = useMemo(() => {
     return data
       ? Object.keys(data.users[currentUser.uid].projects).map((project_id) => {
@@ -56,12 +57,11 @@ const ProjectsContextProvider = (props) => {
     };
   }, []);
 
+
   const extractTasksFromProject = useCallback(
     (project, indicator_func_task) => {
       if (project.tasks) {
-        let tasks_array = Object.entries(project.tasks).map(([key, value]) => {
-          return { task_id: key, ...value };
-        });
+        let tasks_array = KeyObjToList(project.tasks ,"task_id");
         return tasks_array.filter(indicator_func_task);
       }
       return [];
@@ -69,9 +69,10 @@ const ProjectsContextProvider = (props) => {
     []
   );
 
+  
   const extractTasksFromProjects = useCallback(
     (indicator_func_task) => {
-      let ret = [];
+      let ret:any = [];
       for (let pi = 0; pi < projects.length; pi++) {
         let tasks = extractTasksFromProject(projects[pi], indicator_func_task);
         ret = ret.concat(tasks);
@@ -109,7 +110,7 @@ const ProjectsContextProvider = (props) => {
         NullFeeling,
         extractTasksFromProjects,
         extractTasksFromEachProject,
-      }}
+      } as any}
     >
       {props.children}
     </ProjectsContext.Provider>

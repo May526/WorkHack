@@ -19,7 +19,7 @@ import ProjectsContextProvider from "./contexts/ProjectsContext";
 
 export default function App() {
   let { path, url } = useRouteMatch();
-  const { logout } = useContext(AuthContext);
+  const { logout }:any = useContext(AuthContext);
   return (
     <ProjectsContextProvider>
       <Router>

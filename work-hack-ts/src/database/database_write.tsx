@@ -2,7 +2,7 @@ import { useCallback, useMemo } from "react";
 import { database } from "../firebase_init";
 import { useFetchData, useFetchAllData } from "./database_read";
 
-const useSetData = (ref) => {
+const useSetData = (ref:firebase.default.database.Reference) => {
   const updateDatabase = useCallback(
     (data) => {
       ref.set(data);
@@ -15,7 +15,7 @@ const useSetData = (ref) => {
 export const useRegisterData = () => {
   const ref = database.ref();
   const setData = useSetData(ref);
-  const { old_data } = useFetchAllData();
+  const { old_data }:any = useFetchAllData();
 
   const registerData = useCallback(
     (new_data) => {
@@ -27,19 +27,19 @@ export const useRegisterData = () => {
   return registerData;
 };
 
-const useDatabaseRef = (path) => {
+const useDatabaseRef = (path:string) => {
   return useMemo(() => database.ref(path), [path]);
 };
 
-export const useRegisterProject = (user) => {
+export const useRegisterProject = (user:firebase.default.User) => {
   const users_ref = useDatabaseRef(`users/${user.uid}/projects`);
-  const project_ids = useFetchData(users_ref).data;
+  const project_ids:any = useFetchData(users_ref).data;
 
   const projects_ref = useDatabaseRef("projects");
-  const projects = useFetchData(projects_ref).data;
+  const projects:any = useFetchData(projects_ref).data;
   const registerProject = useCallback(
     (new_project) => {
-      const new_project_id = projects_ref.push().key;
+      const new_project_id = projects_ref.push().key as string;
       /**
        * projectsに追加
        */
@@ -60,15 +60,15 @@ export const useRegisterProject = (user) => {
   return registerProject;
 };
 
-export const useRegisterTask = (project_id) => {
+export const useRegisterTask = (project_id:string) => {
   const tasks_ref = useDatabaseRef(`projects/${project_id}/tasks`);
   const db_tasks = useFetchData(tasks_ref).data;
-  const tasks = useMemo(() => {
+  const tasks:any = useMemo(() => {
     return db_tasks ?? {};
   }, [db_tasks]);
   const registerTask = useCallback(
     (new_task) => {
-      const new_task_id = tasks_ref.push().key;
+      const new_task_id = tasks_ref.push().key as string;
       tasks[new_task_id] = new_task;
       tasks_ref
         .set(tasks)
@@ -81,7 +81,7 @@ export const useRegisterTask = (project_id) => {
   return registerTask;
 };
 
-export const useSetTask = (project_id, task_id) => {
+export const useSetTask = (project_id:string, task_id:string) => {
   const task_ref = database.ref(`projects/${project_id}/tasks/${task_id}`);
   const setTask = useCallback(
       
@@ -98,7 +98,7 @@ export const useSetTask = (project_id, task_id) => {
 
 export const useRegisterUser = () => {
   const users_ref = database.ref("users");
-  const users = useFetchData(users_ref).data;
+  const users:any = useFetchData(users_ref).data;
 
   const registerUser = useCallback(
     (user)=>{

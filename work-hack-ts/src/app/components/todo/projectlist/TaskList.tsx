@@ -2,13 +2,13 @@ import React from "react";
 import { ListGroup, ListGroupItem, Badge, Row, Col } from "reactstrap";
 import TaskFormButton from "./tasklist/TaskFormButton";
 import TaskEditor from "./tasklist/TaskEditor";
+import { KeyObjToList } from "../../../../lib/convertTypes";
 
-export default function TaskList(props) {
+export default function TaskList(props:any) {
   let { tasks , project_id} = props;
   return (
     <ListGroup className="border border-primary">
-      {tasks &&
-        Object.entries(tasks).map(([key,value])=>{return {task_id:key,...value}}).map((task, index) => {
+      {tasks && KeyObjToList(tasks,"task_id").map((task:any, index) => {
           return (
             <ListGroupItem key={index}>
               <Row className="border">

@@ -1,9 +1,9 @@
 import React from "react";
 import { ResponsiveContainer, Pie, PieChart, Tooltip } from "recharts";
 
-export default function TodayTaskPieChart(props) {
+export default function TodayTaskPieChart(props:any) {
   const { tasks } = props;
-  const data = tasks.map((task) => {
+  const data = tasks.map((task:any) => {
     return {
       name: task.name,
       value: parseInt(task.point,10),

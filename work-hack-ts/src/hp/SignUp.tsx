@@ -11,7 +11,7 @@ interface SignUpPageProps {
 }
 
 const SignUp: React.FunctionComponent<SignUpPageProps> = ({ history }) => {
-  const { signup } = useContext(AuthContext);
+  const { signup } :any= useContext(AuthContext);
 
   const registerUser = useRegisterUser();
   const handleSubmit = async (event: any) => {

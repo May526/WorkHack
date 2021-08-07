@@ -5,8 +5,8 @@
 import { useEffect, useState ,useMemo} from "react";
 import { database } from "../firebase_init";
 
-export const useFetchData = (ref) => {
-  const [data, setData] = useState();
+export const useFetchData = (ref:firebase.default.database.Reference) => {
+  const [data, setData] = useState(undefined);
   useEffect(() => {
   
     ref.on('value', snapshot => {

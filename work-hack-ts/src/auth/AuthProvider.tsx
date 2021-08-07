@@ -57,7 +57,7 @@ export const AuthProvider:React.FC = ({ children  }) => {
         signup,
         currentUser,
         logout,
-      }}
+      } as any}
     >
       {children}
     </AuthContext.Provider>

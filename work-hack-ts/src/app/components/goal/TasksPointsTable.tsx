@@ -1,13 +1,13 @@
 import React from "react";
 import { Table } from "reactstrap";
 
-export default function TasksPointsTable(props) {
+export default function TasksPointsTable(props:any) {
   const {tasks} = props;
 
   /**
    * 最近に近いほどインデックスが大きい
    */
-  tasks.sort((task1, task2) => {
+  tasks.sort((task1:any, task2:any) => {
     return new Date(task1.completed_at).getTime()- new Date(task2.completed_at).getTime()
   });
 
@@ -24,7 +24,7 @@ export default function TasksPointsTable(props) {
         </thead>
         <tbody>
           {tasks &&
-            tasks.map((task, index) => {
+            tasks.map((task:any, index:any) => {
               return (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>

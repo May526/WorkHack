@@ -11,7 +11,7 @@ interface LoginPageProps {
 }
 
 const Login : React.FunctionComponent<LoginPageProps> = ({history}) => {
-  const { login } = useContext(AuthContext);
+  const { login }:any = useContext(AuthContext);
 
   const registerUser = useRegisterUser();
 

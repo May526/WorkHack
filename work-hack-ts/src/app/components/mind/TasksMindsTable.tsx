@@ -3,16 +3,16 @@ import { Table } from "reactstrap";
 import { ProjectsContext } from "../../contexts/ProjectsContext";
 
 export default function TasksMindsTable() {
-  const { extractTasksFromProjects } = useContext(ProjectsContext);
-  const tasks = extractTasksFromProjects((task) => task.is_completed);
+  const { extractTasksFromProjects }:any = useContext(ProjectsContext);
+  const tasks = extractTasksFromProjects((task:any) => task.is_completed);
 
   /**
    * 差のノルムでソート
    * ノルムが等しい場合は初期値のノルムで比較
    * さらに等しい場合は等しい扱い
    */
-  tasks.sort((task1, task2) => {
-    function norm(vector) {
+  tasks.sort((task1:any, task2:any) => {
+    function norm(vector:number[]) {
       let ret = 0;
       for (let i = 0; i < vector.length; i++) {
         ret += vector[i] ** 2;
@@ -20,7 +20,7 @@ export default function TasksMindsTable() {
       return ret;
     }
 
-    function diff(vector1, vector2) {
+    function diff(vector1:number[], vector2:number[]) {
       let ret = [];
       for (let i = 0; i < vector1.length; i++) {
         ret.push(vector1[i] - vector2[i]);
@@ -73,7 +73,7 @@ export default function TasksMindsTable() {
         </thead>
         <tbody>
           {tasks &&
-            tasks.map((task, index) => {
+            tasks.map((task:any, index:number) => {
               return (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>

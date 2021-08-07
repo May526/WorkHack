@@ -20,8 +20,8 @@ import {
 import { ProjectsContext } from "../../../../contexts/ProjectsContext";
 import { useSetTask } from "../../../../../database/database_write";
 
-export default function StartTaskButton(props) {
-  const { NullFeeling } = useContext(ProjectsContext);
+export default function StartTaskButton(props:any) {
+  const { NullFeeling }:any = useContext(ProjectsContext);
   const {project_id,task} = props;
   const setTask=useSetTask(project_id,task.task_id);
 
@@ -30,13 +30,13 @@ export default function StartTaskButton(props) {
 
   const [new_feeling, setNewFeeling] = useState(NullFeeling);
 
-  const handleChange = (event) => {
+  const handleChange = (event:any) => {
     let copy = {...new_feeling};
     copy[event.target.name] = event.target.value;
     setNewFeeling(copy);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event:any) => {
     event.preventDefault();
     let copy = {...task};
     copy["is_ongoing"] = true;
@@ -46,7 +46,7 @@ export default function StartTaskButton(props) {
     setTask(copy);
   };
 
-  const taskColor = (task) => {
+  const taskColor = (task:any) => {
     if (task.is_completed) {
       return "success";
     } else if (task.is_ongoing) {
@@ -55,7 +55,7 @@ export default function StartTaskButton(props) {
       return "secondary";
     }
   };
-  const makeButtonLabel = (task) => {
+  const makeButtonLabel = (task:any) => {
     if (task.is_completed) {
       return "Completed";
     } else if (task.is_ongoing) {

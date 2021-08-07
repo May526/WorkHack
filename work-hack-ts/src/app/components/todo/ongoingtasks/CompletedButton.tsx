@@ -20,11 +20,11 @@ import {
 import { useSetTask } from "../../../../database/database_write";
 import { ProjectsContext } from "../../../contexts/ProjectsContext";
 
-export default function CompletedButton(props) {
+export default function CompletedButton(props:any) {
   const {project_id,task}= props;
   const setTask = useSetTask(project_id,task.task_id);
   
-  const { NullFeeling } = useContext(ProjectsContext);
+  const { NullFeeling }:any = useContext(ProjectsContext);
   
 
   const [modal, setModal] = useState(false);
@@ -33,13 +33,13 @@ export default function CompletedButton(props) {
 
   const toggle_modal = () => setModal(!modal);
 
-  const handleChange = (event) => {
+  const handleChange = (event:any) => {
     let copy = {...new_feeling};
     copy[event.target.name] = event.target.value;
     setNewFeeling(copy);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event:any) => {
     event.preventDefault();
     let copy = {...task};
     copy["is_completed"] = true;

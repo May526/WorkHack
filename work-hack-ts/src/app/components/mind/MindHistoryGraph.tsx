@@ -11,13 +11,13 @@ import {
 import { ProjectsContext } from "../../contexts/ProjectsContext";
 
 export default function MindHistoryGraph() {
-  const { extractTasksFromProjects } = useContext(ProjectsContext);
+  const { extractTasksFromProjects }:any = useContext(ProjectsContext);
 
-  const started_tasks = extractTasksFromProjects((task) => {
+  const started_tasks = extractTasksFromProjects((task:any) => {
     return task.is_ongoing || task.is_completed;
   })
 
-  const start_feelings = started_tasks.map((task) => {
+  const start_feelings = started_tasks.map((task:any) => {
     return {
       timestamp: new Date(task.started_at).getTime(),
       timestamp_str: new Date(task.started_at).toLocaleString(),
@@ -27,9 +27,9 @@ export default function MindHistoryGraph() {
   });
 
   const completed_tasks = extractTasksFromProjects(
-    (task) => task.is_completed
+    (task:any) => task.is_completed
   )
-  const end_feelings = completed_tasks.map((task) => {
+  const end_feelings = completed_tasks.map((task:any) => {
     return {
       timestamp: new Date(task.completed_at).getTime(),
       timestamp_str: new Date(task.completed_at).toLocaleString(),
@@ -42,7 +42,7 @@ export default function MindHistoryGraph() {
   /**
    * 最近であるほどインデックスが小さくなるようにソート
    */
-  feelings.sort((feeling1, feeling2) => {
+  feelings.sort((feeling1:any, feeling2:any) => {
     return feeling1.timestamp - feeling2.timestamp;
   });
 

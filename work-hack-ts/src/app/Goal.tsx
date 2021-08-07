@@ -7,9 +7,9 @@ import TodayTaskPieChart from "./components/goal/TodayTaskPieChart";
 import { ProjectsContext } from "./contexts/ProjectsContext";
 
 export default function Goal() {
-  const { extractTasksFromProjects } = useContext(ProjectsContext);
+  const { extractTasksFromProjects }:any = useContext(ProjectsContext);
   const tasks_completed_today = useMemo(()=>
-  extractTasksFromProjects((task) => {
+  extractTasksFromProjects((task:any) => {
     const now_timestamp = new Date();
     return (
       task.is_completed &&

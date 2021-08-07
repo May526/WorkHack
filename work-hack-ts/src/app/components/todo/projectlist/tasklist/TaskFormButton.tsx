@@ -13,10 +13,10 @@ import {
 import { useRegisterTask } from "../../../../../database/database_write";
 import { ProjectsContext } from "../../../../contexts/ProjectsContext";
 
-export default function TaskForm(props) {
+export default function TaskForm(props:any) {
   const { buttonLabel, className, project_id } = props;
 
-  const { NullTask } = useContext(ProjectsContext);
+  const { NullTask }:any = useContext(ProjectsContext);
 
   const [modal, setModal] = useState(false);
 
@@ -26,13 +26,13 @@ export default function TaskForm(props) {
 
   const registerTask = useRegisterTask(project_id);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event:any) => {
     event.preventDefault();
     registerTask(new_task);
     setNewTask({...NullTask});
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event:any) => {
     const copy = {...new_task};
     copy[event.target.name] = event.target.value;
     setNewTask(copy);

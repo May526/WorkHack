@@ -3,8 +3,8 @@ import { ProjectsContext } from "../../contexts/ProjectsContext";
 
 
 export default function GoalPoints() {
-  const { extractTasksFromProjects } = useContext(ProjectsContext);
-  const tasks_in_last_7_day = extractTasksFromProjects((task) => {
+  const { extractTasksFromProjects }:any = useContext(ProjectsContext);
+  const tasks_in_last_7_day = extractTasksFromProjects((task:any) => {
     const now_timestamp = new Date();
     const latest_timestamp = new Date(now_timestamp.toLocaleDateString());
     const oldest_timestamp = new Date(
@@ -19,8 +19,8 @@ export default function GoalPoints() {
 
   const goal_int = tasks_in_last_7_day.length
     ? tasks_in_last_7_day
-    .map((task)=>typeof(task.point)==='string'? parseInt(task.point, 10) : task.point)
-    .reduce((point_int, sum) => 
+    .map((task:any)=>typeof(task.point)==='string'? parseInt(task.point, 10) : task.point)
+    .reduce((point_int:any, sum:any) => 
         sum + parseInt(point_int, 10)
       ) /7     : 0;
   return (

@@ -14,9 +14,9 @@ import CompletedButton from "./ongoingtasks/CompletedButton";
 
 
 export default function OngoingTasks() {
-  const { extractTasksFromEachProject } = useContext(ProjectsContext);
+  const { extractTasksFromEachProject }:any = useContext(ProjectsContext);
 
-  let ongoing_projects = extractTasksFromEachProject((task) => task.is_ongoing);
+  let ongoing_projects = extractTasksFromEachProject((task:any) => task.is_ongoing);
 
   return (
     <Card className="m-3">
@@ -24,12 +24,12 @@ export default function OngoingTasks() {
         <CardTitle>You are doing</CardTitle>
           <ListGroup flush>
             {ongoing_projects &&
-              ongoing_projects.map((project,pi) => {
+              ongoing_projects.map((project:any,pi:number) => {
                 if (!project.tasks.length) {return <div key={pi}></div>}
                 return (
                   <div key={pi}>
                     {project.tasks &&
-                      project.tasks.map((task,ti) => {
+                      project.tasks.map((task:any,ti:number) => {
                         return (
                           <ListGroupItem key={ti}>
                             <Row>
