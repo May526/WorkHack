@@ -21,7 +21,7 @@ export default function OngoingTasks() {
   return (
     <Card className="m-3">
       <CardBody>
-        <CardTitle>You are doing</CardTitle>
+        <CardTitle>Ongoing Tasks:</CardTitle>
           <ListGroup flush>
             {ongoing_projects &&
               ongoing_projects.map((project:any,pi:number) => {

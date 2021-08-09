@@ -1,22 +1,21 @@
 import React from "react";
 import { ListGroup, ListGroupItem, Badge, Row, Col } from "reactstrap";
 import TaskFormButton from "./tasklist/TaskFormButton";
-import TaskEditor from "./tasklist/TaskEditor";
 import { KeyObjToList } from "../../../../lib/convertTypes";
+import StartTaskButton from "./tasklist/StartTaskButton";
+import EditTaskButton from "./tasklist/EditTaskButton";
 
-export default function TaskList(props:any) {
-  let { tasks , project_id} = props;
+export default function TaskList(props: any) {
+  let { tasks, project_id } = props;
   return (
     <ListGroup className="border border-primary">
-      {tasks && KeyObjToList(tasks,"task_id").map((task:any, index) => {
+      {tasks &&
+        KeyObjToList(tasks, "task_id").map((task: any, index) => {
           return (
             <ListGroupItem key={index}>
               <Row className="border">
-                <Col xs="2">
-                  <TaskEditor
-                    project_id={project_id}
-                    task={task}
-                  />
+                <Col xs="2" className="d-flex justify-content-start">
+                  <StartTaskButton project_id={project_id} task={task} />
                 </Col>
                 <Col>
                   {task.name}
@@ -31,10 +30,15 @@ export default function TaskList(props:any) {
                     ""
                   )}
                   {task.estimated_time ? (
-                    <Badge className="bg-secondary">{task.estimated_time} min</Badge>
+                    <Badge className="bg-secondary">
+                      {task.estimated_time} min
+                    </Badge>
                   ) : (
                     ""
                   )}
+                </Col>
+                <Col xs="2" className="d-flex justify-content-end">
+                  <EditTaskButton />
                 </Col>
               </Row>
             </ListGroupItem>
