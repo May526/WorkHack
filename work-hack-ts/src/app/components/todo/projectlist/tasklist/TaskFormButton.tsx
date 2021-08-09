@@ -25,7 +25,6 @@ export default function TaskForm(props:any) {
   const [new_task, setNewTask] = useState(NullTask);
 
   const registerTask = useRegisterTask(project_id);
-
   const handleSubmit = (event:any) => {
     event.preventDefault();
     registerTask(new_task);

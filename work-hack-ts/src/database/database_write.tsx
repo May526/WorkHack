@@ -46,7 +46,7 @@ export const useRegisterProject = (user:firebase.default.User) => {
       projects[new_project_id] = new_project;
       projects_ref
         .set(projects)
-        .then(() => console.log("set secceeded"))
+        .then(() => console.log("project set secceeded"))
         .catch(() => console.log("set failed"));
 
       /**
@@ -72,7 +72,7 @@ export const useRegisterTask = (project_id:string) => {
       tasks[new_task_id] = new_task;
       tasks_ref
         .set(tasks)
-        .then(() => console.log("set succeeded"))
+        .then(() => console.log("task registeration succeeded"))
         .catch(() => console.log("set failed"));
     },
     [tasks_ref, tasks]
@@ -88,7 +88,7 @@ export const useSetTask = (project_id:string, task_id:string) => {
     (new_task) => {
       task_ref
         .set(new_task)
-        .then(() => console.log("set succeeded"))
+        .then(() => console.log("task set succeeded"))
         .catch(() => console.log("set failed"));
     },
     [task_ref]

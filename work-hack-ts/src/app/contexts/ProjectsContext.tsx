@@ -22,7 +22,7 @@ const ProjectsContextProvider:React.FC = ({children}) => {
   const null_project = useMemo(() => {
     return {
       name: "",
-      tasks: {},
+      tasks: "",
       member: Object.fromEntries([[currentUser.uid, true]]),
     };
   }, [currentUser]);
@@ -44,7 +44,7 @@ const ProjectsContextProvider:React.FC = ({children}) => {
       estimated_time:"",
       is_completed: false,
       completed_at: "",
-      subtasks: {},
+      subtasks: "",
       feeling: {
         before: {
           energy: -1,

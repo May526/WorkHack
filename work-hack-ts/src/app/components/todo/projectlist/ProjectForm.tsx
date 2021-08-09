@@ -9,7 +9,7 @@ export default function ProjectForm() {
   const { currentUser }:any = useContext(AuthContext) ;
   const { null_project }:any = useContext(ProjectsContext);
   const registerProject = useRegisterProject(currentUser);
-  const [new_project, setNewProject] = useState(null_project);
+  const [new_project, setNewProject] = useState({...null_project});
 
   const handleSubmit = (event:any) => {
     event.preventDefault();
