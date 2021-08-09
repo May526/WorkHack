@@ -71,6 +71,7 @@ export default function TasksMindsTable() {
             <th>After (energy, pleasantness)</th>
             <th>completed at</th>
             <th>elapsed time</th>
+            <th>Your time estimate</th>
           </tr>
         </thead>
         <tbody>
@@ -92,6 +93,9 @@ export default function TasksMindsTable() {
                   <td>{new Date(task.completed_at).toLocaleString()}</td>
                   <td>
                     {hms.hour+"h "+hms.minute+"m "+hms.second+"s"}
+                  </td>
+                  <td>
+                    {task.estimated_time ? task.estimated_time : ""}
                   </td>
                 </tr>
               );
