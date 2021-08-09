@@ -41,6 +41,7 @@ const ProjectsContextProvider:React.FC = ({children}) => {
       deadline: "",
       is_ongoing: false,
       started_at: "",
+      estimated_time:"",
       is_completed: false,
       completed_at: "",
       subtasks: {},

@@ -81,6 +81,15 @@ export default function TaskForm(props:any) {
                 onChange={handleChange}
               />
             </FormGroup>
+            <FormGroup>
+              <Input
+                type="text"
+                placeholder="estimeted time [minute]"
+                name="estimated_time"
+                value={new_task.estimated_time}
+                onChange={handleChange}
+              />
+            </FormGroup>
 
             <Row>
               <Col>

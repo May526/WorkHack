@@ -30,6 +30,11 @@ export default function TaskList(props:any) {
                   ) : (
                     ""
                   )}
+                  {task.estimated_time ? (
+                    <Badge className="bg-secondary">{task.estimated_time} min</Badge>
+                  ) : (
+                    ""
+                  )}
                 </Col>
               </Row>
             </ListGroupItem>
