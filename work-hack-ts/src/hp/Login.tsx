@@ -6,11 +6,7 @@ import { AuthContext } from "../auth/AuthProvider";
 import { useRegisterUser } from "../database/database_write";
 import { History } from "history";
 
-interface LoginPageProps {
-  history : History
-}
-
-const Login : React.FunctionComponent<LoginPageProps> = ({history}) => {
+const Login : React.FunctionComponent<{history : History}> = ({history}) => {
   const { login }:any = useContext(AuthContext);
 
   const registerUser = useRegisterUser();

@@ -2,7 +2,10 @@ import React, { useEffect, useState, createContext } from "react";
 import { app } from "../firebase_init";
 import { History } from "history";
 
-export const AuthContext = createContext("");
+export const AuthContext = createContext({} as {
+  currentUser: firebase.default.User | null,
+  setCurrentUser: React.Dispatch<React.SetStateAction<firebase.default.User|null>>
+});
 
 export const AuthProvider:React.FC = ({ children  }) => {
   const [currentUser, setCurrentUser] = useState(null);

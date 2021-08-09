@@ -6,11 +6,7 @@ import { Row, Col } from "reactstrap";
 import { useRegisterUser } from "../database/database_write";
 import { History } from "history";
 
-interface SignUpPageProps {
-  history : History
-}
-
-const SignUp: React.FunctionComponent<SignUpPageProps> = ({ history }) => {
+const SignUp: React.FunctionComponent<{history:History}> = ({ history }) => {
   const { signup } :any= useContext(AuthContext);
 
   const registerUser = useRegisterUser();

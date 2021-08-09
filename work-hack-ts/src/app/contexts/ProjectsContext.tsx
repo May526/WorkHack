@@ -9,7 +9,7 @@ import {KeyObjToList} from "../../lib/convertTypes";
 
 export const ProjectsContext = createContext("");
 
-const ProjectsContextProvider = (props:any) => {
+const ProjectsContextProvider:React.FC = ({children}) => {
   const { currentUser }:any = useContext(AuthContext);
   const { data }:any = useFetchAllData();
   const projects = useMemo(() => {
@@ -112,7 +112,7 @@ const ProjectsContextProvider = (props:any) => {
         extractTasksFromEachProject,
       } as any}
     >
-      {props.children}
+      {children}
     </ProjectsContext.Provider>
   );
 };

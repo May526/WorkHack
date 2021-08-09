@@ -1,5 +1,6 @@
 import React,{useContext} from "react";
 import { Table } from "reactstrap";
+import { msToHMS } from "../../../lib/convertTypes";
 import { ProjectsContext } from "../../contexts/ProjectsContext";
 
 export default function TasksMindsTable() {
@@ -69,11 +70,13 @@ export default function TasksMindsTable() {
             <th>Before (energy, pleasantness) </th>
             <th>After (energy, pleasantness)</th>
             <th>completed at</th>
+            <th>elapsed time</th>
           </tr>
         </thead>
         <tbody>
           {tasks &&
             tasks.map((task:any, index:number) => {
+              const hms=msToHMS(task.completed_at-task.started_at)
               return (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
@@ -87,6 +90,9 @@ export default function TasksMindsTable() {
                     {task.feeling.after.pleasantness})
                   </td>
                   <td>{new Date(task.completed_at).toLocaleString()}</td>
+                  <td>
+                    {hms.hour+"h "+hms.minute+"m "+hms.second+"s"}
+                  </td>
                 </tr>
               );
             })}
