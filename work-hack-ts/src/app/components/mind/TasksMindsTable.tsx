@@ -65,7 +65,6 @@ export default function TasksMindsTable() {
       <Table>
         <thead>
           <tr>
-            <th>#</th>
             <th>Task Name</th>
             <th>Before (energy, pleasantness) </th>
             <th>After (energy, pleasantness)</th>
@@ -80,7 +79,6 @@ export default function TasksMindsTable() {
               const hms=msToHMS(task.completed_at-task.started_at)
               return (
                 <tr key={index}>
-                  <th scope="row">{index + 1}</th>
                   <td>{task.name}</td>
                   <td>
                     ({task.feeling.before.energy},
@@ -95,7 +93,7 @@ export default function TasksMindsTable() {
                     {hms.hour+"h "+hms.minute+"m "+hms.second+"s"}
                   </td>
                   <td>
-                    {task.estimated_time ? task.estimated_time : ""}
+                    {task.estimated_time ? task.estimated_time+" min" : ""} 
                   </td>
                 </tr>
               );

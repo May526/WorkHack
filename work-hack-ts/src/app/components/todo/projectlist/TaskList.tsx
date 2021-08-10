@@ -17,8 +17,8 @@ export default function TaskList(props: any) {
                 <Col xs="2" className="d-flex justify-content-start">
                   <StartTaskButton project_id={project_id} task={task} />
                 </Col>
+                <Col>{task.name}</Col>
                 <Col>
-                  {task.name}
                   {task.point ? (
                     <Badge className="bg-secondary">{task.point} pts</Badge>
                   ) : (
@@ -38,7 +38,7 @@ export default function TaskList(props: any) {
                   )}
                 </Col>
                 <Col xs="2" className="d-flex justify-content-end">
-                  <EditTaskButton />
+                  <EditTaskButton task={task}/>
                 </Col>
               </Row>
             </ListGroupItem>
