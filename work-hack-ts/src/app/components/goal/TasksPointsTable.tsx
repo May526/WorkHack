@@ -20,7 +20,6 @@ export default function TasksPointsTable(props: any) {
       <Table>
         <thead>
           <tr>
-            <th>#</th>
             <th>Task Name</th>
             <th>Points </th>
             <th>completed at</th>
@@ -33,7 +32,6 @@ export default function TasksPointsTable(props: any) {
               const hms = msToHMS(task.completed_at - task.started_at);
               return (
                 <tr key={index}>
-                  <th scope="row">{index + 1}</th>
                   <td>{task.name}</td>
                   <td>{task.point}</td>
                   <td>{new Date(task.completed_at).toLocaleString()}</td>
