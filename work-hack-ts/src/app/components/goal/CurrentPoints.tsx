@@ -8,7 +8,7 @@ export default function CurrentPoints(props: {
 
   const today_sum = task_projectId_taskId
     .map(([task, pi, ti]) => parseInt(task.point, 10))
-    .reduce((sum: number, point: number) => sum + point);
+    .reduce((sum: number, point: number) => sum + point,0);
 
   return (
     <div>
