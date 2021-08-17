@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody, Row, Col } from "reactstrap";
 import {
   updateFeeling,
   updateTask,
@@ -17,12 +17,12 @@ export default function StartTaskButton(props: {
   const [modal, setModal] = useState(false);
   const toggle_modal = () => setModal(!modal);
 
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, watch } = useForm();
 
   const onSubmit: SubmitHandler<feeling> = (data) => {
     updateFeeling(project_id, task_id, "before", data);
     updateTask(project_id, task_id, "is_ongoing", true);
-    updateTask(project_id,task_id,"started_at",Date.now())
+    updateTask(project_id, task_id, "started_at", Date.now());
     reset();
     toggle_modal();
   };
@@ -63,25 +63,46 @@ export default function StartTaskButton(props: {
         <ModalHeader>Start {task.name}</ModalHeader>
         <ModalBody>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <label>
-              energy
-              <input
-                type="range"
-                max="10"
-                min="1"
-                {...register("energy", { required: true })}
-              />
-            </label>
-            <label>
-              pleasantness
-              <input
-                type="range"
-                max="10"
-                min="1"
-                {...register("pleasantness", { required: true })}
-              />
-            </label>
-            <input type="submit" value="Start this task" />
+            <Row>
+              <Col className="d-flex justify-content-end">
+                <label htmlFor={`${project_id}${task_id}before_energy`}>
+                  energy : {watch("energy")}
+                </label>
+              </Col>
+              <Col>
+                <input
+                  id={`${project_id}${task_id}before_energy`}
+                  type="range"
+                  max="10"
+                  min="1"
+                  step="1"
+                  {...register("energy", { required: true })}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col className="d-flex justify-content-end">
+                <label htmlFor={`${project_id}${task_id}before_pleasantness`}>
+                  pleasantness : {watch("pleasantness")}
+                </label>
+              </Col>
+              <Col>
+                <input
+                  id={`${project_id}${task_id}before_pleasantness`}
+                  type="range"
+                  max="10"
+                  min="1"
+                  step="1"
+                  {...register("pleasantness", { required: true })}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <input type="submit" value="Start this task" />
+              <button type="button" onClick={toggle_modal}>
+                Cancel
+              </button>
+            </Row>
           </form>
         </ModalBody>
       </Modal>

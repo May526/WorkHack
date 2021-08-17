@@ -16,11 +16,13 @@ export default function ProjectForm() {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm();
   const onSubmit: SubmitHandler<ProjectInput> = (inputs) => {
     const new_project = new Project(currentUser as firebase.default.User);
     new_project.name = inputs.name;
     registerProject(currentUser as firebase.default.User, new_project);
+    reset();
   };
 
   return (

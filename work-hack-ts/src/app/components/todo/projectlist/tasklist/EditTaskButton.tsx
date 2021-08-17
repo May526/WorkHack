@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Button, Modal, ModalBody, ModalHeader } from "reactstrap";
+import { Button, Col, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
 import { updateTask } from "../../../../../database/database_write";
 import { task } from "../../../../../lib/types";
 
@@ -38,23 +38,68 @@ export default function EditTaskButton(props: {
         <ModalHeader>Edit</ModalHeader>
         <ModalBody>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <label>
-              task name
-              <input type="text" {...register("name")} />
-            </label>
-            <label>
-              point
-              <input type="text" {...register("point")} />
-            </label>
-            <label>
-              deadline
-              <input type="text" {...register("deadline")} />
-            </label>
-            <label>
-              estimated_time [min]
-              <input type="text" {...register("estimated_time")} />
-            </label>
-            <input type="submit" value="submit" />
+            <Row className="my-1">
+              <Col xs="4" className="d-flex justify-content-end">
+                <label htmlFor={`${project_id}${task_id}name`}>task name</label>
+              </Col>
+              <Col>
+                <input
+                  className="w-100"
+                  id={`${project_id}${task_id}name`}
+                  type="text"
+                  {...register("name")}
+                />
+              </Col>
+            </Row>
+            <Row className="my-1">
+              <Col xs="4" className="d-flex justify-content-end">
+                <label htmlFor={`${project_id}${task_id}point`}>point</label>
+              </Col>
+              <Col>
+                <input
+                  className="w-100"
+                  id={`${project_id}${task_id}point`}
+                  type="text"
+                  {...register("point")}
+                />
+              </Col>
+            </Row>
+            <Row className="my-1">
+              <Col xs="4" className="d-flex justify-content-end">
+                <label htmlFor={`${project_id}${task_id}deadline`}>
+                  deadline
+                </label>
+              </Col>
+              <Col>
+                <input
+                  className="w-100"
+                  id={`${project_id}${task_id}deadline`}
+                  type="text"
+                  {...register("deadline")}
+                />
+              </Col>
+            </Row>
+            <Row className="my-1">
+              <Col xs="5" className="d-flex justify-content-end">
+                <label htmlFor={`${project_id}${task_id}estimated_time`}>
+                  estimated time [min]
+                </label>
+              </Col>
+              <Col>
+                <input
+                  className="w-100"
+                  id={`${project_id}${task_id}estimated_time`}
+                  type="text"
+                  {...register("estimated_time")}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <input type="submit" value="submit" />
+              <button type="button" onClick={toggle_modal}>
+                Cancel
+              </button>
+            </Row>
           </form>
         </ModalBody>
       </Modal>

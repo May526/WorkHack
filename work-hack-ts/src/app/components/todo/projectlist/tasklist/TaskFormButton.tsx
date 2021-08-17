@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody, Row, Col } from "reactstrap";
 import { registerTask } from "../../../../../database/database_write";
 import { Task } from "../../../../../lib/classes";
 
@@ -43,23 +43,64 @@ export default function TaskForm(props: { project_id: string }) {
         <ModalHeader toggle={toggle_modal}>Add a task</ModalHeader>
         <ModalBody>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <label>
-              task name
-              <input type="text" {...register("name", { required: true })} />
-            </label>
-            <label>
-              point
-              <input {...register("point", { required: true })} />
-            </label>
-            <label>
-              deadline
-              <input {...register("deadline")} />
-            </label>
-            <label>
-              estimated_time
-              <input {...register("estimated_time")} />
-            </label>
-            <input type="submit" value="submit" />
+            <Row className="my-1">
+              <Col xs="4" className="d-flex justify-content-end">
+                <label htmlFor={`${project_id}name`}>task name</label>
+              </Col>
+              <Col>
+                <input
+                  className="w-100"
+                  id={`${project_id}name`}
+                  type="text"
+                  {...register("name", { required: true })}
+                />
+              </Col>
+            </Row>
+            <Row className="my-1">
+              <Col xs="4" className="d-flex justify-content-end">
+                <label htmlFor={`${project_id}point`}>point</label>
+              </Col>
+              <Col>
+                <input
+                  className="w-100"
+                  id={`${project_id}point`}
+                  type="text"
+                  {...register("point", { required: true })}
+                />
+              </Col>
+            </Row>
+            <Row className="my-1">
+            <Col xs="4" className="d-flex justify-content-end">
+                <label htmlFor={`${project_id}deadline`}>deadline</label>
+              </Col>
+              <Col>
+                <input
+                  className="w-100"
+                  id={`${project_id}deadline`}
+                  type="text"
+                  {...register("deadline", { required: true })}
+                />
+              </Col>
+            </Row>
+            <Row className="my-1">
+            <Col xs="5" className="d-flex justify-content-end">
+                <label htmlFor={`${project_id}estimated_time`}>estimated time [min]</label>
+              </Col>
+              <Col>
+                <input
+                  className="w-100"
+                  id={`${project_id}estimated_time`}
+                  type="text"
+                  {...register("estimated_time", { required: true })}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <input type="submit" value="submit" />
+              <button type="button" onClick={toggle_modal}>
+                Cancel
+              </button>
+            </Row>
           </form>
         </ModalBody>
       </Modal>
