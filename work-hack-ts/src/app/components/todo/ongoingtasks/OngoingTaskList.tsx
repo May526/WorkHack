@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Badge, ListGroupItem } from "reactstrap";
+import { Badge, Col, ListGroupItem, Row } from "reactstrap";
 import { AuthContext } from "../../../../auth/AuthProvider";
 import { fetchProject_on } from "../../../../database/database_read";
 import { Project } from "../../../../lib/classes";
@@ -14,7 +14,7 @@ export default function OngoingTaskList(props: { project_id: string }) {
   );
   useEffect(() => {
     fetchProject_on(project_id, setProject);
-  }, [currentUser,project_id]);
+  }, [currentUser, project_id]);
   const ongoing_task_entries = Object.entries(project.tasks).filter(
     ([task_id, task]) => {
       return task.is_ongoing;
@@ -27,12 +27,15 @@ export default function OngoingTaskList(props: { project_id: string }) {
         ongoing_task_entries.map(([task_id, task], index) => {
           return (
             <ListGroupItem key={index}>
-              <CompletedButton
-                project_id={project_id}
-                task_id={task_id}
-              />
-              {task.name}
-              <Badge className="bg-primary">{project.name}</Badge>
+              <Row>
+                <Col>
+                  {task.name}
+                  <Badge className="bg-primary">{project.name}</Badge>
+                </Col>
+                <Col className="d-flex justify-content-end">
+                  <CompletedButton project_id={project_id} task_id={task_id} />
+                </Col>
+              </Row>
             </ListGroupItem>
           );
         })}
