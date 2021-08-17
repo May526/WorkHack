@@ -6,7 +6,6 @@ import ProjectForm from "./projectlist/ProjectForm";
 
 export default function ProjectList() {
   const project_ids = useContext(ProjectsContext);
-  console.log("render: ProjectList.tsx");
   return (
     <Container>
       {project_ids &&

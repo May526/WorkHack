@@ -15,8 +15,6 @@ export default function ProjectComp(props: { project_id: string }) {
   useEffect(() => {
     fetchProject_on(project_id, setProject);
   }, [project_id]);
-  console.log("render: Project.tsx", project_id);
-  // console.log("project:",project);
   return (
     <div>
       <Row>

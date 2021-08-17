@@ -10,7 +10,6 @@ export default function Task(props: {
   task_id: string;
 }) {
   const { task, project_id, task_id } = props;
-  console.log("render: Task.tsx", task_id);
   return (
     <Row className="border">
       <Col xs="2" className="d-flex justify-content-start">

@@ -20,7 +20,6 @@ import { logout } from "../auth/Auth";
 
 export default function App() {
   let { path, url } = useRouteMatch();
-  console.log("render: Application.tsx");
   return (
     <ProjectsContextProvider>
        <Router>

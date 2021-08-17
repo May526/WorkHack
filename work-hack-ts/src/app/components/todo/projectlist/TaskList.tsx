@@ -6,8 +6,6 @@ import Task from "./tasklist/Task";
 
 export default function TaskList(props:{project_id:string,tasks:tasks}) {
   const { project_id,tasks } = props;
-  console.log("render: TaskList",project_id);
-  // console.log("tasks:",tasks);
   
   return (
     <ListGroup className="border">
