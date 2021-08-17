@@ -78,7 +78,7 @@ export default function TaskForm(props: { project_id: string }) {
                   className="w-100"
                   id={`${project_id}deadline`}
                   type="text"
-                  {...register("deadline", { required: true })}
+                  {...register("deadline")}
                 />
               </Col>
             </Row>
@@ -91,7 +91,7 @@ export default function TaskForm(props: { project_id: string }) {
                   className="w-100"
                   id={`${project_id}estimated_time`}
                   type="text"
-                  {...register("estimated_time", { required: true })}
+                  {...register("estimated_time")}
                 />
               </Col>
             </Row>
