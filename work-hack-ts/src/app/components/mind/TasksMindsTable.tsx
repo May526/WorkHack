@@ -1,18 +1,19 @@
-import React,{useContext} from "react";
+import React from "react";
 import { Table } from "reactstrap";
 import { msToHMS } from "../../../lib/convertTypes";
-import { ProjectsContext } from "../../contexts/ProjectsContext";
+import { extractTasksFromProjects } from "../../../lib/filters";
+import { projects, task } from "../../../lib/types";
 
-export default function TasksMindsTable() {
-  const { extractTasksFromProjects }:any = useContext(ProjectsContext);
-  const tasks = extractTasksFromProjects((task:any) => task.is_completed);
+export default function TasksMindsTable(props:{projects:projects}) {
+  const {projects}=props;
+  const tasks = extractTasksFromProjects(projects,(task:any) => task.is_completed).map(([task,pi,ti])=>{return task});
 
   /**
    * 差のノルムでソート
    * ノルムが等しい場合は初期値のノルムで比較
    * さらに等しい場合は等しい扱い
    */
-  tasks.sort((task1:any, task2:any) => {
+  tasks.sort((task1:task, task2:task) => {
     function norm(vector:number[]) {
       let ret = 0;
       for (let i = 0; i < vector.length; i++) {
@@ -30,20 +31,20 @@ export default function TasksMindsTable() {
       return ret;
     }
     const t1_before = [
-      task1.feeling.before.energy,
-      task1.feeling.before.pleasantness,
+      task1.feelings.before.energy,
+      task1.feelings.before.pleasantness,
     ];
     const t1_after = [
-      task1.feeling.after.energy,
-      task1.feeling.after.pleasantness,
+      task1.feelings.after.energy,
+      task1.feelings.after.pleasantness,
     ];
     const t2_before = [
-      task2.feeling.before.energy,
-      task2.feeling.before.pleasantness,
+      task2.feelings.before.energy,
+      task2.feelings.before.pleasantness,
     ];
     const t2_after = [
-      task2.feeling.after.energy,
-      task2.feeling.after.pleasantness,
+      task2.feelings.after.energy,
+      task2.feelings.after.pleasantness,
     ];
     const t1_diff_norm = norm(diff(t1_after, t1_before));
     const t2_diff_norm = norm(diff(t2_after, t2_before));
@@ -75,18 +76,18 @@ export default function TasksMindsTable() {
         </thead>
         <tbody>
           {tasks &&
-            tasks.map((task:any, index:number) => {
-              const hms=msToHMS(task.completed_at-task.started_at)
+            tasks.map((task:task, index:number) => {
+              const hms=msToHMS((task.completed_at as number)-(task.started_at as number))
               return (
                 <tr key={index}>
                   <td>{task.name}</td>
                   <td>
-                    ({task.feeling.before.energy},
-                    {task.feeling.before.pleasantness})
+                    ({task.feelings.before.energy},
+                    {task.feelings.before.pleasantness})
                   </td>
                   <td>
-                    ({task.feeling.after.energy},
-                    {task.feeling.after.pleasantness})
+                    ({task.feelings.after.energy},
+                    {task.feelings.after.pleasantness})
                   </td>
                   <td>{new Date(task.completed_at).toLocaleString()}</td>
                   <td>

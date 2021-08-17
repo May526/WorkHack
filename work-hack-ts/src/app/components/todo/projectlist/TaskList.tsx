@@ -1,53 +1,26 @@
 import React from "react";
-import { ListGroup, ListGroupItem, Badge, Row, Col } from "reactstrap";
+import { ListGroup, ListGroupItem } from "reactstrap";
 import TaskFormButton from "./tasklist/TaskFormButton";
-import { KeyObjToList } from "../../../../lib/convertTypes";
-import StartTaskButton from "./tasklist/StartTaskButton";
-import EditTaskButton from "./tasklist/EditTaskButton";
+import {  tasks } from "../../../../lib/types";
+import Task from "./tasklist/Task";
 
-export default function TaskList(props: any) {
-  let { tasks, project_id } = props;
+export default function TaskList(props:{project_id:string,tasks:tasks}) {
+  const { project_id,tasks } = props;
+  console.log("render: TaskList",project_id);
+  // console.log("tasks:",tasks);
+  
   return (
-    <ListGroup className="border border-primary">
-      {tasks &&
-        KeyObjToList(tasks, "task_id").map((task: any, index) => {
+    <ListGroup className="border">
+      {Object.keys(tasks) && !(tasks==="") &&
+        Object.keys(tasks).map((task_id:string, index:number) => {
           return (
             <ListGroupItem key={index}>
-              <Row className="border">
-                <Col xs="2" className="d-flex justify-content-start">
-                  <StartTaskButton project_id={project_id} task={task} />
-                </Col>
-                <Col>{task.name}</Col>
-                <Col>
-                  {task.point ? (
-                    <Badge className="bg-secondary">{task.point} pts</Badge>
-                  ) : (
-                    ""
-                  )}
-                  {task.deadline ? (
-                    <Badge className="bg-secondary">{task.deadline}</Badge>
-                  ) : (
-                    ""
-                  )}
-                  {task.estimated_time ? (
-                    <Badge className="bg-secondary">
-                      {task.estimated_time} min
-                    </Badge>
-                  ) : (
-                    ""
-                  )}
-                </Col>
-                <Col xs="2" className="d-flex justify-content-end">
-                  <EditTaskButton task={task}/>
-                </Col>
-              </Row>
+              <Task task={tasks[task_id]} task_id={task_id} project_id={project_id}/>
             </ListGroupItem>
           );
         })}
       <ListGroupItem>
         <TaskFormButton
-          buttonLabel="+"
-          className="TaskFormModal"
           project_id={project_id}
         />
       </ListGroupItem>

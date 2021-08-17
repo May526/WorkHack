@@ -1,38 +1,45 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Row, Col } from "reactstrap";
+import { AuthContext } from "../auth/AuthProvider";
+import { fetchProjects } from "../database/database_read";
+import { extractTasksFromProjects } from "../lib/filters";
+import { projects, task } from "../lib/types";
 import CurrentPoints from "./components/goal/CurrentPoints";
 import GoalPoints from "./components/goal/GoalPoints";
 import TasksPointsTable from "./components/goal/TasksPointsTable";
 import TodayTaskPieChart from "./components/goal/TodayTaskPieChart";
-import { ProjectsContext } from "./contexts/ProjectsContext";
 
 export default function Goal() {
-  const { extractTasksFromProjects }:any = useContext(ProjectsContext);
-  const tasks_completed_today = useMemo(()=>
-  extractTasksFromProjects((task:any) => {
-    const now_timestamp = new Date();
-    return (
-      task.is_completed &&
-      new Date(task.completed_at).getDate() === now_timestamp.getDate()
-    );
-  }),[extractTasksFromProjects]);
+  const currentUser = useContext(AuthContext);
+  const [projects, setProjects] = useState<projects>({});
+  useEffect(() => {
+    fetchProjects(currentUser as firebase.default.User, setProjects);
+  }, [currentUser]);
+
+  const tasks_completed_today = useMemo(
+    () =>
+      extractTasksFromProjects(projects, (task: task) => {
+        const now_timestamp = new Date();
+        return (
+          task.is_completed &&
+          new Date(task.completed_at).getDate() === now_timestamp.getDate()
+        );
+      }),
+    [projects]
+  );
   return (
     <div>
       <Row className="my-4">
         <Col>
-          <CurrentPoints tasks={tasks_completed_today} />
+          <CurrentPoints task_projectId_taskId={tasks_completed_today} />
         </Col>
-        <Col>
-          <GoalPoints />
-        </Col>
+        <Col><GoalPoints projects={projects} /></Col>
       </Row>
       <Row className="my-4">
         <Col xs="4">
-          <TodayTaskPieChart tasks={tasks_completed_today} />
+          <TodayTaskPieChart task_projectId_taskId={tasks_completed_today} />
         </Col>
-        <Col>
-          <TasksPointsTable tasks={tasks_completed_today} />
-        </Col>
+        <Col><TasksPointsTable task_projectId_taskId={tasks_completed_today} /></Col>
       </Row>
     </div>
   );

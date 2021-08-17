@@ -1,21 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import { withRouter } from "react-router";
 import { Col, Row } from "reactstrap";
 import Header from "./comp/Header";
-import { AuthContext } from "../auth/AuthProvider";
-import { useRegisterUser } from "../database/database_write";
+import { registerUser } from "../database/database_write";
 import { History } from "history";
+import { login } from "../auth/Auth";
 
-const Login : React.FunctionComponent<{history : History}> = ({history}) => {
-  const { login }:any = useContext(AuthContext);
-
-  const registerUser = useRegisterUser();
-
-  const handleSubmit = async (event : any ) => {
+const Login: React.FunctionComponent<{ history: History }> = ({ history }) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
     const { email, password } = event.target.elements;
     const user = await login(email.value, password.value, history);
-    registerUser(user);
+    if (user) {
+      registerUser(user);
+    }
   };
 
   return (

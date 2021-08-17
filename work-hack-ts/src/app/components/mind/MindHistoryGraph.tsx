@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   CartesianGrid,
   Legend,
@@ -8,33 +8,33 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { ProjectsContext } from "../../contexts/ProjectsContext";
+import { extractTasksFromProjects } from "../../../lib/filters";
+import { projects, task } from "../../../lib/types";
 
-export default function MindHistoryGraph() {
-  const { extractTasksFromProjects }:any = useContext(ProjectsContext);
-
-  const started_tasks = extractTasksFromProjects((task:any) => {
+export default function MindHistoryGraph(props:{projects:projects}) {
+const {projects} = props;
+  const started_tasks = extractTasksFromProjects(projects,(task:task) => {
     return task.is_ongoing || task.is_completed;
   })
 
-  const start_feelings = started_tasks.map((task:any) => {
+  const start_feelings = started_tasks.map(([task,project_id,task_id]) => {
     return {
       timestamp: new Date(task.started_at).getTime(),
       timestamp_str: new Date(task.started_at).toLocaleString(),
-      energy: task.feeling.before.energy,
-      pleasantness: task.feeling.before.pleasantness,
+      energy: task.feelings.before.energy,
+      pleasantness: task.feelings.before.pleasantness,
     };
   });
 
-  const completed_tasks = extractTasksFromProjects(
-    (task:any) => task.is_completed
+  const completed_tasks = extractTasksFromProjects(projects,
+    (task:task) => task.is_completed
   )
-  const end_feelings = completed_tasks.map((task:any) => {
+  const end_feelings = completed_tasks.map(([task,project_id,task_id]) => {
     return {
       timestamp: new Date(task.completed_at).getTime(),
       timestamp_str: new Date(task.completed_at).toLocaleString(),
-      energy: task.feeling.after.energy,
-      pleasantness: task.feeling.after.pleasantness,
+      energy: task.feelings.after.energy,
+      pleasantness: task.feelings.after.pleasantness,
     };
   });
 

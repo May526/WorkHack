@@ -1,47 +1,39 @@
-import React, { useState, useContext } from "react";
-import { Form, Row, Col, FormGroup, Input, Button } from "reactstrap";
-import { ProjectsContext } from "../../../contexts/ProjectsContext";
-import { useRegisterProject } from "../../../../database/database_write";
+import React, { useContext } from "react";
+import { Row, Col } from "reactstrap";
+import { registerProject } from "../../../../database/database_write";
 import { AuthContext } from "../../../../auth/AuthProvider";
+import { Project } from "../../../../lib/classes";
+import { useForm, SubmitHandler } from "react-hook-form";
 
+type ProjectInput = {
+  name: string;
+};
 
 export default function ProjectForm() {
-  const { currentUser }:any = useContext(AuthContext) ;
-  const { null_project }:any = useContext(ProjectsContext);
-  const registerProject = useRegisterProject(currentUser);
-  const [new_project, setNewProject] = useState({...null_project});
+  const currentUser = useContext(AuthContext);
 
-  const handleSubmit = (event:any) => {
-    event.preventDefault();
-    registerProject(new_project);
-    setNewProject({...null_project});
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit: SubmitHandler<ProjectInput> = (inputs) => {
+    const new_project = new Project(currentUser as firebase.default.User);
+    new_project.name = inputs.name;
+    registerProject(currentUser as firebase.default.User, new_project);
   };
 
-  const handleChange = (event:any) => {
-    let copy = {...new_project};
-    copy[event.target.name] = event.target.value;
-    setNewProject(copy);
-  };
   return (
-    <Form onSubmit={handleSubmit}>
-      <Row className="py-3">
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Row>
         <Col>
-          <FormGroup>
-            <Input
-              type="text"
-              placeholder="project name"
-              onChange={handleChange}
-              name="name"
-              value={new_project.name}
-            ></Input>
-          </FormGroup>
+          <input {...register("name", { required: true }) } className="w-100"/>
+          {errors.name && <span>This field is required.</span>}
         </Col>
-        <Col xs="2">
-          <Button type="submit" color="dark">
-            Add a new project
-          </Button>
+        <Col className="d-flex justify-content-end" xs="2">
+          <input type="submit" value="add a new project" />
         </Col>
       </Row>
-    </Form>
+    </form>
   );
 }

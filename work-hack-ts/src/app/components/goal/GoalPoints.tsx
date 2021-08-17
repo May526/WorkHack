@@ -1,10 +1,11 @@
-import React,{useContext} from "react";
-import { ProjectsContext } from "../../contexts/ProjectsContext";
+import React from "react";
+import { extractTasksFromProjects } from "../../../lib/filters";
+import { projects } from "../../../lib/types";
 
 
-export default function GoalPoints() {
-  const { extractTasksFromProjects }:any = useContext(ProjectsContext);
-  const tasks_in_last_7_day = extractTasksFromProjects((task:any) => {
+export default function GoalPoints(props:{projects:projects}) {
+  const {projects}=props;
+  const task_projectId_taskId = extractTasksFromProjects(projects,(task:any) => {
     const now_timestamp = new Date();
     const latest_timestamp = new Date(now_timestamp.toLocaleDateString());
     const oldest_timestamp = new Date(
@@ -16,6 +17,8 @@ export default function GoalPoints() {
       new Date(task.completed_at).getTime() >= oldest_timestamp.getTime()
     );
   });
+
+  const tasks_in_last_7_day = task_projectId_taskId.map(([task,pi,ti])=>{return task})
 
   const goal_int = tasks_in_last_7_day.length
     ? tasks_in_last_7_day

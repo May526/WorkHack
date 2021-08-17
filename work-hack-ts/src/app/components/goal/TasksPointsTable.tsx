@@ -1,14 +1,16 @@
 import React from "react";
 import { Table } from "reactstrap";
 import { msToHMS } from "../../../lib/convertTypes";
+import { task } from "../../../lib/types";
 
-export default function TasksPointsTable(props: any) {
-  const { tasks } = props;
+export default function TasksPointsTable(props:{ task_projectId_taskId:[task: task, project_id: string, task_id: string][]}) {
+  const { task_projectId_taskId } = props;
 
   /**
    * 最近に近いほどインデックスが大きい
    */
-  tasks.sort((task1: any, task2: any) => {
+  const tasks=task_projectId_taskId.map(([task,pi,ti])=>task);
+  tasks.sort((task1: task, task2: task) => {
     return (
       new Date(task1.completed_at).getTime() -
       new Date(task2.completed_at).getTime()
@@ -28,13 +30,13 @@ export default function TasksPointsTable(props: any) {
         </thead>
         <tbody>
           {tasks &&
-            tasks.map((task: any, index: any) => {
-              const hms = msToHMS(task.completed_at - task.started_at);
+            tasks.map((task: task, index: number) => {
+              const hms = msToHMS((task.completed_at as number) - (task.started_at as number));
               return (
                 <tr key={index}>
                   <td>{task.name}</td>
                   <td>{task.point}</td>
-                  <td>{new Date(task.completed_at).toLocaleString()}</td>
+                  <td>{new Date(task.completed_at).toLocaleTimeString()}</td>
                   <td>
                     {hms.hour + "h " + hms.minute + "m " + hms.second + "s"}
                   </td>

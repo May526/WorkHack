@@ -1,22 +1,33 @@
-export interface task {
-    id:string,
+export type task = {
     name: string,
     point: string,
-    deadline: number,
-    estimated_time:number|"",
+    deadline: string,
+    estimated_time:string,
+
     is_ongoing: boolean,
-    started_at: number|"",
     is_completed: boolean,
+
+    started_at: number|"",
     completed_at: number|"",
-    subtasks: string,
-    feeling: {
-        before: {
-            energy: number,
-            pleasantness: number,
-        },
-        after: {
-            energy: number,
-            pleasantness: number,
-        },
+
+    feelings: {
+        before: feeling,
+        after: feeling
     },
 }
+
+export type feeling = {
+    energy:number,
+    pleasantness:number
+}
+
+export type project = {
+    name:string,
+    member:ids,
+    tasks:tasks|""
+}
+
+export type ids = {[index: string]:true}
+export type projects ={[index: string]:project}
+export type tasks ={[index: string]:task}|""
+

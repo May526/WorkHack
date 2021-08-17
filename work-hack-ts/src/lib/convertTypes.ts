@@ -3,7 +3,7 @@
  * 
  */
 /**
- * {key:value}の形をしているObjectを{key_name:key,...value}に変換
+ * {key1:value1,...}の形をしているObjectを[{key_name:key1,...value1},...]に変換
  * @param keyObj 
  * @param key_name 
  * @returns 
