@@ -1,4 +1,11 @@
 import { task, projects, project } from './types';
+
+/**
+ * projectsからindicator_func(task)がtrueであるtaskたちを返す.
+ * @param projects 
+ * @param indicator_func 
+ * @returns 
+ */
 export const extractTasksFromProjects = (projects: projects, indicator_func: (task: task) => boolean) => {
     const project_entries = Object.entries(projects);
     let ret: [task: task, project_id: string, task_id: string][] = [];
@@ -9,7 +16,13 @@ export const extractTasksFromProjects = (projects: projects, indicator_func: (ta
     return ret;
 }
 
-
+/**
+ * projectからindicator_func(task)がtrueであるtaskたちを返す.
+ * @param project_id 
+ * @param project 
+ * @param indicator_func 
+ * @returns 
+ */
 const extractTasksFromProject = (project_id: string, project: project, indicator_func: (task: task) => boolean): [task: task, project_id: string, task_id: string][] => {
     if (project.tasks) {
         return Object.entries(project.tasks).filter(([task_id, task]) => {

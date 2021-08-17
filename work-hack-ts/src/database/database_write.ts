@@ -3,6 +3,7 @@ import { database } from "../firebase_init";
 
 /**
  * userがrealtime databaseに登録済みなら何もしない, まだなら登録する
+ * @param user 
  */
 export const registerUser = (user: firebase.default.User) => {
   database.ref("users").child(user.uid).get().then((snapshot) => {
@@ -16,6 +17,8 @@ export const registerUser = (user: firebase.default.User) => {
 
 /**
  * projectを新しく登録する
+ * @param user 
+ * @param new_project 
  */
 export const registerProject = (user: firebase.default.User,new_project:project) => {
   const new_projects_ref=database.ref("projects").push();
@@ -28,6 +31,8 @@ export const registerProject = (user: firebase.default.User,new_project:project)
 
 /**
  * taskを新しく登録する
+ * @param project_id 
+ * @param new_task 
  */
  export const registerTask = (project_id:string, new_task:task) => {
   const new_task_ref=database.ref(`projects/${project_id}/tasks`).push();

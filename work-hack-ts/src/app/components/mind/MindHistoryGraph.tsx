@@ -11,13 +11,17 @@ import {
 import { extractTasksFromProjects } from "../../../lib/filters";
 import { projects, task } from "../../../lib/types";
 
-export default function MindHistoryGraph(props:{projects:projects}) {
-const {projects} = props;
-  const started_tasks = extractTasksFromProjects(projects,(task:task) => {
-    return task.is_ongoing || task.is_completed;
-  })
+export default function MindHistoryGraph(props: { projects: projects }) {
+  const { projects } = props;
 
-  const start_feelings = started_tasks.map(([task,project_id,task_id]) => {
+  const started_tasks = extractTasksFromProjects(projects, (task: task) => {
+    return task.is_ongoing || task.is_completed;
+  });
+
+  /**
+   * LineChartに渡せる形に整形
+   */
+  const start_feelings = started_tasks.map(([task, project_id, task_id]) => {
     return {
       timestamp: new Date(task.started_at).getTime(),
       timestamp_str: new Date(task.started_at).toLocaleString(),
@@ -26,10 +30,16 @@ const {projects} = props;
     };
   });
 
-  const completed_tasks = extractTasksFromProjects(projects,
-    (task:task) => task.is_completed
-  )
-  const end_feelings = completed_tasks.map(([task,project_id,task_id]) => {
+  const completed_tasks = extractTasksFromProjects(
+    projects,
+    (task: task) => task.is_completed
+  );
+
+  
+  /**
+   * LineChartに渡せる形に整形
+   */
+  const end_feelings = completed_tasks.map(([task, project_id, task_id]) => {
     return {
       timestamp: new Date(task.completed_at).getTime(),
       timestamp_str: new Date(task.completed_at).toLocaleString(),
@@ -42,7 +52,7 @@ const {projects} = props;
   /**
    * 最近であるほどインデックスが小さくなるようにソート
    */
-  feelings.sort((feeling1:any, feeling2:any) => {
+  feelings.sort((feeling1: any, feeling2: any) => {
     return feeling1.timestamp - feeling2.timestamp;
   });
 

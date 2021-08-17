@@ -7,7 +7,7 @@ export default function TasksPointsTable(props:{ task_projectId_taskId:[task: ta
   const { task_projectId_taskId } = props;
 
   /**
-   * 最近に近いほどインデックスが大きい
+   * 最近に近いほどインデックスが大きいようにソート
    */
   const tasks=task_projectId_taskId.map(([task,pi,ti])=>task);
   tasks.sort((task1: task, task2: task) => {
