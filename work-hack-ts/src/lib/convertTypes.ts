@@ -1,22 +1,3 @@
-
-/**
- * 
- */
-/**
- * {key1:value1,...}の形をしているObjectを[{key_name:key1,...value1},...]に変換
- * @param keyObj 
- * @param key_name 
- * @returns 
- */
-export const KeyObjToList = (keyObj: Object, key_name: string) => {
-    const KV: [string, Object][] = Object.entries(keyObj);
-    return KV.map(([key, content]) => {
-        const tmp = { ...content };
-        Object.defineProperty(tmp, key_name, { value: key })
-        return tmp
-    })
-}
-
 /**
  * 小数点以下切り捨て
  * @param ms ミリ秒
