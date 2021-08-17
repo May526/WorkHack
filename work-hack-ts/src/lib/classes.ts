@@ -1,6 +1,6 @@
-import { ids, tasks, task, feeling } from './types';
+import { ids, tasks, task, feeling, project } from './types';
 
-export class Project {
+export class Project implements project{
     name:string;
     member:ids;
     tasks:tasks|""
