@@ -1,4 +1,4 @@
-import { task, project, feeling } from './../lib/types';
+import { task, project, feeling, ids } from './../lib/types';
 import { database } from "../firebase_init";
 
 /**
@@ -61,4 +61,15 @@ export const updateTask = (project_id:string, task_id:string, key:string, value:
 export const updateFeeling = (project_id:string, task_id:string, key:"after"|"before", feeling:feeling) => {
   const task_ref = database.ref(`projects/${project_id}/tasks/${task_id}/feelings/${key}`);
   task_ref.set(feeling);
+}
+
+/**
+ * 指定のprojectの name|member を更新する
+ * @param project_id 
+ * @param key 
+ * @param value 
+ */
+export const updateProject = (project_id:string, key:"name"|"memeber",value:string|ids) => {
+  const project_ref = database.ref(`projects/${project_id}/${key}`);
+  project_ref.set(value);
 }
