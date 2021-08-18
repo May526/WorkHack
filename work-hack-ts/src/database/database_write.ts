@@ -73,3 +73,11 @@ export const updateProject = (project_id:string, key:"name"|"memeber",value:stri
   const project_ref = database.ref(`projects/${project_id}/${key}`);
   project_ref.set(value);
 }
+
+/**
+ * 指定のtaskをrealtime databaseから削除する
+ */
+export const deleteTask = (project_id:string,task_id:string) => {
+  const task_ref = database.ref(`projects/${project_id}/tasks/${task_id}`);
+  task_ref.remove();
+}
