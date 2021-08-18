@@ -9,8 +9,9 @@ export default function TasksMindsTable(props:{projects:projects}) {
   const tasks = extractTasksFromProjects(projects,(task:any) => task.is_completed).map(([task,pi,ti])=>{return task});
 
   /**
-   * 差のノルムでソート
-   * ノルムが等しい場合は初期値のノルムで比較
+   * (energy,plesantness)を2次元ベクトル値だと思って
+   * 差のユークリッド距離でソート
+   * ユークリッド距離が等しい場合はbeforeの方のユークリッド距離で比較
    * さらに等しい場合は等しい扱い
    */
   tasks.sort((task1:task, task2:task) => {

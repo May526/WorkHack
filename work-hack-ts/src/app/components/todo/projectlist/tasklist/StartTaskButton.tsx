@@ -6,6 +6,7 @@ import {
 } from "../../../../../database/database_write";
 import { feeling, task } from "../../../../../lib/types";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Feeling } from "../../../../../lib/classes";
 
 export default function StartTaskButton(props: {
   project_id: string;
@@ -17,7 +18,7 @@ export default function StartTaskButton(props: {
   const [modal, setModal] = useState(false);
   const toggle_modal = () => setModal(!modal);
 
-  const { register, handleSubmit, reset, watch } = useForm();
+  const { register, handleSubmit, reset, watch } = useForm({defaultValues:new Feeling(5,5)});
 
   const onSubmit: SubmitHandler<feeling> = (data) => {
     updateFeeling(project_id, task_id, "before", data);

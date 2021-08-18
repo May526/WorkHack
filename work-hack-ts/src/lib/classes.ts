@@ -1,5 +1,6 @@
-import { ids, tasks, task, feeling } from './types';
-export class Project {
+import { ids, tasks, task, feeling, project } from './types';
+
+export class Project implements project{
     name:string;
     member:ids;
     tasks:tasks|""
@@ -10,13 +11,13 @@ export class Project {
     }
 }
 
-class Feeling implements feeling {
+export class Feeling implements feeling {
     energy:number;
     pleasantness:number;
 
-    constructor(){
-        this.energy=-1;
-        this.pleasantness=-1;
+    constructor(energy=-1,pleasantness=-1){
+        this.energy=energy;
+        this.pleasantness=pleasantness;
     }
 }
 

@@ -1,38 +1,5 @@
 import { projects, project } from './../lib/types';
-/**
- * Realtime databaseの読み取りに関するもの
- */
-
-import { useEffect, useState, useMemo } from "react";
 import { database } from "../firebase_init";
-
-export const useFetchData = (ref: firebase.default.database.Reference) => {
-  const [data, setData] = useState(undefined);
-  useEffect(() => {
-
-    ref.on('value', snapshot => {
-
-      if (snapshot?.val()) {
-        setData(snapshot.val());
-      }
-    });
-
-    return () => {
-      ref.off();
-    };
-  }, [ref]);
-  return { data };
-};
-
-const useDatabase = () => {
-  return useMemo(() => database.ref(), []);
-};
-
-
-export const useFetchAllData = () => {
-  const root_ref = useDatabase();
-  return useFetchData(root_ref);
-};
 
 /**
  * userのproject_idsをlistenする(変更などあれば反映される)
@@ -50,6 +17,11 @@ export const fetchProjectIDs_on = async (user: firebase.default.User, callback: 
   })
 }
 
+/**
+ * projectをlistenする(変更などあれば反映される)
+ * @param project_id 
+ * @param callback 
+ */
 export const fetchProject_on = async (project_id: string, callback: (project: project) => any) => {
   database.ref(`projects/${project_id}`).on("value", (snapshot) => {
     callback(snapshot.val());
@@ -58,7 +30,8 @@ export const fetchProject_on = async (project_id: string, callback: (project: pr
 
 
 /**
- * userのprojectsをlistenする(変更などあれば反映される)
+ * userのproject_idsをlistenして、projectを取得
+ * project_idsの変更のみ反映 (projectの内容変更は反映されない)
  * @param user 
  * @param callback 
  */
@@ -79,7 +52,7 @@ export const fetchProjects_on = async (user: firebase.default.User, callback: (p
 }
 
 /**
- * userのprojectsを取ってきてcallbackに渡す(get)
+ * userのprojectsを取ってきてcallbackに渡す(get : 反映されない)
  * @param user 
  * @returns 
  */

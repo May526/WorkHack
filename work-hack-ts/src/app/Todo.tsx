@@ -5,7 +5,6 @@ import OngoingTasks from "./components/todo/OngoingTasks";
 
 
 export default function TodoPage() {
-  console.log("render: Todo.tsx");
   return (
     <div>
       <Row>

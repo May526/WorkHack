@@ -16,8 +16,6 @@ const ProjectsContextProvider:React.FC = ({children}) => {
   ,[currentUser])
 
 
-  console.log("render: ProjectsContexts.tsx");
-  console.log("projects: ",project_ids);
   return (
     <ProjectsContext.Provider
       value={

@@ -1,14 +1,18 @@
 import React from "react";
 import { task } from "../../../lib/types";
 
-export default function CurrentPoints(props:{task_projectId_taskId:[task: task, project_id: string, task_id: string][]}){
+export default function CurrentPoints(props: {
+  task_projectId_taskId: [task: task, project_id: string, task_id: string][];
+}) {
   const { task_projectId_taskId } = props;
-  let sum=0;
-  task_projectId_taskId.map(([task,pi,ti])=>task).map((task)=>{sum+=parseInt(task.point,10); return null})
+
+  const today_sum = task_projectId_taskId
+    .map(([task, pi, ti]) => parseInt(task.point, 10))
+    .reduce((sum: number, point: number) => sum + point,0);
 
   return (
     <div>
-      <h3>Current :  {sum} [pts]</h3>
+      <h3>Current : {today_sum} [pts]</h3>
     </div>
   );
 }
