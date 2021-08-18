@@ -34,7 +34,7 @@ export default function ProjectEditButton(props: {
       <Modal
         isOpen={modal}
         toggle={toggle_modal}
-        className="EditTaskModal"
+        className="EditProjectModal"
         fade={false}
       >
         <ModalHeader>Edit : {project.name} </ModalHeader>
