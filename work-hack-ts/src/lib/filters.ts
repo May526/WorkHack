@@ -1,4 +1,4 @@
-import { task, projects, project } from './types';
+import { task, projects, project, tasks } from './types';
 
 /**
  * projectsからindicator_func(task)がtrueであるtaskたちを返す.
@@ -34,3 +34,11 @@ const extractTasksFromProject = (project_id: string, project: project, indicator
         return [];
     }
 };
+
+export const getChildren = (tasks:tasks,parent_task_id: string) => {
+    if(tasks===""){
+        return {}
+    }
+    const children_entries = Object.entries(tasks).filter(([task_id, task]) => task.parent === parent_task_id )
+    return Object.fromEntries(children_entries)
+}

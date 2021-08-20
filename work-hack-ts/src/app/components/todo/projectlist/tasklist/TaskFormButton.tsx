@@ -11,14 +11,14 @@ type TaskInput = {
   estimated_time: number | "";
 };
 
-export default function TaskForm(props: { project_id: string }) {
-  const { project_id } = props;
+export default function TaskForm(props: { project_id: string ,parent_task_id:string}) {
+  const { project_id , parent_task_id} = props;
 
   const [modal, setModal] = useState(false);
   const toggle_modal = () => setModal(!modal);
 
   const { register, handleSubmit, reset } = useForm({
-    defaultValues: { name: "", point: "", deadline: "", estimated_time: "" },
+    defaultValues: { name: "", point: "", deadline: "", estimated_time: "" ,parent:parent_task_id},
   });
 
   const onSubmit: SubmitHandler<TaskInput> = (inputs, event) => {
@@ -32,7 +32,7 @@ export default function TaskForm(props: { project_id: string }) {
   return (
     <div>
       <Button size="sm" color="dark" onClick={toggle_modal}>
-        Add a new task
+        +
       </Button>
       <Modal
         isOpen={modal}

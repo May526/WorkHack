@@ -31,7 +31,7 @@ export default function ProjectComp(props: { project_id: string }) {
       </Row>
       <Row>
         <Col>
-          <TaskList tasks={project.tasks} project_id={project_id} />
+          <TaskList tasks={project.tasks} project_id={project_id} parent_task_id={""}/>
         </Col>
       </Row>
     </div>

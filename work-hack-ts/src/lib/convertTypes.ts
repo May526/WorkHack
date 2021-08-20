@@ -1,6 +1,7 @@
 /**
  * 小数点以下切り捨て
  * @param ms ミリ秒
+ * @returns 
  */
 export const msToHMS = (ms: number) => {
     const second_sum = Math.floor(ms / 1000)
