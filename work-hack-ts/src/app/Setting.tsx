@@ -2,7 +2,6 @@ import React from "react";
 import { Row } from "reactstrap";
 
 export default function Setting() {
-  console.log("render: Setting.tsx")
   return (
     <div>
       <div className="d-flex border-bottom">

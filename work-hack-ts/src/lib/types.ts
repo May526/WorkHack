@@ -14,6 +14,8 @@ export type task = {
         before: feeling,
         after: feeling
     },
+
+    parent:string,
 }
 
 export type feeling = {

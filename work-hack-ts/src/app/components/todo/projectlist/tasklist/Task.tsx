@@ -12,7 +12,7 @@ export default function Task(props: {
 }) {
   const { task, project_id, task_id } = props;
   return (
-    <Row className="border">
+    <Row className="border-bottom">
       <Col xs="2" className="d-flex justify-content-start">
         <StartTaskButton
           project_id={project_id}
