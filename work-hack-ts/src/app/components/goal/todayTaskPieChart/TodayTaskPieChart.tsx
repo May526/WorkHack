@@ -1,19 +1,22 @@
-import React from "react";
 import { ResponsiveContainer, Pie, PieChart, Tooltip } from "recharts";
-import { task } from "../../../lib/types";
+import { task } from "../../../../lib/types";
 
-export default function TodayTaskPieChart(props:{task_projectId_taskId:[task: task, project_id: string, task_id: string][]}) {
+export default function TodayTaskPieChart(props: {
+  task_projectId_taskId: [task: task, project_id: string, task_id: string][];
+}) {
   const { task_projectId_taskId } = props;
 
-  const tasks=task_projectId_taskId.map(([task,pi,ti])=>{return task});
+  const tasks = task_projectId_taskId.map(([task, pi, ti]) => {
+    return task;
+  });
 
   /**
    * PieChartコンポーネントに渡せる形に整形した
    */
-  const data = tasks.map((task:any) => {
+  const data = tasks.map((task: any) => {
     return {
       name: task.name,
-      value: parseInt(task.point,10),
+      value: parseInt(task.point, 10),
     };
   });
 

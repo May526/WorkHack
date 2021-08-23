@@ -1,12 +1,16 @@
-import React from "react";
 import { Table } from "reactstrap";
-import { msToHMS } from "../../../lib/convertTypes";
-import { extractTasksFromProjects } from "../../../lib/filters";
-import { projects, task } from "../../../lib/types";
+import { msToHMS } from "../../../../lib/convertTypes";
+import { extractTasksFromProjects } from "../../../../lib/filters";
+import { projects, task } from "../../../../lib/types";
 
-export default function TasksMindsTable(props:{projects:projects}) {
-  const {projects}=props;
-  const tasks = extractTasksFromProjects(projects,(task:any) => task.is_completed).map(([task,pi,ti])=>{return task});
+export default function TasksMindsTable(props: { projects: projects }) {
+  const { projects } = props;
+  const tasks = extractTasksFromProjects(
+    projects,
+    (task: any) => task.is_completed
+  ).map(([task, pi, ti]) => {
+    return task;
+  });
 
   /**
    * (energy,plesantness)を2次元ベクトル値だと思って
@@ -14,8 +18,8 @@ export default function TasksMindsTable(props:{projects:projects}) {
    * ユークリッド距離が等しい場合はbeforeの方のユークリッド距離で比較
    * さらに等しい場合は等しい扱い
    */
-  tasks.sort((task1:task, task2:task) => {
-    function norm(vector:number[]) {
+  tasks.sort((task1: task, task2: task) => {
+    function norm(vector: number[]) {
       let ret = 0;
       for (let i = 0; i < vector.length; i++) {
         ret += vector[i] ** 2;
@@ -23,7 +27,7 @@ export default function TasksMindsTable(props:{projects:projects}) {
       return ret;
     }
 
-    function diff(vector1:number[], vector2:number[]) {
+    function diff(vector1: number[], vector2: number[]) {
       let ret = [];
       for (let i = 0; i < vector1.length; i++) {
         ret.push(vector1[i] - vector2[i]);
@@ -77,8 +81,10 @@ export default function TasksMindsTable(props:{projects:projects}) {
         </thead>
         <tbody>
           {tasks &&
-            tasks.map((task:task, index:number) => {
-              const hms=msToHMS((task.completed_at as number)-(task.started_at as number))
+            tasks.map((task: task, index: number) => {
+              const hms = msToHMS(
+                (task.completed_at as number) - (task.started_at as number)
+              );
               return (
                 <tr key={index}>
                   <td>{task.name}</td>
@@ -92,10 +98,10 @@ export default function TasksMindsTable(props:{projects:projects}) {
                   </td>
                   <td>{new Date(task.completed_at).toLocaleString()}</td>
                   <td>
-                    {hms.hour+"h "+hms.minute+"m "+hms.second+"s"}
+                    {hms.hour + "h " + hms.minute + "m " + hms.second + "s"}
                   </td>
                   <td>
-                    {task.estimated_time ? task.estimated_time+" min" : ""} 
+                    {task.estimated_time ? task.estimated_time + " min" : ""}
                   </td>
                 </tr>
               );

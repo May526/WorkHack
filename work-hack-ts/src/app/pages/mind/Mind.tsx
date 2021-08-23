@@ -3,8 +3,8 @@ import "./Mind.css";
 import { AuthContext } from "../../../auth/AuthProvider";
 import { fetchProjects } from "../../../database/database_read";
 import { projects } from "../../../lib/types";
-import MindHistoryGraph from "../../components/mindHistory/MindHistoryGraph";
-import TasksMindsTable from "../../components/completedTask/CompletedTask";
+import MindHistoryGraph from "../../components/summary/mindHistory/MindHistoryGraph";
+import TasksMindsTable from "../../components/summary/completedTask/CompletedTask";
 
 export default function Mind() {
   const currentUser = useContext(AuthContext);

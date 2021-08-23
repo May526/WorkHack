@@ -1,4 +1,3 @@
-import React from "react";
 import { Table } from "reactstrap";
 import { msToHMS } from "../../../lib/convertTypes";
 import { task } from "../../../lib/types";

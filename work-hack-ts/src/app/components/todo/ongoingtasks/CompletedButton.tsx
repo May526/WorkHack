@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Button, Modal, ModalHeader, ModalBody, Row, Col } from "reactstrap";
 import { updateFeeling, updateTask } from "../../../../database/database_write";
@@ -14,7 +14,9 @@ export default function CompletedButton(props: {
   const [modal, setModal] = useState(false);
   const toggle_modal = () => setModal(!modal);
 
-  const { register, handleSubmit, watch } = useForm({defaultValues:new Feeling(5,5)});
+  const { register, handleSubmit, watch } = useForm({
+    defaultValues: new Feeling(5, 5),
+  });
   const onSubmit: SubmitHandler<feeling> = (data) => {
     updateFeeling(project_id, task_id, "after", data);
     updateTask(project_id, task_id, "is_ongoing", false);

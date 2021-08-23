@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Badge, Col, ListGroupItem, Row } from "reactstrap";
 import { AuthContext } from "../../../../auth/AuthProvider";
 import { fetchProject_on } from "../../../../database/database_read";

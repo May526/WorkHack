@@ -1,11 +1,10 @@
-import React from "react";
-import { extractTasksFromProjects } from "../../../lib/filters";
-import { projects, task } from "../../../lib/types";
+import { extractTasksFromProjects } from "../../../../lib/filters";
+import { projects, task } from "../../../../lib/types";
 
 /**
- * 過去7日間の取得pointの総和を7で割った値を今日のgoalとしている 
- * 　S:過去7日間の取得pointの総和 とすれば
- * 　S/7 : 過去7日間をもとにした1日の平均取得ポイント となる
+ * 過去7日間の取得pointの総和を7で割った値を今日のgoalとしている
+ * S:過去7日間の取得pointの総和 とすれば
+ * S/7 : 過去7日間をもとにした1日の平均取得ポイント となる
  */
 export default function GoalPoints(props: { projects: projects }) {
   const { projects } = props;
@@ -33,7 +32,7 @@ export default function GoalPoints(props: { projects: projects }) {
   const goal_int = tasks_in_last_7_day.length
     ? tasks_in_last_7_day
         .map((task: task) => parseInt(task.point, 10))
-        .reduce((point_int: number, sum: number) => sum + point_int,0) / 7
+        .reduce((point_int: number, sum: number) => sum + point_int, 0) / 7
     : 0;
 
   return (

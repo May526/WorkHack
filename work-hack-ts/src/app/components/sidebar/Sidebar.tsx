@@ -1,6 +1,6 @@
 import "./Sidebar.css";
 import { Home, FormatListBulleted, PieChart, Poll } from "@material-ui/icons";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 import { logout } from "../../../auth/Auth";
 

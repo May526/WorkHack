@@ -4,10 +4,10 @@ import { AuthContext } from "../../../auth/AuthProvider";
 import { fetchProjects } from "../../../database/database_read";
 import { extractTasksFromProjects } from "../../../lib/filters";
 import { projects, task } from "../../../lib/types";
-import CurrentPoints from "../../components/currentPoint/CurrentPoints";
-import GoalPoints from "../../components/goalPoint/GoalPoints";
+import CurrentPoints from "../../components/goal/currentPoint/CurrentPoints";
+import GoalPoints from "../../components/goal/goalPoint/GoalPoints";
 import TasksPointsTable from "../../components/taskPointTable/TasksPointsTable";
-import TodayTaskPieChart from "../../components/todayTaskPieChart/TodayTaskPieChart";
+import TodayTaskPieChart from "../../components/goal/todayTaskPieChart/TodayTaskPieChart";
 
 export default function Goal() {
   const currentUser = useContext(AuthContext);
