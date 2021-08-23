@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Col, Row } from "reactstrap";
+import { Button, Col, Collapse, Row } from "reactstrap";
 import { AuthContext } from "../../../../auth/AuthProvider";
 import { fetchProject_on } from "../../../../database/database_read";
 import { Project } from "../../../../lib/classes";
@@ -13,27 +13,42 @@ export default function ProjectComp(props: { project_id: string }) {
   const [project, setProject] = useState(
     new Project(currentUser as firebase.default.User)
   );
-  
+
   useEffect(() => {
     fetchProject_on(project_id, setProject);
   }, [project_id]);
 
+  const [is_open, setIsOpen] = useState(false);
+  const toggle_folded = () => setIsOpen(!is_open);
+
   return (
     <div>
       <Row>
+        <Col xs="1">
+          <Button onClick={toggle_folded} size="sm" className="w-100">
+            {is_open ? "hide" : "show"}
+          </Button>
+        </Col>
         <Col>
           <h2>{project.name}</h2>
         </Col>
+
         <Col className="d-flex justify-content-end">
           <ProjectEditButton project_id={project_id} project={project} />
-          <ProjectDeleteButton project_id={project_id} project={project}/>
+          <ProjectDeleteButton project_id={project_id} project={project} />
         </Col>
       </Row>
-      <Row>
-        <Col>
-          <TaskList tasks={project.tasks} project_id={project_id} parent_task_id={""}/>
-        </Col>
-      </Row>
+      <Collapse isOpen={is_open}>
+        <Row>
+          <Col>
+            <TaskList
+              tasks={project.tasks}
+              project_id={project_id}
+              parent_task_id={""}
+            />
+          </Col>
+        </Row>
+      </Collapse>
     </div>
   );
 }
