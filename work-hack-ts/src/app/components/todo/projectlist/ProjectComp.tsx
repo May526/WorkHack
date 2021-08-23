@@ -18,7 +18,7 @@ export default function ProjectComp(props: { project_id: string }) {
     fetchProject_on(project_id, setProject);
   }, [project_id]);
 
-  const [is_open, setIsOpen] = useState(true);
+  const [is_open, setIsOpen] = useState(false);
   const toggle_folded = () => setIsOpen(!is_open);
 
   return (
