@@ -64,7 +64,7 @@ export default function TaskForm(props: { project_id: string ,parent_task_id:str
                 <input
                   className="w-100"
                   id={`${project_id}point`}
-                  type="text"
+                  type="number"
                   {...register("point", { required: true })}
                 />
               </Col>
