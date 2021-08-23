@@ -1,4 +1,3 @@
-import React from "react";
 import {
   CartesianGrid,
   Legend,
@@ -8,8 +7,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { extractTasksFromProjects } from "../../../lib/filters";
-import { projects, task } from "../../../lib/types";
+import { extractTasksFromProjects } from "../../../../lib/filters";
+import { projects, task } from "../../../../lib/types";
 
 export default function MindHistoryGraph(props: { projects: projects }) {
   const { projects } = props;
@@ -35,7 +34,6 @@ export default function MindHistoryGraph(props: { projects: projects }) {
     (task: task) => task.is_completed
   );
 
-  
   /**
    * LineChartに渡せる形に整形
    */

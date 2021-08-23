@@ -1,15 +1,16 @@
-import React from "react";
 import { Table } from "reactstrap";
 import { msToHMS } from "../../../lib/convertTypes";
 import { task } from "../../../lib/types";
 
-export default function TasksPointsTable(props:{ task_projectId_taskId:[task: task, project_id: string, task_id: string][]}) {
+export default function TasksPointsTable(props: {
+  task_projectId_taskId: [task: task, project_id: string, task_id: string][];
+}) {
   const { task_projectId_taskId } = props;
 
   /**
    * 最近に近いほどインデックスが大きいようにソート
    */
-  const tasks=task_projectId_taskId.map(([task,pi,ti])=>task);
+  const tasks = task_projectId_taskId.map(([task, pi, ti]) => task);
   tasks.sort((task1: task, task2: task) => {
     return (
       new Date(task1.completed_at).getTime() -
@@ -31,7 +32,9 @@ export default function TasksPointsTable(props:{ task_projectId_taskId:[task: ta
         <tbody>
           {tasks &&
             tasks.map((task: task, index: number) => {
-              const hms = msToHMS((task.completed_at as number) - (task.started_at as number));
+              const hms = msToHMS(
+                (task.completed_at as number) - (task.started_at as number)
+              );
               return (
                 <tr key={index}>
                   <td>{task.name}</td>
