@@ -1,0 +1,16 @@
+.applicationWrapper {
+  display: flex;
+}
+
+.rightPage {
+  flex: 4;
+  margin-left: 180px;
+  display: flex;
+  flex-direction: column;
+  background-color: #f6fffb;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}

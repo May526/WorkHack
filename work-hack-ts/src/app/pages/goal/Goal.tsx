@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Row, Col } from "reactstrap";
-import { AuthContext } from "../auth/AuthProvider";
-import { fetchProjects } from "../database/database_read";
-import { extractTasksFromProjects } from "../lib/filters";
-import { projects, task } from "../lib/types";
-import CurrentPoints from "./components/goal/CurrentPoints";
-import GoalPoints from "./components/goal/GoalPoints";
-import TasksPointsTable from "./components/goal/TasksPointsTable";
-import TodayTaskPieChart from "./components/goal/TodayTaskPieChart";
+import { AuthContext } from "../../../auth/AuthProvider";
+import { fetchProjects } from "../../../database/database_read";
+import { extractTasksFromProjects } from "../../../lib/filters";
+import { projects, task } from "../../../lib/types";
+import CurrentPoints from "../../components/currentPoint/CurrentPoints";
+import GoalPoints from "../../components/goalPoint/GoalPoints";
+import TasksPointsTable from "../../components/taskPointTable/TasksPointsTable";
+import TodayTaskPieChart from "../../components/todayTaskPieChart/TodayTaskPieChart";
 
 export default function Goal() {
   const currentUser = useContext(AuthContext);

@@ -1,0 +1,39 @@
+.topbar {
+  height: 65px;
+  background-color: #ffffff;
+  /* position: sticky; */
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.topbarWrapper {
+  height: 100%;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.topLeft {
+  color: #4a9d75;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 30px;
+  color: darkblue;
+  cursor: pointer;
+}
+
+.topRight {
+  display: flex;
+  align-items: center;
+}
+.topbarIconContainer {
+  position: relative;
+  cursor: pointer;
+  margin-right: 30px;
+  color: #555;
+}
+.topbarIcon {
+  color: #4a9d75;
+}
