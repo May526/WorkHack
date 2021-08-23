@@ -59,7 +59,7 @@ export default function EditTaskButton(props: {
                 <input
                   className="w-100"
                   id={`${project_id}${task_id}point`}
-                  type="text"
+                  type="number"
                   {...register("point")}
                 />
               </Col>
