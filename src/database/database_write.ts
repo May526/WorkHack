@@ -8,7 +8,6 @@ import { task, project, feeling, ids } from './../lib/types';
 export const registerUser = (user: firebase.default.User) => {
   database.ref("users").child(user.uid).get().then((snapshot) => {
     if (snapshot.val()) {
-      console.log("already exists");
     } else {
       database.ref("users").child(user.uid).set({ created_at: new Date().getTime(), updated_at: new Date().getTime() })
     }

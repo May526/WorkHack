@@ -19,7 +19,7 @@ export default function TaskList(props: {
 }) {
   const { project_id, tasks, parent_task_id } = props;
 
-  const children_tasks = getChildren(tasks, parent_task_id);
+  const children_tasks = getChildren(tasks ?? {}, parent_task_id);
 
   return (
     <ListGroup flush className="border-start">
