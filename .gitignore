@@ -5,7 +5,8 @@
 /.pnp
 .pnp.js
 .firebaserc
-
+.vscode/
+firebase-debug.log
 # testing
 /coverage
 
