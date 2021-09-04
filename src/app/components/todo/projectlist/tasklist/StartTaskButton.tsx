@@ -1,12 +1,7 @@
 import React, { useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody, Row, Col } from "reactstrap";
-import {
-  updateFeeling,
-  updateTask,
-} from "../../../../../database/database_write";
-import { feeling, task } from "../../../../../lib/types";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { Feeling } from "../../../../../lib/classes";
+import { Button, Modal, ModalHeader, ModalBody, Row } from "reactstrap";
+import { task } from "../../../../../lib/types";
+import EmotionForm from "../../../common/EmotionForm";
 
 export default function StartTaskButton(props: {
   project_id: string;
@@ -18,16 +13,6 @@ export default function StartTaskButton(props: {
   const [modal, setModal] = useState(false);
   const toggle_modal = () => setModal(!modal);
 
-  const { register, handleSubmit, reset, watch } = useForm({defaultValues:new Feeling(5,5)});
-
-  const onSubmit: SubmitHandler<feeling> = (data) => {
-    updateFeeling(project_id, task_id, "before", data);
-    updateTask(project_id, task_id, "is_ongoing", true);
-    updateTask(project_id, task_id, "started_at", Date.now());
-    reset();
-    toggle_modal();
-  };
-
   const taskColor = (task: task) => {
     if (task.is_completed) {
       return "success";
@@ -37,6 +22,7 @@ export default function StartTaskButton(props: {
       return "secondary";
     }
   };
+
   const makeButtonLabel = (task: task) => {
     if (task.is_completed) {
       return "Completed";
@@ -61,50 +47,19 @@ export default function StartTaskButton(props: {
         className="StartTaskModal"
         fade={false}
       >
-        <ModalHeader>Start {task.name}</ModalHeader>
+        <ModalHeader>"{task.name}"を始める : 現在の気持ちを選ぶ</ModalHeader>
         <ModalBody>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Row>
-              <Col className="d-flex justify-content-end">
-                <label htmlFor={`${project_id}${task_id}before_energy`}>
-                  energy : {watch("energy")}
-                </label>
-              </Col>
-              <Col>
-                <input
-                  id={`${project_id}${task_id}before_energy`}
-                  type="range"
-                  max="10"
-                  min="1"
-                  step="1"
-                  {...register("energy", { required: true })}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col className="d-flex justify-content-end">
-                <label htmlFor={`${project_id}${task_id}before_pleasantness`}>
-                  pleasantness : {watch("pleasantness")}
-                </label>
-              </Col>
-              <Col>
-                <input
-                  id={`${project_id}${task_id}before_pleasantness`}
-                  type="range"
-                  max="10"
-                  min="1"
-                  step="1"
-                  {...register("pleasantness", { required: true })}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <input type="submit" value="Start this task" />
-              <button type="button" onClick={toggle_modal}>
-                Cancel
-              </button>
-            </Row>
-          </form>
+          <EmotionForm
+            project_id={project_id}
+            task_id={task_id}
+            toggle_modal={toggle_modal}
+            start_or_complete="start"
+          />
+          <Row>
+            <button type="button" onClick={toggle_modal}>
+              Cancel
+            </button>
+          </Row>
         </ModalBody>
       </Modal>
     </div>
