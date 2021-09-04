@@ -22,7 +22,7 @@ export default function CompletedButton(props: {
         className="CompletedTaskModal"
         fade={false}
       >
-        <ModalHeader>Choose your feeling</ModalHeader>
+        <ModalHeader>タスクを完了する : 現在の気持ちを選ぶ</ModalHeader>
         <ModalBody>
           <EmotionForm
             project_id={project_id}
