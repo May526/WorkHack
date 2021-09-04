@@ -14,13 +14,15 @@ export default function TasksMindsTable(props: { projects: projects }) {
     return task;
   });
 
+  tasks.sort((task1:task,task2:task)=>(task2.completed_at as number) - (task1.completed_at as number))
+
   return (
     <div>
       <Table>
         <thead>
           <tr>
-            <th>Before </th>
             <th>Task Name</th>
+            <th>Before </th>
             <th>After </th>
             <th>completed at</th>
             <th>elapsed time</th>
@@ -35,12 +37,12 @@ export default function TasksMindsTable(props: { projects: projects }) {
               );
               return (
                 <tr key={index}>
+                  <td>{task.name}</td>
                   <td
                     style={{
                       background: getColorByFeeling(task.feelings.before),
                     }}
                   ></td>
-                  <td>{task.name}</td>
                   <td
                     style={{
                       background: getColorByFeeling(task.feelings.after),
