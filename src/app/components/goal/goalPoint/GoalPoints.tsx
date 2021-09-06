@@ -37,7 +37,7 @@ export default function GoalPoints(props: { projects: projects }) {
 
   return (
     <div>
-      <h3>Goal : {goal_int} [pts]</h3>
+      <h3>Goal : {Math.ceil(goal_int)} [pts]</h3>
     </div>
   );
 }
