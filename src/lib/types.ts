@@ -7,8 +7,8 @@ export type task = {
     is_ongoing: boolean,
     is_completed: boolean,
 
-    started_at: number|"",
-    completed_at: number|"",
+    started_at: number|null,
+    completed_at: number|null,
 
     feelings: {
         before: feeling,

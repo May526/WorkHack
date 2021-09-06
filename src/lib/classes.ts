@@ -30,8 +30,8 @@ export class Task implements task {
     is_ongoing: boolean;
     is_completed: boolean;
 
-    started_at: number | "";
-    completed_at: number | "";
+    started_at: number | null;
+    completed_at: number | null;
     feelings: {
         before: feeling,
         after: feeling
@@ -48,8 +48,8 @@ export class Task implements task {
         this.is_ongoing = false;
         this.is_completed = false;
 
-        this.started_at = "";
-        this.completed_at = "";
+        this.started_at = null;
+        this.completed_at = null;
         this.feelings = {
             before: new Feeling(),
             after: new Feeling()

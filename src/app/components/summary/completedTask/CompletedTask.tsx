@@ -48,7 +48,7 @@ export default function TasksMindsTable(props: { projects: projects }) {
                       background: getColorByFeeling(task.feelings.after),
                     }}
                   ></td>
-                  <td>{new Date(task.completed_at).toLocaleString()}</td>
+                  <td>{new Date(task.completed_at as number).toLocaleString()}</td>
                   <td>
                     {hms.hour + "h " + hms.minute + "m " + hms.second + "s"}
                   </td>

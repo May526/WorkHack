@@ -22,8 +22,8 @@ export default function MindHistoryGraph(props: { projects: projects }) {
    */
   const start_feelings = started_tasks.map(([task, project_id, task_id]) => {
     return {
-      timestamp: new Date(task.started_at).getTime(),
-      timestamp_str: new Date(task.started_at).toLocaleString(),
+      timestamp: new Date(task.started_at as number).getTime(),
+      timestamp_str: new Date(task.started_at as number).toLocaleString(),
       energy: task.feelings.before.energy,
       pleasantness: task.feelings.before.pleasantness,
     };
@@ -39,8 +39,8 @@ export default function MindHistoryGraph(props: { projects: projects }) {
    */
   const end_feelings = completed_tasks.map(([task, project_id, task_id]) => {
     return {
-      timestamp: new Date(task.completed_at).getTime(),
-      timestamp_str: new Date(task.completed_at).toLocaleString(),
+      timestamp: new Date(task.completed_at as number).getTime(),
+      timestamp_str: new Date(task.completed_at as number).toLocaleString(),
       energy: task.feelings.after.energy,
       pleasantness: task.feelings.after.pleasantness,
     };

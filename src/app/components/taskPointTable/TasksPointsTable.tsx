@@ -13,8 +13,8 @@ export default function TasksPointsTable(props: {
   const tasks = task_projectId_taskId.map(([task, pi, ti]) => task);
   tasks.sort((task1: task, task2: task) => {
     return (
-      new Date(task1.completed_at).getTime() -
-      new Date(task2.completed_at).getTime()
+      new Date(task1.completed_at as number).getTime() -
+      new Date(task2.completed_at as number).getTime()
     );
   });
 
@@ -39,7 +39,7 @@ export default function TasksPointsTable(props: {
                 <tr key={index}>
                   <td>{task.name}</td>
                   <td>{task.point}</td>
-                  <td>{new Date(task.completed_at).toLocaleTimeString()}</td>
+                  <td>{new Date(task.completed_at as number).toLocaleTimeString()}</td>
                   <td>
                     {hms.hour + "h " + hms.minute + "m " + hms.second + "s"}
                   </td>
