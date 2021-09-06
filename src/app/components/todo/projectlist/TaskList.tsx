@@ -23,7 +23,7 @@ export default function TaskList(props: {
 
   return (
     <ListGroup flush className="border-start">
-      {!(tasks === "") &&
+      {Boolean(tasks) &&
         Object.keys(children_tasks) &&
         Object.keys(children_tasks).map((task_id: string, index: number) => {
           const task = tasks[task_id];

@@ -18,9 +18,9 @@ export default function ProjectForm() {
     formState: { errors },
     reset
   } = useForm();
-  const onSubmit: SubmitHandler<ProjectInput> = (inputs) => {
-    const new_project = new Project(currentUser as firebase.default.User);
-    new_project.name = inputs.name;
+
+  const onSubmit: SubmitHandler<ProjectInput> = (data) => {
+    const new_project = new Project(currentUser as firebase.default.User,data.name);
     registerProject(currentUser as firebase.default.User, new_project);
     reset();
   };

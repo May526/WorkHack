@@ -26,10 +26,9 @@ export type feeling = {
 export type project = {
     name:string,
     member:ids,
-    tasks:tasks|""
+    tasks:tasks | null,
 }
 
 export type ids = {[index: string]:true}
 export type projects ={[index: string]:project}
-export type tasks ={[index: string]:task}|""
-
+export type tasks ={[index: string]:task}

@@ -3,11 +3,11 @@ import { ids, tasks, task, feeling, project } from './types';
 export class Project implements project {
     name: string;
     member: ids;
-    tasks: tasks | ""
-    constructor(user: firebase.default.User) {
-        this.name = "";
+    tasks: tasks | null;
+    constructor(user: firebase.default.User, name?:string, tasks?:tasks) {
+        this.name = name ?? "";
         this.member = Object.fromEntries([[user.uid, true]]);
-        this.tasks = ""
+        this.tasks = tasks ?? null;
     }
 }
 
