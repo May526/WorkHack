@@ -8,7 +8,7 @@ import {
   YAxis,
 } from "recharts";
 import { extractTasksFromProjects } from "../../../../lib/filters";
-import { projects, task } from "../../../../lib/types";
+import { feeling, projects, task } from "../../../../lib/types";
 
 export default function MindHistoryGraph(props: { projects: projects }) {
   const { projects } = props;
@@ -24,8 +24,8 @@ export default function MindHistoryGraph(props: { projects: projects }) {
     return {
       timestamp: new Date(task.started_at as number).getTime(),
       timestamp_str: new Date(task.started_at as number).toLocaleString(),
-      energy: task.feelings.before.energy,
-      pleasantness: task.feelings.before.pleasantness,
+      energy: (task.feelings as {before:feeling,after:feeling}).before.energy,
+      pleasantness: (task.feelings as {before:feeling,after:feeling}).before.pleasantness,
     };
   });
 
@@ -41,8 +41,8 @@ export default function MindHistoryGraph(props: { projects: projects }) {
     return {
       timestamp: new Date(task.completed_at as number).getTime(),
       timestamp_str: new Date(task.completed_at as number).toLocaleString(),
-      energy: task.feelings.after.energy,
-      pleasantness: task.feelings.after.pleasantness,
+      energy: (task.feelings as {before:feeling,after:feeling}).after.energy,
+      pleasantness: (task.feelings as {before:feeling,after:feeling}).after.pleasantness,
     };
   });
 

@@ -61,7 +61,7 @@ export const updateTask = (project_id:string, task_id:string, key:string, value:
  * @param feeling 
  */
 export const updateFeeling = (project_id:string, task_id:string, key:"after"|"before", feeling:feeling) => {
-  const task_ref = database.ref(`projects/${project_id}/tasks/${task_id}/feelings/${key}`);
+  const task_ref = database.ref(`projects/${project_id}/tasks/${task_id}`).child("feelings").child(`${key}`);
   task_ref.set(feeling);
 }
 

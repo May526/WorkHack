@@ -24,6 +24,7 @@ export class Feeling implements feeling {
 export class Task implements task {
     name: string;
     point: number | string;
+
     deadline: string;
     estimated_time: string;
 
@@ -32,10 +33,11 @@ export class Task implements task {
 
     started_at: number | null;
     completed_at: number | null;
+
     feelings: {
         before: feeling,
-        after: feeling
-    }
+        after: feeling | null
+    } | null;
 
     parent: string;
 
@@ -50,10 +52,7 @@ export class Task implements task {
 
         this.started_at = null;
         this.completed_at = null;
-        this.feelings = {
-            before: new Feeling(),
-            after: new Feeling()
-        }
+        this.feelings = null;
 
         this.parent = "";
     }
