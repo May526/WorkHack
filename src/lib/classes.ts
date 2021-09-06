@@ -23,7 +23,7 @@ export class Feeling implements feeling {
 
 export class Task implements task {
     name: string;
-    point: string;
+    point: number | string;
     deadline: string;
     estimated_time: string;
 
@@ -41,7 +41,7 @@ export class Task implements task {
 
     constructor() {
         this.name = "";
-        this.point = "";
+        this.point = 0;
         this.deadline = "";
         this.estimated_time = "";
 

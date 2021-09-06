@@ -6,7 +6,7 @@ import { Task } from "../../../../../lib/classes";
 
 type TaskInput = {
   name: string;
-  point: string;
+  point: number;
   deadline: string;
   estimated_time: number | "";
 };
@@ -18,7 +18,7 @@ export default function TaskForm(props: { project_id: string ,parent_task_id:str
   const toggle_modal = () => setModal(!modal);
 
   const { register, handleSubmit, reset } = useForm({
-    defaultValues: { name: "", point: "", deadline: "", estimated_time: "" ,parent:parent_task_id},
+    defaultValues: { name: "", point: 0, deadline: "", estimated_time: "" ,parent:parent_task_id},
   });
 
   const onSubmit: SubmitHandler<TaskInput> = (inputs, event) => {
@@ -65,7 +65,7 @@ export default function TaskForm(props: { project_id: string ,parent_task_id:str
                   className="w-100"
                   id={`${project_id}point`}
                   type="number"
-                  {...register("point", { required: true })}
+                  {...register("point", { required: true,valueAsNumber:true })}
                 />
               </Col>
             </Row>

@@ -60,7 +60,7 @@ export default function EditTaskButton(props: {
                   className="w-100"
                   id={`${project_id}${task_id}point`}
                   type="number"
-                  {...register("point")}
+                  {...register("point",{valueAsNumber:true})}
                 />
               </Col>
             </Row>

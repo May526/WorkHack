@@ -1,6 +1,6 @@
 export type task = {
     name: string,
-    point: string,
+    point: number | string,
     deadline: string,
     estimated_time:string,
 

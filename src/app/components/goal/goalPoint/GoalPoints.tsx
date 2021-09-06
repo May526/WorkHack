@@ -31,7 +31,7 @@ export default function GoalPoints(props: { projects: projects }) {
 
   const goal_int = tasks_in_last_7_day.length
     ? tasks_in_last_7_day
-        .map((task: task) => parseInt(task.point, 10))
+        .map((task: task) => typeof(task.point) === "string" ? parseInt(task.point, 10) : task.point)
         .reduce((point_int: number, sum: number) => sum + point_int, 0) / 7
     : 0;
 
