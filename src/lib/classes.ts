@@ -3,11 +3,11 @@ import { ids, tasks, task, feeling, project } from './types';
 export class Project implements project {
     name: string;
     member: ids;
-    tasks: tasks | ""
-    constructor(user: firebase.default.User) {
-        this.name = "";
+    tasks: tasks | null;
+    constructor(user: firebase.default.User, name?:string, tasks?:tasks) {
+        this.name = name ?? "";
         this.member = Object.fromEntries([[user.uid, true]]);
-        this.tasks = ""
+        this.tasks = tasks ?? null;
     }
 }
 
@@ -23,37 +23,36 @@ export class Feeling implements feeling {
 
 export class Task implements task {
     name: string;
-    point: string;
+    point: number | string;
+
     deadline: string;
     estimated_time: string;
 
     is_ongoing: boolean;
     is_completed: boolean;
 
-    started_at: number | "";
-    completed_at: number | "";
+    started_at: number | null;
+    completed_at: number | null;
+
     feelings: {
         before: feeling,
-        after: feeling
-    }
+        after: feeling | null
+    } | null;
 
     parent: string;
 
     constructor() {
         this.name = "";
-        this.point = "";
+        this.point = 0;
         this.deadline = "";
         this.estimated_time = "";
 
         this.is_ongoing = false;
         this.is_completed = false;
 
-        this.started_at = "";
-        this.completed_at = "";
-        this.feelings = {
-            before: new Feeling(),
-            after: new Feeling()
-        }
+        this.started_at = null;
+        this.completed_at = null;
+        this.feelings = null;
 
         this.parent = "";
     }

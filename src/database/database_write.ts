@@ -22,9 +22,12 @@ export const registerUser = (user: firebase.default.User) => {
 export const registerProject = (user: firebase.default.User,new_project:project) => {
   const new_projects_ref=database.ref("projects").push();
   new_projects_ref.set(new_project);
-  const new_project_key =new_projects_ref.key;
-
-  database.ref(`users/${user.uid}`).child("projects").child(new_project_key as string).set(true);
+  const new_project_key = new_projects_ref.key;
+  if(new_project_key){
+    database.ref(`users/${user.uid}`).child("projects").child(new_project_key).set(true);
+  }else{
+    alert("serious error")
+  }
 };
 
 
@@ -58,7 +61,7 @@ export const updateTask = (project_id:string, task_id:string, key:string, value:
  * @param feeling 
  */
 export const updateFeeling = (project_id:string, task_id:string, key:"after"|"before", feeling:feeling) => {
-  const task_ref = database.ref(`projects/${project_id}/tasks/${task_id}/feelings/${key}`);
+  const task_ref = database.ref(`projects/${project_id}/tasks/${task_id}`).child("feelings").child(`${key}`);
   task_ref.set(feeling);
 }
 

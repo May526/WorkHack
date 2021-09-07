@@ -35,10 +35,13 @@ const extractTasksFromProject = (project_id: string, project: project, indicator
     }
 };
 
-export const getChildren = (tasks:tasks,parent_task_id: string) => {
-    if(tasks===""){
+export const getChildren = (tasks: tasks, parent_task_id: string) => {
+    if (tasks) {
+        const children_entries = Object.entries(tasks).filter(([task_id, task]) => task.parent === parent_task_id)
+        return Object.fromEntries(children_entries)
+    } else {
         return {}
+
     }
-    const children_entries = Object.entries(tasks).filter(([task_id, task]) => task.parent === parent_task_id )
-    return Object.fromEntries(children_entries)
+
 }

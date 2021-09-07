@@ -7,7 +7,7 @@ import { database } from "../firebase_init";
  * @param callback 
  */
 export const fetchProjectIDs_on = async (user: firebase.default.User, callback: (project_ids: string[]) => any) => {
-  database.ref(`users/${user.uid}/projects`).on("value", async (snapshot) => {
+  database.ref(`users/${user.uid}`).child("projects").on("value", async (snapshot) => {
     if (snapshot.val()) {
       const project_ids = Object.keys(snapshot.val());
       callback(project_ids);

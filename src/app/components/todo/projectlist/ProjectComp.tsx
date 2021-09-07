@@ -3,6 +3,7 @@ import { Button, Col, Collapse, Row } from "reactstrap";
 import { AuthContext } from "../../../../auth/AuthProvider";
 import { fetchProject_on } from "../../../../database/database_read";
 import { Project } from "../../../../lib/classes";
+import { tasks } from "../../../../lib/types";
 import ProjectDeleteButton from "./ProjectDeleteButton";
 import ProjectEditButton from "./ProjectEditButton";
 import TaskList from "./TaskList";
@@ -42,7 +43,7 @@ export default function ProjectComp(props: { project_id: string }) {
         <Row>
           <Col>
             <TaskList
-              tasks={project.tasks}
+              tasks={project.tasks ?? ({} as tasks)}
               project_id={project_id}
               parent_task_id={""}
             />

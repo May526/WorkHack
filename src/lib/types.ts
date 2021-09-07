@@ -1,19 +1,19 @@
 export type task = {
     name: string,
-    point: string,
+    point: number | string,
     deadline: string,
     estimated_time:string,
 
     is_ongoing: boolean,
     is_completed: boolean,
 
-    started_at: number|"",
-    completed_at: number|"",
+    started_at: number|null,
+    completed_at: number|null,
 
     feelings: {
         before: feeling,
-        after: feeling
-    },
+        after: feeling | null
+    } | null,
 
     parent:string,
 }
@@ -26,10 +26,9 @@ export type feeling = {
 export type project = {
     name:string,
     member:ids,
-    tasks:tasks|""
+    tasks:tasks | null,
 }
 
 export type ids = {[index: string]:true}
 export type projects ={[index: string]:project}
-export type tasks ={[index: string]:task}|""
-
+export type tasks ={[index: string]:task}

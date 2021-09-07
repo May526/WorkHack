@@ -2,7 +2,7 @@ import { Table } from "reactstrap";
 import { msToHMS } from "../../../../lib/convertTypes";
 import { extractTasksFromProjects } from "../../../../lib/filters";
 import { getColorByFeeling } from "../../../../lib/no_category";
-import { projects, task } from "../../../../lib/types";
+import { feeling, projects, task } from "../../../../lib/types";
 
 export default function TasksMindsTable(props: { projects: projects }) {
   const { projects } = props;
@@ -40,15 +40,15 @@ export default function TasksMindsTable(props: { projects: projects }) {
                   <td>{task.name}</td>
                   <td
                     style={{
-                      background: getColorByFeeling(task.feelings.before),
+                      background: getColorByFeeling((task.feelings as {before:feeling,after:feeling}).before ),
                     }}
                   ></td>
                   <td
                     style={{
-                      background: getColorByFeeling(task.feelings.after),
+                      background: getColorByFeeling((task.feelings as {before:feeling,after:feeling}).after),
                     }}
                   ></td>
-                  <td>{new Date(task.completed_at).toLocaleString()}</td>
+                  <td>{new Date(task.completed_at as number).toLocaleString()}</td>
                   <td>
                     {hms.hour + "h " + hms.minute + "m " + hms.second + "s"}
                   </td>

@@ -15,6 +15,7 @@ export default function OngoingTaskList(props: { project_id: string }) {
   useEffect(() => {
     fetchProject_on(project_id, setProject);
   }, [currentUser, project_id]);
+  
   const ongoing_task_entries = project.tasks ? Object.entries(project.tasks).filter(
     ([task_id, task]) => {
       return task.is_ongoing;

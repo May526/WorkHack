@@ -22,7 +22,7 @@ export default function Goal() {
         const now_timestamp = new Date();
         return (
           task.is_completed &&
-          new Date(task.completed_at).getDate() === now_timestamp.getDate()
+          new Date(task.completed_at as number).getDate() === now_timestamp.getDate()
         );
       }),
     [projects]
