@@ -8,7 +8,7 @@ import CompletedButton from "./CompletedButton";
 
 export default function OngoingTaskList(props: { project_id: string }) {
   const { project_id } = props;
-  const currentUser = useContext(AuthContext);
+  const {currentUser} = useContext(AuthContext);
   const [project, setProject] = useState<project>(
     new Project(currentUser as firebase.default.User)
   );

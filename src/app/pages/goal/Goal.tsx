@@ -10,7 +10,7 @@ import TasksPointsTable from "../../components/taskPointTable/TasksPointsTable";
 import TodayTaskPieChart from "../../components/goal/todayTaskPieChart/TodayTaskPieChart";
 
 export default function Goal() {
-  const currentUser = useContext(AuthContext);
+  const {currentUser} = useContext(AuthContext);
   const [projects, setProjects] = useState<projects>({});
   useEffect(() => {
     fetchProjects(currentUser as firebase.default.User, setProjects);
