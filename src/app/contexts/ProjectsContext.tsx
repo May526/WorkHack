@@ -7,7 +7,7 @@ import { fetchProjectIDs_on } from "../../database/database_read";
 export const ProjectsContext = createContext<string[]>([]);
 
 const ProjectsContextProvider:React.FC = ({children}) => {
-  const currentUser = useContext(AuthContext);
+  const {currentUser} = useContext(AuthContext);
 
   const [project_ids, setProjectIds] = useState<string[]>([]);
   useEffect(()=>{

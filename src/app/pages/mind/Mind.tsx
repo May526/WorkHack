@@ -7,7 +7,7 @@ import MindHistoryGraph from "../../components/summary/mindHistory/MindHistoryGr
 import TasksMindsTable from "../../components/summary/completedTask/CompletedTask";
 
 export default function Mind() {
-  const currentUser = useContext(AuthContext);
+  const {currentUser} = useContext(AuthContext);
   const [projects, setProjects] = useState<projects>({});
   useEffect(() => {
     fetchProjects(currentUser as firebase.default.User, setProjects);

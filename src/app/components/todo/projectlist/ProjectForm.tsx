@@ -10,7 +10,7 @@ type ProjectInput = {
 };
 
 export default function ProjectForm() {
-  const currentUser = useContext(AuthContext);
+  const {currentUser} = useContext(AuthContext);
 
   const {
     register,

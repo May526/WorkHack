@@ -9,7 +9,7 @@ import ProjectEditButton from "./ProjectEditButton";
 import TaskList from "./TaskList";
 
 export default function ProjectComp(props: { project_id: string }) {
-  const currentUser = useContext(AuthContext);
+  const {currentUser} = useContext(AuthContext);
   const { project_id } = props;
   const [project, setProject] = useState(
     new Project(currentUser as firebase.default.User)
