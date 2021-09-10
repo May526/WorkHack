@@ -1,5 +1,5 @@
 import { database } from './../firebase_init';
-import { task, project, feeling, ids } from './../lib/types';
+import { task, project, feeling, ids, tasks } from './../lib/types';
 
 /**
  * userがrealtime databaseに登録済みなら何もしない, まだなら登録する
@@ -77,13 +77,23 @@ export const updateProject = (project_id:string, key:"name"|"memeber",value:stri
 }
 
 /**
- * 指定のtaskをrealtime databaseから削除する
+ * 指定のtaskのみをrealtime databaseから削除する
  * @param project_id 
  * @param task_id 
  */
-export const deleteTask = (project_id:string,task_id:string) => {
+const deleteOneTask = (project_id:string,task_id:string) => {
   const task_ref = database.ref(`projects/${project_id}/tasks/${task_id}`);
   task_ref.remove();
+}
+
+
+export const deleteTask = (project_id:string,root_task_id:string,tasks:tasks) => {
+  deleteOneTask(project_id,root_task_id);
+  for(const [task_id,task] of Object.entries(tasks)){
+    if(task.parent===root_task_id){
+      deleteTask(project_id,task_id,tasks)
+    }
+  }
 }
 
 /**

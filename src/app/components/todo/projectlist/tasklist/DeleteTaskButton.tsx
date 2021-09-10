@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { Button, Col, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
 import { deleteTask } from "../../../../../database/database_write";
-import { task } from "../../../../../lib/types";
+import { task, tasks } from "../../../../../lib/types";
 
 export default function DeleteTaskButton(props: {
   project_id: string;
   task_id: string;
   task: task;
+  tasks: tasks;
 }) {
-  const { project_id, task_id, task } = props;
+  const { project_id, task_id, task ,tasks} = props;
 
   const [modal, setModal] = useState(false);
   const toggle_modal = () => setModal(!modal);
 
   const onConfirm = () => {
-    deleteTask(project_id, task_id);
+    deleteTask(project_id,task_id,tasks);
     toggle_modal();
   };
 
