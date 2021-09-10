@@ -68,7 +68,7 @@ function FoldableTaskList(props: {
           </Button>
         </Col>
         <Col>
-          <Task task={task} task_id={task_id} project_id={project_id} />
+          <Task task={task} task_id={task_id} project_id={project_id} tasks={tasks}/>
         </Col>
       </Row>
       <Collapse isOpen={isOpen}>
