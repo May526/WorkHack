@@ -4,13 +4,16 @@ import { Feeling } from "../../../lib/classes";
 import { getColorByFeeling } from "../../../lib/no_category";
 import EmotionButton from "./EmotionButton";
 
+/**
+ * TODO:リファクタリングする
+ */
 export default function EmotionForm(props: {
   project_id: string;
   task_id: string;
   toggle_modal: () => any;
-  start_or_complete:"start"|"complete"
+  start_or_complete: "start" | "complete";
 }) {
-  const { project_id, task_id, toggle_modal,start_or_complete } = props;
+  const { project_id, task_id, toggle_modal, start_or_complete } = props;
   return (
     <Container fluid>
       <Row>
@@ -20,7 +23,6 @@ export default function EmotionForm(props: {
             task_id={task_id}
             toggle_modal={toggle_modal}
             start_or_complete={start_or_complete}
-
             texts={["ストレス", "緊張", "いらいら"]}
             color={getColorByFeeling(new Feeling(10, 0))}
             feeling={new Feeling(10, 0)}
@@ -32,8 +34,6 @@ export default function EmotionForm(props: {
             task_id={task_id}
             toggle_modal={toggle_modal}
             start_or_complete={start_or_complete}
-
-
             texts={["わくわく", "楽しい", "嬉しい"]}
             color={getColorByFeeling(new Feeling(10, 10))}
             feeling={new Feeling(10, 10)}
@@ -47,9 +47,8 @@ export default function EmotionForm(props: {
             task_id={task_id}
             toggle_modal={toggle_modal}
             start_or_complete={start_or_complete}
-
             texts={["疲れた", "退屈", "うんざり"]}
-            color={getColorByFeeling(new Feeling(0,0))}
+            color={getColorByFeeling(new Feeling(0, 0))}
             feeling={new Feeling(0, 0)}
           />
         </Col>
@@ -59,13 +58,20 @@ export default function EmotionForm(props: {
             task_id={task_id}
             toggle_modal={toggle_modal}
             start_or_complete={start_or_complete}
-
             texts={["リラックス", "落ち着いている", "癒し"]}
-            color={getColorByFeeling(new Feeling(0,10))}
+            color={getColorByFeeling(new Feeling(0, 10))}
             feeling={new Feeling(0, 10)}
           />
         </Col>
       </Row>
+      {start_or_complete==="complete" ?(<Row>
+        <Col>
+          <label>
+            <input type="checkbox" />今の気持ちになったのは、このタスクのせいでない
+          </label>
+        </Col>
+      </Row>):(<></>)}
+      
     </Container>
   );
 }
