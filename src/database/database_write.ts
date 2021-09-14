@@ -53,6 +53,14 @@ export const updateTask = (project_id:string, task_id:string, key:string, value:
   task_ref.set(value);
 }
 
+export const addPausedTime = (project_id:string,task_id:string,timestamp:Date) => {
+  database.ref(`projects/${project_id}/tasks/${task_id}`).child("paused_at").child(timestamp.getTime().toString()).set(true);
+}
+
+export const addUnpausedTime = (project_id:string,task_id:string,timestamp:Date) => {
+  database.ref(`projects/${project_id}/tasks/${task_id}`).child("unpaused_at").child(timestamp.getTime().toString()).set(true);
+}
+
 /**
  * 指定のtaskのfeelingsのafterかbeforeを更新する
  * @param project_id 

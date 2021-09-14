@@ -5,6 +5,7 @@ import { fetchProject_on } from "../../../../database/database_read";
 import { Project } from "../../../../lib/classes";
 import { project } from "../../../../lib/types";
 import CompletedButton from "./CompletedButton";
+import PauseButton from "./PauseButton";
 
 export default function OngoingTaskList(props: { project_id: string }) {
   const { project_id } = props;
@@ -34,6 +35,7 @@ export default function OngoingTaskList(props: { project_id: string }) {
                   <Badge className="bg-primary">{project.name}</Badge>
                 </Col>
                 <Col className="d-flex justify-content-end">
+                  <PauseButton task={task} project_id={project_id} task_id={task_id} />
                   <CompletedButton project_id={project_id} task_id={task_id} />
                 </Col>
               </Row>

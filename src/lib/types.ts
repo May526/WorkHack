@@ -5,6 +5,8 @@ export type task = {
     estimated_time:string,
 
     is_ongoing: boolean,
+    is_paused?:boolean,
+
     is_completed: boolean,
 
     started_at: number|null,

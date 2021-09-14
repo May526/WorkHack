@@ -14,7 +14,7 @@ export default function CompletedButton(props: {
   return (
     <div>
       <Button size="sm" color="success" onClick={toggle_modal}>
-        Complete this task
+        Complete
       </Button>
       <Modal
         isOpen={modal}
