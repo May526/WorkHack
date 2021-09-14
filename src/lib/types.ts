@@ -22,7 +22,8 @@ export type task = {
 
 export type feeling = {
     energy:number,
-    pleasantness:number
+    pleasantness:number,
+    is_related_with_task:boolean | null
 }
 
 export type project = {
