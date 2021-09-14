@@ -3,7 +3,6 @@ import "./Mind.css";
 import { AuthContext } from "../../../auth/AuthProvider";
 import { fetchProjects } from "../../../database/database_read";
 import { projects } from "../../../lib/types";
-import MindHistoryGraph from "../../components/summary/mindHistory/MindHistoryGraph";
 import TasksMindsTable from "../../components/summary/completedTask/CompletedTask";
 
 export default function Mind() {
@@ -15,10 +14,6 @@ export default function Mind() {
 
   return (
     <div className="summary">
-      <div className="summaryHistory">
-        <h2 className="summaryTitle">Mind History</h2>
-        <MindHistoryGraph projects={projects} />
-      </div>
       <div className="summaryTasks">
         <h2 className="summaryTitle">Completed Tasks</h2>
         <TasksMindsTable projects={projects} />
