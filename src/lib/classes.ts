@@ -14,10 +14,12 @@ export class Project implements project {
 export class Feeling implements feeling {
     energy: number;
     pleasantness: number;
+    is_related_with_task:boolean |null;
 
-    constructor(energy = -1, pleasantness = -1) {
+    constructor(energy = -1, pleasantness = -1,is_related_with_task:boolean|null ){
         this.energy = energy;
         this.pleasantness = pleasantness;
+        this.is_related_with_task=is_related_with_task;
     }
 }
 
