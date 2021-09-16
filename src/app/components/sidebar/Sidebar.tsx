@@ -30,12 +30,12 @@ export default function Sidebar() {
                   To Do
                 </li>
               </Link>
-              <Link to="/app/goal" className="link">
+              {/* <Link to="/app/goal" className="link">
                 <li className="sidebarListItem">
                   <PieChart className="sidebarIcon" />
                   Goal
                 </li>
-              </Link>
+              </Link> */}
             </ul>
           </div>
           <div className="sidebarMenu">
