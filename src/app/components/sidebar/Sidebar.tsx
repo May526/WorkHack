@@ -1,5 +1,5 @@
 import "./Sidebar.css";
-import { Home, FormatListBulleted, PieChart, Poll } from "@material-ui/icons";
+import { Home, FormatListBulleted, Poll } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 import { logout } from "../../../auth/Auth";
@@ -30,12 +30,12 @@ export default function Sidebar() {
                   To Do
                 </li>
               </Link>
-              <Link to="/app/goal" className="link">
+              {/* <Link to="/app/goal" className="link">
                 <li className="sidebarListItem">
                   <PieChart className="sidebarIcon" />
                   Goal
                 </li>
-              </Link>
+              </Link> */}
             </ul>
           </div>
           <div className="sidebarMenu">
