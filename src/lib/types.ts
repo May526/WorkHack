@@ -18,6 +18,9 @@ export type task = {
     } | null,
 
     parent:string,
+
+    paused_at?:{[index:string]:true},
+    unpaused_at?:{[index:string]:true},
 }
 
 export type feeling = {
