@@ -20,6 +20,13 @@ export default function EmotionForm(props: {
 
   return (
     <Container fluid>
+      {start_or_complete==="complete" ?(<Row>
+        <Col>
+          <label>
+            <input type="checkbox" checked={is_related} onClick={()=>setIsRelated(!is_related)}/> このタスクによって、今の気持ちになった
+          </label>
+        </Col>
+      </Row>):(<></>)}
       <Row>
         <Col>
           <EmotionButton
@@ -68,13 +75,7 @@ export default function EmotionForm(props: {
           />
         </Col>
       </Row>
-      {start_or_complete==="complete" ?(<Row>
-        <Col>
-          <label>
-            <input type="checkbox" checked={is_related} onClick={()=>setIsRelated(!is_related)}/>このタスクによって、今の気持ちになった
-          </label>
-        </Col>
-      </Row>):(<></>)}
+      
       
     </Container>
   );
