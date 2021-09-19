@@ -40,6 +40,21 @@ export default function TimeFeelingTable(props: { projects: projects }) {
           </tr>
         </thead>
         <tbody>
+          <tr style={{borderBottomStyle:"double",borderBottomWidth:"3px"}}>
+            <th>ideal</th>
+            <td>
+              37%-46%
+            </td>
+            <td>
+              4%-13%
+            </td>
+            <td>
+              4%-13%
+            </td>
+            <td>
+              37%-46%
+            </td>
+          </tr>
           <tr>
             <th>morning (06:00-10:00) </th>
             {computeFeelingRatios(feelings_with_timestamp, 6, 10).map(
