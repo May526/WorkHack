@@ -1,6 +1,6 @@
 import { Table } from "reactstrap";
 import { extractTasksFromProjects } from "../../../../lib/filters";
-import { getColorByFeeling } from "../../../../lib/no_category";
+import { getColorByFeeling, getPassedTime } from "../../../../lib/no_category";
 import { feeling, projects, task } from "../../../../lib/types";
 
 export default function TasksMindsTable(props: { projects: projects }) {
@@ -28,7 +28,7 @@ export default function TasksMindsTable(props: { projects: projects }) {
             <th>After </th>
             <th>start at</th>
             <th>complete at</th>
-            <th>Your time estimate</th>
+            <th>passed time</th>
           </tr>
         </thead>
         <tbody>
@@ -61,7 +61,7 @@ export default function TasksMindsTable(props: { projects: projects }) {
                   </td>
 
                   <td>
-                    {task.estimated_time ? task.estimated_time + " min" : ""}
+                    {getPassedTime(task)}
                   </td>
                 </tr>
               );
