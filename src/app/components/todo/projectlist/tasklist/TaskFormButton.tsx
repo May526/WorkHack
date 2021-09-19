@@ -45,7 +45,7 @@ export default function TaskForm(props: { project_id: string ,parent_task_id:str
           <form onSubmit={handleSubmit(onSubmit)}>
             <Row className="my-1">
               <Col xs="4" className="d-flex justify-content-end">
-                <label htmlFor={`${project_id}name`}>task name</label>
+                <label htmlFor={`${project_id}name`}>task name*</label>
               </Col>
               <Col>
                 <input
@@ -58,7 +58,7 @@ export default function TaskForm(props: { project_id: string ,parent_task_id:str
             </Row>
             <Row className="my-1">
               <Col xs="4" className="d-flex justify-content-end">
-                <label htmlFor={`${project_id}point`}>point</label>
+                <label htmlFor={`${project_id}point`}>point*</label>
               </Col>
               <Col>
                 <input
@@ -79,19 +79,6 @@ export default function TaskForm(props: { project_id: string ,parent_task_id:str
                   id={`${project_id}deadline`}
                   type="text"
                   {...register("deadline")}
-                />
-              </Col>
-            </Row>
-            <Row className="my-1">
-            <Col xs="5" className="d-flex justify-content-end">
-                <label htmlFor={`${project_id}estimated_time`}>estimated time [min]</label>
-              </Col>
-              <Col>
-                <input
-                  className="w-100"
-                  id={`${project_id}estimated_time`}
-                  type="text"
-                  {...register("estimated_time")}
                 />
               </Col>
             </Row>

@@ -20,7 +20,6 @@ export default function EditTaskButton(props: {
     updateTask(project_id, task_id, "name", data.name);
     updateTask(project_id, task_id, "point", data.point);
     updateTask(project_id, task_id, "deadline", data.deadline);
-    updateTask(project_id, task_id, "estimated_time", data.estimated_time);
     toggle_modal();
   };
 
@@ -76,21 +75,6 @@ export default function EditTaskButton(props: {
                   id={`${project_id}${task_id}deadline`}
                   type="text"
                   {...register("deadline")}
-                />
-              </Col>
-            </Row>
-            <Row className="my-1">
-              <Col xs="5" className="d-flex justify-content-end">
-                <label htmlFor={`${project_id}${task_id}estimated_time`}>
-                  estimated time [min]
-                </label>
-              </Col>
-              <Col>
-                <input
-                  className="w-100"
-                  id={`${project_id}${task_id}estimated_time`}
-                  type="text"
-                  {...register("estimated_time")}
                 />
               </Col>
             </Row>
