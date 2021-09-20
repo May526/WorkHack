@@ -1,5 +1,5 @@
 import { Table } from "reactstrap";
-import { getFeelingLabels, UNPLEASANT_ENEGY_LABELS } from "../../../../lib/constants";
+import { getFeelingLabels } from "../../../../lib/constants";
 import { extractTasksFromProjects } from "../../../../lib/filters";
 import { getColorByFeeling, getPassedTime } from "../../../../lib/no_category";
 import { feeling, projects, task } from "../../../../lib/types";
