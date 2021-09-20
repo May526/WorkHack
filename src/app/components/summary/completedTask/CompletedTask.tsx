@@ -21,7 +21,7 @@ export default function TasksMindsTable(props: { projects: projects }) {
 
   return (
     <div>
-      <Table>
+      <Table style={{tableLayout:"fixed"}}>
         <thead>
           <tr>
             <th>Task Name</th>

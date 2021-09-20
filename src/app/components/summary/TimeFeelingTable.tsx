@@ -14,7 +14,7 @@ export default function TimeFeelingTable(props: { projects: projects }) {
   const feelings_with_timestamp = extractFeelingsFromProjects(projects);
   return (
     <div>
-      <Table>
+      <Table style={{tableLayout:"fixed"}}>
         <thead>
           <tr style={{fontSize:"smaller"}}>
             <th></th>
