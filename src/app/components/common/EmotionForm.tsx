@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { Feeling } from "../../../lib/classes";
+import { PLEASANT_ENEGY_LABELS, PLEASANT_UNENEGY_LABELS, UNPLEASANT_ENEGY_LABELS, UNPLEASANT_UNENEGY_LABELS } from "../../../lib/constants";
 import { getColorByFeeling } from "../../../lib/no_category";
 import EmotionButton from "./EmotionButton";
 
@@ -34,7 +35,7 @@ export default function EmotionForm(props: {
             task_id={task_id}
             toggle_modal={toggle_modal}
             start_or_complete={start_or_complete}
-            texts={["ストレス", "緊張", "いらいら"]}
+            texts={UNPLEASANT_ENEGY_LABELS}
             color={getColorByFeeling(new Feeling(10, 0,null))}
             feeling={new Feeling(10, 0,start_or_complete==="start"?null:is_related)}
           />
@@ -45,7 +46,7 @@ export default function EmotionForm(props: {
             task_id={task_id}
             toggle_modal={toggle_modal}
             start_or_complete={start_or_complete}
-            texts={["わくわく", "楽しい", "嬉しい"]}
+            texts={PLEASANT_ENEGY_LABELS}
             color={getColorByFeeling(new Feeling(10, 10,null))}
             feeling={new Feeling(10, 10,start_or_complete==="start"?null:is_related)}
           />
@@ -58,7 +59,7 @@ export default function EmotionForm(props: {
             task_id={task_id}
             toggle_modal={toggle_modal}
             start_or_complete={start_or_complete}
-            texts={["疲れた", "退屈", "うんざり"]}
+            texts={UNPLEASANT_UNENEGY_LABELS}
             color={getColorByFeeling(new Feeling(0, 0,null))}
             feeling={new Feeling(0, 0,start_or_complete==="start"?null:is_related)}
           />
@@ -69,7 +70,7 @@ export default function EmotionForm(props: {
             task_id={task_id}
             toggle_modal={toggle_modal}
             start_or_complete={start_or_complete}
-            texts={["リラックス", "落ち着いている", "癒し"]}
+            texts={PLEASANT_UNENEGY_LABELS}
             color={getColorByFeeling(new Feeling(0, 10,null))}
             feeling={new Feeling(0, 10,start_or_complete==="start"?null:is_related)}
           />

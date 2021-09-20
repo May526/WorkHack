@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "reactstrap";
 import { Feeling } from "../../../lib/classes";
+import { PLEASANT_ENEGY_LABELS, PLEASANT_UNENEGY_LABELS, UNPLEASANT_ENEGY_LABELS, UNPLEASANT_UNENEGY_LABELS } from "../../../lib/constants";
 import {
   computeFeelingRatios,
   extractFeelingsFromProjects,
@@ -15,28 +16,28 @@ export default function TimeFeelingTable(props: { projects: projects }) {
     <div>
       <Table>
         <thead>
-          <tr>
+          <tr style={{fontSize:"smaller"}}>
             <th></th>
             <th
               style={{
                 backgroundColor: getColorByFeeling(new Feeling(10, 10, null)),
               }}
-            ></th>
+            >{PLEASANT_ENEGY_LABELS.reduce((acc,cur)=>acc+'/'+cur)}</th>
             <th
               style={{
                 backgroundColor: getColorByFeeling(new Feeling(10, 0, null)),
               }}
-            ></th>
+            >{UNPLEASANT_ENEGY_LABELS.reduce((acc,cur)=>acc+'/'+cur)}</th>
             <th
               style={{
                 backgroundColor: getColorByFeeling(new Feeling(0, 0, null)),
               }}
-            ></th>
+            >{UNPLEASANT_UNENEGY_LABELS.reduce((acc,cur)=>acc+'/'+cur)}</th>
             <th
               style={{
                 backgroundColor: getColorByFeeling(new Feeling(0, 10, null)),
               }}
-            ></th>
+            >{PLEASANT_UNENEGY_LABELS.reduce((acc,cur)=>acc+'/'+cur)}</th>
           </tr>
         </thead>
         <tbody>
