@@ -55,7 +55,7 @@ export default function TasksMindsTable(props: { projects: projects }) {
                       ),
                       fontSize:"smaller"
                     }}
-                  >{getFeelingLabels((task.feelings as { before: feeling; after: feeling }).before).reduce((acc,cur)=>acc+"/"+cur)}</td>
+                  >{getFeelingLabels((task.feelings as { before: feeling; after: feeling }).after).reduce((acc,cur)=>acc+"/"+cur)}</td>
                   <td>
                     {new Date(task.started_at as number).toLocaleString()}
                   </td>
