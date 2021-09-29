@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "reactstrap";
 import { Feeling } from "../../../lib/classes";
-import { PLEASANT_ENEGY_LABELS, PLEASANT_UNENEGY_LABELS, UNPLEASANT_ENEGY_LABELS, UNPLEASANT_UNENEGY_LABELS } from "../../../lib/constants";
+import { getIdealEmotionRatioArea, PLEASANT_ENEGY_LABELS, PLEASANT_UNENEGY_LABELS, UNPLEASANT_ENEGY_LABELS, UNPLEASANT_UNENEGY_LABELS } from "../../../lib/constants";
 import {
   computeFeelingRatios,
   extractFeelingsFromProjects,
@@ -12,6 +12,7 @@ import { projects } from "../../../lib/types";
 export default function TimeFeelingTable(props: { projects: projects }) {
   const { projects } = props;
   const feelings_with_timestamp = extractFeelingsFromProjects(projects);
+  console.log(getIdealEmotionRatioArea())
   return (
     <div>
       <Table style={{tableLayout:"fixed"}}>
@@ -43,18 +44,7 @@ export default function TimeFeelingTable(props: { projects: projects }) {
         <tbody>
           <tr style={{borderBottomStyle:"double",borderBottomWidth:"3px"}}>
             <th>ideal</th>
-            <td>
-              37%-46%
-            </td>
-            <td>
-              4%-13%
-            </td>
-            <td>
-              4%-13%
-            </td>
-            <td>
-              37%-46%
-            </td>
+            {getIdealEmotionRatioArea() && getIdealEmotionRatioArea()?.map(([lower,upper])=><td>{lower+"%-"+upper+"%"}</td>)}
           </tr>
           <tr>
             <th>morning (06:00-10:00) </th>
