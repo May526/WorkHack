@@ -25,7 +25,7 @@ export default function EditTaskButton(props: {
   const [modal, setModal] = useState(false);
   const toggle_modal = () => setModal(!modal);
 
-  const { register, handleSubmit, watch, control } = useForm({
+  const { register, handleSubmit, control } = useForm({
     defaultValues:
       task.completed_at && task.started_at
         ? {
@@ -83,7 +83,6 @@ export default function EditTaskButton(props: {
       >
         <ModalHeader>
           Edit
-          <button onClick={() => console.log(watch("started_at"))}>test</button>
         </ModalHeader>
         <ModalBody>
           <form onSubmit={handleSubmit(onSubmit)}>
