@@ -12,7 +12,6 @@ import { projects } from "../../../lib/types";
 export default function TimeFeelingTable(props: { projects: projects }) {
   const { projects } = props;
   const feelings_with_timestamp = extractFeelingsFromProjects(projects);
-  console.log(getIdealEmotionRatioArea())
   return (
     <div>
       <Table style={{tableLayout:"fixed"}}>
