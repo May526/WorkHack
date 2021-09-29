@@ -20,3 +20,43 @@ export const getFeelingLabels = (feeling:feeling) => {
         }
     }
 }
+
+// pleasant:positive, unpleasant:negativeで対応
+// pleasantは一定領域内にいることが理想なのでlower limitがある
+// energyは曲線上にいることが理想なのでlimitがない
+/**
+ * [unpleasant,pleasant]
+ */
+const UNPLEASANT_PLEASANT_IDEAL_RATIO_LOWER_LIMIT = [1,3]
+const UNPLEASANT_PLEASANT_IDEAL_RATIO_UPPER_LIMIT = [0,1]
+/**
+ * [unenergy,energy]
+ */
+const UNENRGY_ENERGY_IDEAL_RATIO = [1,1]
+
+//TODO: リファクタリング
+/**
+ * 百分率で4象限の割合を返す
+ * 右上から左回りの順(pleasant,enegy),(up,e),(up,ue),(p,ue)の順
+ * @returns 
+ */
+export const getPleasantEnegyRatio = (limit:"lower"|"upper") => {
+    const y = UNENRGY_ENERGY_IDEAL_RATIO[0]
+    const x = UNENRGY_ENERGY_IDEAL_RATIO[1]
+
+    const pleasant_ratio_limit = limit==="lower" ? UNPLEASANT_PLEASANT_IDEAL_RATIO_LOWER_LIMIT : UNPLEASANT_PLEASANT_IDEAL_RATIO_UPPER_LIMIT
+    const a = pleasant_ratio_limit[0]
+    const b = pleasant_ratio_limit[1]
+    
+    return [b*x,a*x,a*y,b*y].map((numerator)=>Math.round(100*numerator/((a+b)*(x+y))))
+}
+
+export const getIdealEmotionRatioArea = () => {
+    const lower = getPleasantEnegyRatio("lower")
+    const upper = getPleasantEnegyRatio("upper")
+    if(lower.length!==upper.length){
+        alert("ERROR:Ideal ratio is invalid")
+        return 
+    }
+    return lower.map((ratio,i)=>lower[i]<upper[i] ? [lower[i],upper[i]] : [upper[i],lower[i]])
+}
