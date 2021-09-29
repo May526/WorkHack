@@ -37,8 +37,7 @@ export const registerProject = (user: firebase.default.User,new_project:project)
  * @param new_task 
  */
  export const registerTask = (project_id:string, new_task:task) => {
-  const new_task_ref=database.ref(`projects/${project_id}/tasks`).push();
-  new_task_ref.set(new_task);
+  database.ref(`projects/${project_id}/tasks`).push(new_task);
 };
 
 /**
