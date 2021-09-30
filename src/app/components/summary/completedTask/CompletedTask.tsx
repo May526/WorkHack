@@ -29,6 +29,7 @@ export default function TasksMindsTable(props: { projects: projects }) {
             <th>After </th>
             <th>start at</th>
             <th>complete at</th>
+            <th style={{fontSize:"small"}}>感情の変化はtaskと関係してる</th>
           </tr>
         </thead>
         <tbody>
@@ -60,6 +61,9 @@ export default function TasksMindsTable(props: { projects: projects }) {
                   </td>
                   <td>
                     {new Date(task.completed_at as number).toLocaleString()}
+                  </td>
+                  <td>
+                    {task.feelings?.after?.is_related_with_task ? "yes": "no"}
                   </td>
                 </tr>
               );
