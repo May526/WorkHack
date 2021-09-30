@@ -1,7 +1,7 @@
 import { Table } from "reactstrap";
 import { getFeelingLabels } from "../../../../lib/constants";
 import { extractTasksFromProjects } from "../../../../lib/filters";
-import { getColorByFeeling, getPassedTime } from "../../../../lib/no_category";
+import { getColorByFeeling } from "../../../../lib/no_category";
 import { feeling, projects, task } from "../../../../lib/types";
 
 export default function TasksMindsTable(props: { projects: projects }) {
@@ -29,7 +29,6 @@ export default function TasksMindsTable(props: { projects: projects }) {
             <th>After </th>
             <th>start at</th>
             <th>complete at</th>
-            <th>passed time</th>
           </tr>
         </thead>
         <tbody>
@@ -61,10 +60,6 @@ export default function TasksMindsTable(props: { projects: projects }) {
                   </td>
                   <td>
                     {new Date(task.completed_at as number).toLocaleString()}
-                  </td>
-
-                  <td>
-                    {getPassedTime(task)}
                   </td>
                 </tr>
               );
