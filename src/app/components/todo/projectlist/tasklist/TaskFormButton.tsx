@@ -1,33 +1,46 @@
 import React, { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler } from "react-hook-form";
 import { Button, Modal, ModalHeader, ModalBody, Row, Col } from "reactstrap";
 import { registerTask } from "../../../../../database/database_write";
 import { Task } from "../../../../../lib/classes";
+import { OngoingTaskInput, TodoTaskInput } from "../../../../../lib/types";
+import OngoingTaskForm from "./taskform/OngoingTaskForm";
+import TodoTaskForm from "./taskform/TodoTaskForm";
 
-type TaskInput = {
-  name: string;
-  point: number;
-  deadline: string;
-  estimated_time: number | "";
-};
-
-export default function TaskForm(props: { project_id: string ,parent_task_id:string}) {
-  const { project_id , parent_task_id} = props;
+export default function TaskForm(props: {
+  project_id: string;
+  parent_task_id: string;
+}) {
+  const { project_id, parent_task_id } = props;
 
   const [modal, setModal] = useState(false);
   const toggle_modal = () => setModal(!modal);
 
-  const { register, handleSubmit, reset } = useForm({
-    defaultValues: { name: "", point: 0, deadline: "", estimated_time: "" ,parent:parent_task_id},
-  });
-
-  const onSubmit: SubmitHandler<TaskInput> = (inputs, event) => {
+  const onSubmit_todo: SubmitHandler<TodoTaskInput> = (inputs) => {
     const new_task = new Task();
     Object.assign(new_task, inputs);
     registerTask(project_id, new_task);
-    reset();
     toggle_modal();
   };
+
+
+  const onSubmit_ongoing: SubmitHandler<OngoingTaskInput> = (inputs) => {
+    const new_task = new Task();
+    console.log(inputs.started_at)
+    Object.assign(new_task, {
+      name: inputs.name,
+      point: inputs.point,  
+      deadline: inputs.deadline,
+      parent_id: inputs.parent,
+      started_at: inputs.started_at._d? inputs.started_at._d.getTime() : inputs.started_at.getTime()
+    });
+    registerTask(project_id, new_task);
+    toggle_modal();
+  };
+
+  const [task_status, setTaskStatus] = useState<
+    "todo" | "ongoing" | "completed"
+  >("todo");
 
   return (
     <div>
@@ -40,55 +53,59 @@ export default function TaskForm(props: { project_id: string ,parent_task_id:str
         className="TaskFormModal"
         fade={false}
       >
-        <ModalHeader toggle={toggle_modal}>Add a task</ModalHeader>
+        <ModalHeader toggle={toggle_modal}>
+          Add a {task_status} task
+        </ModalHeader>
         <ModalBody>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Row className="my-1">
-              <Col xs="4" className="d-flex justify-content-end">
-                <label htmlFor={`${project_id}name`}>task name*</label>
-              </Col>
-              <Col>
-                <input
-                  className="w-100"
-                  id={`${project_id}name`}
-                  type="text"
-                  {...register("name", { required: true })}
-                />
-              </Col>
-            </Row>
-            <Row className="my-1">
-              <Col xs="4" className="d-flex justify-content-end">
-                <label htmlFor={`${project_id}point`}>point*</label>
-              </Col>
-              <Col>
-                <input
-                  className="w-100"
-                  id={`${project_id}point`}
-                  type="number"
-                  {...register("point", { required: true,valueAsNumber:true })}
-                />
-              </Col>
-            </Row>
-            <Row className="my-1">
-            <Col xs="4" className="d-flex justify-content-end">
-                <label htmlFor={`${project_id}deadline`}>deadline</label>
-              </Col>
-              <Col>
-                <input
-                  className="w-100"
-                  id={`${project_id}deadline`}
-                  type="text"
-                  {...register("deadline")}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <input type="submit" value="submit" />
-              <button type="button" onClick={toggle_modal}>
+          <div
+            className="btn-group"
+            role="group"
+            aria-label="Basic outlined example"
+          >
+            <button
+              onClick={() => setTaskStatus("todo")}
+              type="button"
+              className="btn btn-outline-primary"
+            >
+              to do
+            </button>
+            <button
+              onClick={() => setTaskStatus("ongoing")}
+              type="button"
+              className="btn btn-outline-primary"
+            >
+              ongoing
+            </button>
+            <button
+              onClick={() => setTaskStatus("completed")}
+              type="button"
+              className="btn btn-outline-primary"
+            >
+              completed
+            </button>
+          </div>
+          {task_status === "todo" ? (
+            <TodoTaskForm
+              unique_id={project_id}
+              parent_task_id={parent_task_id}
+              onSubmit={onSubmit_todo}
+            />
+          ) : task_status === "ongoing" ? (
+            <OngoingTaskForm 
+            unique_id={project_id}
+            parent_task_id={parent_task_id}
+            onSubmit={onSubmit_ongoing}
+            />
+          ) : (
+            <div>Completed task form comes here.</div>
+          )}
+          <Row>
+            <Col>
+              <button  className="w-100" type="button" onClick={toggle_modal}>
                 Cancel
               </button>
-            </Row>
-          </form>
+            </Col>
+          </Row>
         </ModalBody>
       </Modal>
     </div>
