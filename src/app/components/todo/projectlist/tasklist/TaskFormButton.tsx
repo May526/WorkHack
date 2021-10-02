@@ -3,7 +3,8 @@ import { SubmitHandler } from "react-hook-form";
 import { Button, Modal, ModalHeader, ModalBody, Row, Col } from "reactstrap";
 import { registerTask } from "../../../../../database/database_write";
 import { Task } from "../../../../../lib/classes";
-import { OngoingTaskInput, TodoTaskInput } from "../../../../../lib/types";
+import { CompletedTaskInput, OngoingTaskInput, TodoTaskInput } from "../../../../../lib/types";
+import CompletedTaskForm from "./taskform/CompletedTaskForm";
 import OngoingTaskForm from "./taskform/OngoingTaskForm";
 import TodoTaskForm from "./taskform/TodoTaskForm";
 
@@ -26,13 +27,28 @@ export default function TaskForm(props: {
 
   const onSubmit_ongoing: SubmitHandler<OngoingTaskInput> = (inputs) => {
     const new_task = new Task();
-    console.log(inputs.started_at)
     Object.assign(new_task, {
       name: inputs.name,
       point: inputs.point,  
       deadline: inputs.deadline,
       parent_id: inputs.parent,
-      started_at: inputs.started_at._d? inputs.started_at._d.getTime() : inputs.started_at.getTime()
+      started_at: inputs.started_at._d? inputs.started_at._d.getTime() : inputs.started_at.getTime(),
+      is_ongoing: true,
+    });
+    registerTask(project_id, new_task);
+    toggle_modal();
+  };
+
+  const onSubmit_completed: SubmitHandler<CompletedTaskInput> = (inputs) => {
+    const new_task = new Task();
+    Object.assign(new_task, {
+      name: inputs.name,
+      point: inputs.point,  
+      deadline: inputs.deadline,
+      parent_id: inputs.parent,
+      started_at: inputs.started_at._d? inputs.started_at._d.getTime() : inputs.started_at.getTime(),
+      completed_at: inputs.completed_at._d? inputs.completed_at._d.getTime() : inputs.completed_at.getTime(),
+      is_completed:true,
     });
     registerTask(project_id, new_task);
     toggle_modal();
@@ -97,7 +113,11 @@ export default function TaskForm(props: {
             onSubmit={onSubmit_ongoing}
             />
           ) : (
-            <div>Completed task form comes here.</div>
+            <CompletedTaskForm 
+            unique_id={project_id}
+            parent_task_id={parent_task_id}
+            onSubmit={onSubmit_completed}
+            />
           )}
           <Row>
             <Col>

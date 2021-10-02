@@ -58,7 +58,7 @@ export type CompletedTaskInput = {
     name: string;
     point: number;
     deadline: string;
-    parent_id: string;
-    started_at: Date;
-    completed_at: Date;
+    parent: string;
+    started_at: any;
+    completed_at: any;
 };
