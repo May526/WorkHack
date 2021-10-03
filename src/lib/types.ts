@@ -52,6 +52,7 @@ export type OngoingTaskInput = {
     deadline: string;
     parent: string;
     started_at: any;
+    before_feeling: "p-e" | "up-e" | "p-ue" | "up-ue"
 };
 
 export type CompletedTaskInput = {
@@ -61,4 +62,7 @@ export type CompletedTaskInput = {
     parent: string;
     started_at: any;
     completed_at: any;
+    before_feeling: "p-e" | "up-e" | "p-ue" | "up-ue";
+    after_feeling: "p-e" | "up-e" | "p-ue" | "up-ue";
+    is_ralated_with_task: boolean;
 };

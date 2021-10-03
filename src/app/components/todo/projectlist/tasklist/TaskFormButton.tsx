@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { Button, Modal, ModalHeader, ModalBody, Row, Col } from "reactstrap";
 import { registerTask } from "../../../../../database/database_write";
-import { Task } from "../../../../../lib/classes";
+import { Feeling, Task } from "../../../../../lib/classes";
+import { peToNum } from "../../../../../lib/convertTypes";
 import { CompletedTaskInput, OngoingTaskInput, TodoTaskInput } from "../../../../../lib/types";
 import CompletedTaskForm from "./taskform/CompletedTaskForm";
 import OngoingTaskForm from "./taskform/OngoingTaskForm";
@@ -27,6 +28,7 @@ export default function TaskForm(props: {
 
   const onSubmit_ongoing: SubmitHandler<OngoingTaskInput> = (inputs) => {
     const new_task = new Task();
+    const before_feeling = peToNum(inputs.before_feeling)
     Object.assign(new_task, {
       name: inputs.name,
       point: inputs.point,  
@@ -34,6 +36,9 @@ export default function TaskForm(props: {
       parent_id: inputs.parent,
       started_at: inputs.started_at._d? inputs.started_at._d.getTime() : inputs.started_at.getTime(),
       is_ongoing: true,
+      feelings:{
+        before:new Feeling(before_feeling.energy,before_feeling.pleasantness,null)
+      }
     });
     registerTask(project_id, new_task);
     toggle_modal();
@@ -41,6 +46,8 @@ export default function TaskForm(props: {
 
   const onSubmit_completed: SubmitHandler<CompletedTaskInput> = (inputs) => {
     const new_task = new Task();
+    const before_feeling = peToNum(inputs.before_feeling)
+    const after_feeling = peToNum(inputs.after_feeling)
     Object.assign(new_task, {
       name: inputs.name,
       point: inputs.point,  
@@ -49,6 +56,10 @@ export default function TaskForm(props: {
       started_at: inputs.started_at._d? inputs.started_at._d.getTime() : inputs.started_at.getTime(),
       completed_at: inputs.completed_at._d? inputs.completed_at._d.getTime() : inputs.completed_at.getTime(),
       is_completed:true,
+      feelings:{
+        before:new Feeling(before_feeling.energy,before_feeling.pleasantness,null),
+        after:new Feeling(after_feeling.energy,after_feeling.pleasantness,inputs.is_ralated_with_task)
+      }
     });
     registerTask(project_id, new_task);
     toggle_modal();
