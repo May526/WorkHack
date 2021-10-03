@@ -25,9 +25,9 @@ export default function ProjectComp(props: { project_id: string }) {
   return (
     <div>
       <Row>
-        <Col xs="1">
+        <Col xs="2">
           <Button onClick={toggle_folded} size="sm" className="w-100">
-            {is_open ? "hide" : "show"}
+            {(is_open ? "hide" : ("show" + (project.tasks ? " ("+Object.keys(project.tasks).length+")":" (0)")))}
           </Button>
         </Col>
         <Col>
