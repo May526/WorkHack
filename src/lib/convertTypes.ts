@@ -11,3 +11,15 @@ export const msToHMS = (ms: number) => {
         second: second_sum % 60,
     }
 }
+
+export const peToNum = ( pe : "p-e" | "up-e" | "p-ue" | "up-ue" ) => {
+    if(pe==="p-e"){
+        return {pleasantness:10,energy:10}
+    }else if (pe==="up-e"){
+        return {pleasantness:1,energy:10}
+    }else if (pe==="p-ue"){
+        return {pleasantness:10,energy:1}
+    }else{
+        return {pleasantness:1,energy:1}
+    }
+}
