@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Input, Table } from "reactstrap";
 import { getFeelingLabels, PLEASANT_ENEGY_LABELS, PLEASANT_UNENEGY_LABELS, UNPLEASANT_ENEGY_LABELS, UNPLEASANT_UNENEGY_LABELS } from "../../../../lib/constants";
 import { extractTasksFromProjects } from "../../../../lib/filters";
