@@ -63,7 +63,7 @@ function FoldableTaskList(props: {
     <div>
       <Row>
         <Col xs="1">
-          <Button onClick={toggle_isOpen} size="sm">
+          <Button onClick={toggle_isOpen} size="sm" style={{backgroundColor:"#4a9d75",border:"0"}}>
             {isOpen ? "hide" : "show"}
           </Button>
         </Col>
