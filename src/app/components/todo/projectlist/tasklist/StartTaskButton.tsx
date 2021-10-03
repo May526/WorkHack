@@ -19,7 +19,7 @@ export default function StartTaskButton(props: {
     } else if (task.is_ongoing) {
       return "danger";
     } else {
-      return "secondary";
+      return "primary";
     }
   };
 
@@ -29,7 +29,7 @@ export default function StartTaskButton(props: {
     } else if (task.is_ongoing) {
       return "Ongoing";
     } else {
-      return "Do this task";
+      return "Start";
     }
   };
   return (
