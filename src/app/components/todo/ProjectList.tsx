@@ -11,7 +11,7 @@ export default function ProjectList() {
       {project_ids &&
         project_ids.map((project_id:string, index:number) => {
           return (
-            <Row key={index} className="border border-primary my-3">
+            <Row key={index} className="my-3" style={{border:"1px solid #4a9d75"}}>
               <ProjectComp project_id={project_id} />
             </Row>
           );
