@@ -22,7 +22,7 @@ export const extractFeelingsFromProjects = (projects: projects) => {
 
 
 /**
- * [(10,10),(0,10),(0,0),(10,0)]
+ * [(10,10),(0,10),(0,0),(10,0)]の順
  * @param feeling_with_timestamp 
  * @param start_hour 
  * @param end_hour 

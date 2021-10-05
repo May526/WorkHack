@@ -11,7 +11,6 @@ export const UNPLEASANT_UNENEGY_COLOR = "#c6eff5"
 export const PLEASANT_UNENEGY_COLOR = "#e6f2da"
 
 /**
- * feelingの値からrgbのcolorコードを取得する
  * @param feeling 
  * @returns "#xxyyzz"の形をしたrgb-string
  */

@@ -12,6 +12,11 @@ export const msToHMS = (ms: number) => {
     }
 }
 
+/**
+ * formでstringで入力を処理しなければならない時(radio)などに使う
+ * @param pe pleasantness-energyの略
+ * @returns 
+ */
 export const peToNum = ( pe : "p-e" | "up-e" | "p-ue" | "up-ue" ) => {
     if(pe==="p-e"){
         return {pleasantness:10,energy:10}
