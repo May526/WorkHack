@@ -7,7 +7,7 @@ import {
   UNPLEASANT_ENEGY_LABELS,
   UNPLEASANT_UNENEGY_LABELS,
 } from "../../../lib/constants";
-import { getColorByFeeling } from "../../../lib/no_category";
+import { getColorByFeeling } from "../../../lib/constants";
 import EmotionButton from "./EmotionButton";
 
 /**
