@@ -5,17 +5,42 @@ export const UNPLEASANT_ENEGY_LABELS = ["ストレス", "緊張", "いらいら"
 export const UNPLEASANT_UNENEGY_LABELS = ["疲れた", "退屈", "うんざり"]
 export const PLEASANT_UNENEGY_LABELS = ["リラックス", "落ち着いている", "癒し"]
 
-export const getFeelingLabels = (feeling:feeling) => {
-    if(feeling.energy>=6){
-        if(feeling.pleasantness>=6){
+export const PLEASANT_ENEGY_COLOR = "#fde9d1"
+export const UNPLEASANT_ENEGY_COLOR = "#f5cfce"
+export const UNPLEASANT_UNENEGY_COLOR = "#c6eff5"
+export const PLEASANT_UNENEGY_COLOR = "#e6f2da"
+
+/**
+ * @param feeling 
+ * @returns "#xxyyzz"の形をしたrgb-string
+ */
+ export const getColorByFeeling = (feeling: feeling) => {
+    if (feeling.energy < 5) {
+        if (feeling.pleasantness < 5) {
+            return UNPLEASANT_UNENEGY_COLOR
+        } else {
+            return PLEASANT_UNENEGY_COLOR
+        }
+    } else {
+        if (feeling.pleasantness < 5) {
+            return UNPLEASANT_ENEGY_COLOR
+        } else {
+            return PLEASANT_ENEGY_COLOR
+        }
+    }
+}
+
+export const getFeelingLabels = (feeling: feeling) => {
+    if (feeling.energy >= 6) {
+        if (feeling.pleasantness >= 6) {
             return PLEASANT_ENEGY_LABELS
-        }else{
+        } else {
             return UNPLEASANT_ENEGY_LABELS
         }
-    }else{
-        if(feeling.pleasantness>=6){
+    } else {
+        if (feeling.pleasantness >= 6) {
             return PLEASANT_UNENEGY_LABELS
-        }else{
+        } else {
             return UNPLEASANT_UNENEGY_LABELS
         }
     }
@@ -27,12 +52,12 @@ export const getFeelingLabels = (feeling:feeling) => {
 /**
  * [unpleasant,pleasant]
  */
-const UNPLEASANT_PLEASANT_IDEAL_RATIO_LOWER_LIMIT = [1,3]
-const UNPLEASANT_PLEASANT_IDEAL_RATIO_UPPER_LIMIT = [0,1]
+const UNPLEASANT_PLEASANT_IDEAL_RATIO_LOWER_LIMIT = [1, 3]
+const UNPLEASANT_PLEASANT_IDEAL_RATIO_UPPER_LIMIT = [0, 1]
 /**
  * [unenergy,energy]
  */
-const UNENRGY_ENERGY_IDEAL_RATIO = [1,1]
+const UNENRGY_ENERGY_IDEAL_RATIO = [1, 1]
 
 //TODO: リファクタリング
 /**
@@ -40,23 +65,23 @@ const UNENRGY_ENERGY_IDEAL_RATIO = [1,1]
  * 右上から左回りの順(pleasant,enegy),(up,e),(up,ue),(p,ue)の順
  * @returns 
  */
-export const getPleasantEnegyRatio = (limit:"lower"|"upper") => {
+export const getPleasantEnegyRatio = (limit: "lower" | "upper") => {
     const y = UNENRGY_ENERGY_IDEAL_RATIO[0]
     const x = UNENRGY_ENERGY_IDEAL_RATIO[1]
 
-    const pleasant_ratio_limit = limit==="lower" ? UNPLEASANT_PLEASANT_IDEAL_RATIO_LOWER_LIMIT : UNPLEASANT_PLEASANT_IDEAL_RATIO_UPPER_LIMIT
+    const pleasant_ratio_limit = limit === "lower" ? UNPLEASANT_PLEASANT_IDEAL_RATIO_LOWER_LIMIT : UNPLEASANT_PLEASANT_IDEAL_RATIO_UPPER_LIMIT
     const a = pleasant_ratio_limit[0]
     const b = pleasant_ratio_limit[1]
-    
-    return [b*x,a*x,a*y,b*y].map((numerator)=>Math.round(100*numerator/((a+b)*(x+y))))
+
+    return [b * x, a * x, a * y, b * y].map((numerator) => Math.round(100 * numerator / ((a + b) * (x + y))))
 }
 
 export const getIdealEmotionRatioArea = () => {
     const lower = getPleasantEnegyRatio("lower")
     const upper = getPleasantEnegyRatio("upper")
-    if(lower.length!==upper.length){
+    if (lower.length !== upper.length) {
         alert("ERROR:Ideal ratio is invalid")
-        return 
+        return
     }
-    return lower.map((ratio,i)=>lower[i]<upper[i] ? [lower[i],upper[i]] : [upper[i],lower[i]])
+    return lower.map((ratio, i) => lower[i] < upper[i] ? [lower[i], upper[i]] : [upper[i], lower[i]])
 }

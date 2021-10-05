@@ -2,28 +2,6 @@ import { msToHMS } from './convertTypes';
 import { extractTasksFromProjects } from './filters';
 import { feeling, projects, task } from "./types";
 
-
-/**
- * feelingの値からrgbのcolorコードを取得する
- * @param feeling 
- * @returns "#xxyyzz"の形をしたrgb-string
- */
-export const getColorByFeeling = (feeling: feeling) => {
-    if (feeling.energy < 5) {
-        if (feeling.pleasantness < 5) {
-            return "#c6eff5"
-        } else {
-            return "#e6f2da"
-        }
-    } else {
-        if (feeling.pleasantness < 5) {
-            return "#f5cfce"
-        } else {
-            return "#fde9d1"
-        }
-    }
-}
-
 const TaskToFeelingsWithTimestamp: (task: task) => [feeling, number][] = (task: task) => {
     if (!(task.feelings)) {
         return []
@@ -44,7 +22,7 @@ export const extractFeelingsFromProjects = (projects: projects) => {
 
 
 /**
- * [(10,10),(0,10),(0,0),(10,0)]
+ * [(10,10),(0,10),(0,0),(10,0)]の順
  * @param feeling_with_timestamp 
  * @param start_hour 
  * @param end_hour 

@@ -5,8 +5,8 @@ import { getIdealEmotionRatioArea, PLEASANT_ENEGY_LABELS, PLEASANT_UNENEGY_LABEL
 import {
   computeFeelingRatios,
   extractFeelingsFromProjects,
-  getColorByFeeling,
 } from "../../../lib/no_category";
+import { getColorByFeeling } from "../../../lib/constants";
 import { projects } from "../../../lib/types";
 
 export default function TimeFeelingTable(props: { projects: projects }) {
