@@ -5,7 +5,7 @@ import { extractTasksFromProjects } from "../../../../lib/filters";
 import { getColorByFeeling } from "../../../../lib/no_category";
 import { feeling, projects, task } from "../../../../lib/types";
 
-type FeelingLables = "all"|"わくわく/楽しい/嬉しい"|"ストレ/緊張/いらいら"|"疲れた/退屈/うんざり"|"リラックス/落ち着いている/癒し"
+type FeelingLables = "all"|"わくわく/楽しい/嬉しい"|"ストレス/緊張/いらいら"|"疲れた/退屈/うんざり"|"リラックス/落ち着いている/癒し"
 
 export default function TasksMindsTable(props: { projects: projects }) {
   const { projects } = props;
