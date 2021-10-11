@@ -8,8 +8,6 @@ import {
 
 import Home from "./pages/home/Home";
 import Todo from "./pages/todo/Todo";
-import Setting from "./pages/setting/Setting";
-import Goal from "./pages/goal/Goal";
 import Mind from "./pages/mind/Mind";
 import ProjectsContextProvider from "./contexts/ProjectsContext";
 import Sidebar from "./components/sidebar/Sidebar";
@@ -31,14 +29,8 @@ export default function App() {
               <Route path={`${url}/todo`}>
                 <Todo />
               </Route>
-              <Route path={`${url}/goal`}>
-                <Goal />
-              </Route>
               <Route path={`${url}/mind`}>
                 <Mind />
-              </Route>
-              <Route path={`${url}/setting`}>
-                <Setting />
               </Route>
             </Switch>
           </div>
