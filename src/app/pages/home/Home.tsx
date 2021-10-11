@@ -28,7 +28,7 @@ function Home() {
       <Row className="mx-3 row-cols-2">
         <Col>
           <div>日々のポジティブ度合い</div>
-          <PositiveDateGraph />
+          <PositiveDateGraph positive_negative_ratios={[3.5,2,2.5,4,5,4.5,5.5]}/>
         </Col>
         <Col>
           <EmotionTimeGraph tasks={tasks}/>
