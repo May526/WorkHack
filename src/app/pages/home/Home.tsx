@@ -1,17 +1,24 @@
+import { useContext, useEffect, useState } from "react";
 import {  Col, Container, Row } from "reactstrap";
-import { Task } from "../../../lib/classes";
+import { AuthContext } from "../../../auth/AuthProvider";
+import { fetchProjects } from "../../../database/database_read";
+import { computePnRatioWithDate, extractTasksFromProjects } from "../../../lib/filters";
+import { projects } from "../../../lib/types";
 import EmotionTimeGraph from "../../components/emotionTimeGraph/EmotionTimeGraph";
 import FeedbackMessage from "../../components/feedbackMessage/FeedbackMessage";
 import PositiveDateGraph from "../../components/positiveDateGraph/PositiveDateGraph";
 
 function Home() {
 
-  const tasks = [
-    new Task("task 1", 0, "", Date.now() - 1000 * 60 * 60 * 3, Date.now(), {
-      before: { pleasantness: 10, energy: 10, is_related_with_task: null },
-      after: { pleasantness: 0, energy: 0, is_related_with_task: null },
-    })
-  ];
+  const {currentUser} = useContext(AuthContext);
+  const [projects,setProjects] = useState<projects>({});
+  useEffect(()=>{
+    if(currentUser){
+      fetchProjects(currentUser,setProjects)
+    }
+  },[currentUser])
+
+  const tasks = extractTasksFromProjects(projects,(task)=>task.is_completed).map(([task,])=>task);
 
   return (
     <Container fluid>
@@ -28,7 +35,7 @@ function Home() {
       <Row className="mx-3 row-cols-2">
         <Col>
           <div>日々のポジティブ度合い</div>
-          <PositiveDateGraph positive_negative_ratios={[3.5,2,2.5,4,5,4.5,5.5]}/>
+          <PositiveDateGraph positive_negative_ratios={computePnRatioWithDate(projects)}/>
         </Col>
         <Col>
           <EmotionTimeGraph tasks={tasks}/>

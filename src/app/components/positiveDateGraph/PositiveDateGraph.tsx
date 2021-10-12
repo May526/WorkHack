@@ -32,7 +32,7 @@ export default function PositiveDateGraph(props: {
     <ResponsiveContainer height={250}>
       <ScatterChart margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
         <XAxis dataKey="x" type="number" tick={false} domain={[0, 8]} />
-        <YAxis dataKey="y" type="number" tick={false} domain={[0, 6]} />
+        <YAxis dataKey="y" type="number" tick={false} domain={[0, 6]} hide />
 
         <ReferenceArea
           x1={0}

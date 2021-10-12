@@ -1,3 +1,4 @@
+// import { extractFeelingsFromProjects, get7DaysAgoStartTimestamp, getTodayStartTimestamp } from './no_category';
 import { task, projects, project, tasks } from './types';
 
 /**
@@ -46,4 +47,11 @@ export const getChildren = (tasks: tasks, parent_task_id: string) => {
 
 }
 
-
+export const computePnRatioWithDate = (projects:projects) => {
+    // const feelings_in_7_days = extractFeelingsFromProjects(projects).filter(([feeling,timestamp])=>{
+    //     const latest_timestamp = getTodayStartTimestamp().getTime();
+    //     const oldest_timestamp = get7DaysAgoStartTimestamp().getTime();
+    //     return oldest_timestamp <= timestamp && timestamp <= latest_timestamp;
+    //   })
+    return [3.5,2,2.5,4,5,4.5,5.5]
+}
