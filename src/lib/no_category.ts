@@ -145,3 +145,19 @@ export const getDatePositionRatio = (date:Date,latest:Date,old:Date) => {
     const target_distance = date.getTime()-old.getTime();
     return Math.round((target_distance/whole_distance)*100)
 }
+
+/**
+ * dateのその日のlocal 00:00におけるDateオブジェクトを生成
+ * @returns 
+ */
+ export const getDayStartTimestamp = (date:Date) => {
+    return new Date(date.getFullYear(),date.getMonth(),date.getDate())
+}
+
+/**
+ * dateのその日のlocal 24:00(明日の00:00)であるDateオブジェクトを生成
+ * @returns 
+ */
+ export const getDayEndTimestamp = (date:Date) => {
+    return new Date(date.getFullYear(),date.getMonth(),date.getDate(),24)
+}
