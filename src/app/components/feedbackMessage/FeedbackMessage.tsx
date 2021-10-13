@@ -19,7 +19,7 @@ export default function FeedbackMessage() {
           <p>{getDailyReviewMessage()}</p>
           <p>{getActionRecommendTopMessage()}</p>
           {getRecommendedActionsMessages().map((message) => {
-            return (<p>{"* "+message}</p>)
+            return (<p>{"- "+message}</p>)
           })}
           <p>{getEndingMessage()}</p>
         </Col>
