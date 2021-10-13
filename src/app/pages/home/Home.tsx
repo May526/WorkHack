@@ -3,6 +3,7 @@ import {  Col, Container, Row } from "reactstrap";
 import { AuthContext } from "../../../auth/AuthProvider";
 import { fetchProjects } from "../../../database/database_read";
 import { computePnRatioWithDate, extractTasksFromProjects } from "../../../lib/filters";
+import { extractFeelingsFromProjects } from "../../../lib/no_category";
 import { projects } from "../../../lib/types";
 import EmotionTimeGraph from "../../components/emotionTimeGraph/EmotionTimeGraph";
 import FeedbackMessage from "../../components/feedbackMessage/FeedbackMessage";
@@ -24,7 +25,7 @@ function Home() {
     <Container fluid>
       <Row>
         <Col>
-          <FeedbackMessage />
+          <FeedbackMessage feelings={extractFeelingsFromProjects(projects)}/>
         </Col>
       </Row>
       <Row>

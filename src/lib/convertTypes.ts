@@ -1,3 +1,5 @@
+import { feeling } from "./types"
+
 /**
  * 小数点以下切り捨て
  * @param ms ミリ秒
@@ -17,14 +19,14 @@ export const msToHMS = (ms: number) => {
  * @param pe pleasantness-energyの略
  * @returns 
  */
-export const peToNum = ( pe : "p-e" | "up-e" | "p-ue" | "up-ue" ) => {
+export const peToNum = ( pe : "p-e" | "up-e" | "p-ue" | "up-ue" ):feeling => {
     if(pe==="p-e"){
-        return {pleasantness:10,energy:10}
+        return {pleasantness:10,energy:10,is_related_with_task:null}
     }else if (pe==="up-e"){
-        return {pleasantness:1,energy:10}
+        return {pleasantness:1,energy:10,is_related_with_task:null}
     }else if (pe==="p-ue"){
-        return {pleasantness:10,energy:1}
+        return {pleasantness:10,energy:1,is_related_with_task:null}
     }else{
-        return {pleasantness:1,energy:1}
+        return {pleasantness:1,energy:1,is_related_with_task:null}
     }
 }
