@@ -50,9 +50,9 @@ export const getFeelingLabels = (feeling: feeling) => {
 // pleasantは一定領域内にいることが理想なのでlower limitがある
 // energyは曲線上にいることが理想なのでlimitがない
 /**
- * [unpleasant,pleasant]
+ * [unpleasant,pleasant]でunpleasant:pleasantの比がlimit値
  */
-const UNPLEASANT_PLEASANT_IDEAL_RATIO_LOWER_LIMIT = [1, 3]
+export const UNPLEASANT_PLEASANT_IDEAL_RATIO_LOWER_LIMIT = [1, 3]
 const UNPLEASANT_PLEASANT_IDEAL_RATIO_UPPER_LIMIT = [0, 1]
 /**
  * [unenergy,energy]

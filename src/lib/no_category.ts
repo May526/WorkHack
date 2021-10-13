@@ -84,3 +84,80 @@ export const getPassedTime = (task: task) => {
     return HMS.hour + ":" + HMS.minute + ":" + HMS.second
 
 }
+
+/**
+ * 今日の午前00:00におけるDateオブジェクトを生成
+ * @returns 
+ */
+ export const getTodayStartTimestamp = () => {
+    const current_timestamp = new Date();
+    return new Date(current_timestamp.getFullYear(),current_timestamp.getMonth(),current_timestamp.getDate())
+}
+
+/**
+ * Localで今日の24:00(明日の00:00)であるDateオブジェクトを生成
+ * @returns 
+ */
+ export const getTodayEndTimestamp = () => {
+    const current_timestamp = new Date();
+    return new Date(current_timestamp.getFullYear(),current_timestamp.getMonth(),current_timestamp.getDate(),24)
+}
+
+
+/**
+ * 7日前の午前00:00時におけるDateオブジェクトを生成
+ */
+export const get7DaysAgoStartTimestamp = () => {
+    const timestamp_7_days_ago = new Date(Date.now()-1000*60*60*24*7);
+    return new Date(timestamp_7_days_ago.getFullYear(),timestamp_7_days_ago.getMonth(),timestamp_7_days_ago.getDate())
+}
+
+/**
+ * Localで今月の1日の00:00におけるDateオブジェクトを生成
+ */
+export const getThisMonthStartTimestamp = () => {
+    const current_timestamp = new Date();
+    return new Date(current_timestamp.getFullYear(),current_timestamp.getMonth())
+}
+
+/**
+ * 日付の文字列表示をDateから生成
+ */
+export const getDateLabelFromDate = (date:Date) => {
+    let label = "";
+    label += date.getFullYear() + "/";
+    // zero fill
+    label += ((date.getMonth()+1)<10?"0":"") + (date.getMonth()+1) + "/"
+    label += (date.getDate()<10?"0":"") + date.getDate()
+    return label
+}
+
+/**
+ * dateがoldからlatestの中うち、どの位置にいるか百分率(整数)で表示
+ * 範囲外の場合は-1を返す
+ * 
+ */
+export const getDatePositionRatio = (date:Date,latest:Date,old:Date) => {
+    if((date.getTime() < old.getTime()) || (latest.getTime() < date.getTime())) {
+        return -1
+    }
+    const whole_distance = latest.getTime()-old.getTime(); 
+    const target_distance = date.getTime()-old.getTime();
+    return Math.round((target_distance/whole_distance)*100)
+}
+
+/**
+ * dateのその日のlocal 00:00におけるDateオブジェクトを生成
+ * @returns 
+ */
+ export const getDayStartTimestamp = (date:Date) => {
+    return new Date(date.getFullYear(),date.getMonth(),date.getDate())
+}
+
+/**
+ * dateのその日のlocal 24:00(明日の00:00)であるDateオブジェクトを生成
+ * @returns 
+ */
+ export const getDayEndTimestamp = (date:Date) => {
+    return new Date(date.getFullYear(),date.getMonth(),date.getDate(),24)
+}
