@@ -4,7 +4,7 @@ import { AuthContext } from "../../../auth/AuthProvider";
 import { fetchProjects } from "../../../database/database_read";
 import { computePnRatioWithDate, extractTasksFromProjects } from "../../../lib/filters";
 import { projects } from "../../../lib/types";
-import EmotionTimeGraph from "../../components/emotionTimeGraph/EmotionTimeGraph";
+import EmotionDayGraph from "../../components/emotionDayGraph/EmotionDayGraph";
 import FeedbackMessage from "../../components/feedbackMessage/FeedbackMessage";
 import PositiveDateGraph from "../../components/positiveDateGraph/PositiveDateGraph";
 
@@ -38,7 +38,7 @@ function Home() {
           <PositiveDateGraph positive_negative_ratios={computePnRatioWithDate(projects)}/>
         </Col>
         <Col>
-          <EmotionTimeGraph tasks={tasks}/>
+          <EmotionDayGraph tasks={tasks}/>
         </Col>
       </Row>
     </Container>
