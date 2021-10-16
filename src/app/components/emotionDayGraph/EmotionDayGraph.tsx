@@ -230,7 +230,7 @@ export default function EmotionDayGraph(props: { tasks: task[] }) {
                     />
                   );
                 })}
-              <XAxis dataKey="x" type="number" domain={[0, 100]} tick={false} />
+              <XAxis dataKey="x" type="number" domain={[0, 100]} tick={false} label={"00:00 - 24:00"}/>
               <YAxis dataKey="y" type="number" domain={[0, 10]} hide />
             </AreaChart>
           </ResponsiveContainer>
