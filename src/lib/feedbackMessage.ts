@@ -43,9 +43,12 @@ export const getYesterdayReviewMessage = (feelings:[feeling,number][]) => {
 
 }
 
-export const getDailyReviewMessage = () => {
+export const getDailyReviewMessage = (feelings:[feeling,number][]) => {
+    
     return "最近、朝にイライラ/緊張/ストレスを感じることが多いようです。"
 }
+
+
 
 export const getActionRecommendTopMessage = () => {
     return "朝にイライラ/緊張/ストレスを感じるときは、以下の行動をしてみてはいかがでしょう？"
