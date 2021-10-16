@@ -1,6 +1,6 @@
 import { getFeelingLabels } from './constants';
 import { peToNum } from './convertTypes';
-import { computeFeelingRatios } from './no_category';
+import { computeFeelingRatios, getDayEndTimestamp, getDayStartTimestamp } from './no_category';
 import { feeling } from './types';
 export const getGreeting = () => {
     return "今日もお疲れ様です。"
@@ -8,7 +8,13 @@ export const getGreeting = () => {
 
 export const getYesterdayReviewMessage = (feelings:[feeling,number][]) => {
     const feeling_order:("p-e"|"up-e"|"up-ue"|"p-ue")[] = ["p-e","up-e","up-ue","p-ue"];
-    const feeling_ratios = computeFeelingRatios(feelings,0,24).map((ratio)=>Math.round(ratio*100));
+    const yesterday_feelings = feelings.filter(([,timestamp])=>{
+        const yesterday_timestamp = new Date(Date.now()-1000*60*60*24);
+        const yesterday_latest = getDayEndTimestamp(yesterday_timestamp).getTime();
+        const yesterday_old = getDayStartTimestamp(yesterday_timestamp).getTime();
+        return (yesterday_old<= timestamp) && (timestamp <= yesterday_latest);
+    });
+    const feeling_ratios = computeFeelingRatios(yesterday_feelings,0,24).map((ratio)=>Math.round(ratio*100));
 
     // 感情のどの種類も35%を超えていないとき
     if(Math.max(...feeling_ratios) <= 35){
@@ -37,9 +43,12 @@ export const getYesterdayReviewMessage = (feelings:[feeling,number][]) => {
 
 }
 
-export const getDailyReviewMessage = () => {
+export const getDailyReviewMessage = (feelings:[feeling,number][]) => {
+    
     return "最近、朝にイライラ/緊張/ストレスを感じることが多いようです。"
 }
+
+
 
 export const getActionRecommendTopMessage = () => {
     return "朝にイライラ/緊張/ストレスを感じるときは、以下の行動をしてみてはいかがでしょう？"
