@@ -23,7 +23,7 @@ export const getYesterdayReviewMessage = (feelings:[feeling,number][]) => {
 
     const feeling_names = feeling_ratios.map((ratio,i)=>{
         if(ratio>35){
-            return "「"+getFeelingLabels(peToNum(feeling_order[i])).join("/")+"」"
+            return "「"+getFeelingLabels(peToNum(feeling_order[i])).join(",")+"」"
         }else{
             return ""
         }
