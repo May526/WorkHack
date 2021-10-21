@@ -29,13 +29,11 @@ export default function EmotionTimeGraph(props: { tasks: task[] }) {
         <Col>
           <div className="d-flex">
             <div className="flex-grow-1">
-              <button disabled>{"<"}</button>
               {getDateLabelFromDate(old_date) +
                 " 00:00" +
                 " ~ " +
                 getDateLabelFromDate(latest_date) +
                 " 24:00"}
-              <button disabled>{">"}</button>
             </div>
             <ButtonGroup size="sm">
               <Button onClick={() => setOldDate(getTodayStartTimestamp())}>
@@ -47,7 +45,6 @@ export default function EmotionTimeGraph(props: { tasks: task[] }) {
               <Button onClick={() => setOldDate(getThisMonthStartTimestamp())}>
                 月
               </Button>
-              <Button disabled>曜日</Button>
             </ButtonGroup>
           </div>
         </Col>
