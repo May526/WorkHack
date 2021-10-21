@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { Badge, Col, ListGroupItem, Row } from "reactstrap";
-import { AuthContext } from "../../../../auth/AuthProvider";
-import { fetchProject_on } from "../../../../database/database_read";
-import { Project } from "../../../../lib/classes";
-import { project } from "../../../../lib/types";
+import { AuthContext } from "../../../auth/AuthProvider";
+import { fetchProject_on } from "../../../database/database_read";
+import { Project } from "../../../lib/classes";
+import { project } from "../../../lib/types";
 import CompletedButton from "./CompletedButton";
 import PauseButton from "./PauseButton";
 

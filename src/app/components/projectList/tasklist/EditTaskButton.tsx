@@ -4,8 +4,8 @@ import "react-datetime/css/react-datetime.css";
 
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { Button, Col, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
-import { updateTask } from "../../../../../database/database_write";
-import { task } from "../../../../../lib/types";
+import { updateTask } from "../../../../database/database_write";
+import { task } from "../../../../lib/types";
 
 type Inputs = {
   name: string;

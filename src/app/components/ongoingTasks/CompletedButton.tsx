@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, Row } from "reactstrap";
-import EmotionForm from "../../common/EmotionForm";
+import EmotionForm from "../emotionForm/EmotionForm";
 
 export default function CompletedButton(props: {
   project_id: string;

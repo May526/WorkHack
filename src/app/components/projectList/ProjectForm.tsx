@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Row, Col } from "reactstrap";
-import { registerProject } from "../../../../database/database_write";
-import { AuthContext } from "../../../../auth/AuthProvider";
-import { Project } from "../../../../lib/classes";
+import { registerProject } from "../../../database/database_write";
+import { AuthContext } from "../../../auth/AuthProvider";
+import { Project } from "../../../lib/classes";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type ProjectInput = {

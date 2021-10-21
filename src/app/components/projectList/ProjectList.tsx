@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Container, Row } from "reactstrap";
 import { ProjectsContext } from "../../contexts/ProjectsContext";
-import ProjectComp from "./projectlist/ProjectComp";
-import ProjectForm from "./projectlist/ProjectForm";
+import ProjectComp from "./ProjectComp";
+import ProjectForm from "./ProjectForm";
 
 export default function ProjectList() {
   const project_ids = useContext(ProjectsContext);

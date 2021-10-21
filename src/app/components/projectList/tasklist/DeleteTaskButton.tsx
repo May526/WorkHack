@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Col, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
-import { deleteTask } from "../../../../../database/database_write";
-import { task, tasks } from "../../../../../lib/types";
+import { deleteTask } from "../../../../database/database_write";
+import { task, tasks } from "../../../../lib/types";
 
 export default function DeleteTaskButton(props: {
   project_id: string;

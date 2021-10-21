@@ -2,15 +2,15 @@ import React from "react";
 import ReactDatetimeClass from "react-datetime";
 import { Controller, useForm } from "react-hook-form";
 import { Col, Row } from "reactstrap";
-import { CompletedTaskInput } from "../../../../../../lib/types";
+import { CompletedTaskInput } from "../../../../../lib/types";
 import {
   PLEASANT_ENEGY_LABELS,
   PLEASANT_UNENEGY_LABELS,
   UNPLEASANT_ENEGY_LABELS,
   UNPLEASANT_UNENEGY_LABELS,
-} from "../../../../../../lib/constants";
-import { getColorByFeeling } from "../../../../../../lib/constants";
-import { Feeling } from "../../../../../../lib/classes";
+} from "../../../../../lib/constants";
+import { getColorByFeeling } from "../../../../../lib/constants";
+import { Feeling } from "../../../../../lib/classes";
 
 export default function CompletedTaskForm(props: {
   unique_id: string;
