@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Collapse, Row } from "reactstrap";
-import { AuthContext } from "../../../../auth/AuthProvider";
-import { fetchProject_on } from "../../../../database/database_read";
-import { Project } from "../../../../lib/classes";
-import { tasks } from "../../../../lib/types";
+import { AuthContext } from "../../../auth/AuthProvider";
+import { fetchProject_on } from "../../../database/database_read";
+import { Project } from "../../../lib/classes";
+import { tasks } from "../../../lib/types";
 import ProjectDeleteButton from "./ProjectDeleteButton";
 import ProjectEditButton from "./ProjectEditButton";
 import TaskList from "./TaskList";

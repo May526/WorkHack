@@ -6,7 +6,7 @@ import {
   ListGroup,
 } from "reactstrap";
 import { ProjectsContext } from "../../contexts/ProjectsContext";
-import OngoingTaskList from "./ongoingtasks/OngoingTaskList";
+import OngoingTaskList from "./OngoingTaskList";
 
 
 export default function OngoingTasks() {

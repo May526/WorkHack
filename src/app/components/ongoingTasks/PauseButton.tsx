@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from 'reactstrap'
-import { addPausedTime, addUnpausedTime, updateTask } from '../../../../database/database_write';
-import { task } from '../../../../lib/types'
+import { addPausedTime, addUnpausedTime, updateTask } from '../../../database/database_write';
+import { task } from '../../../lib/types'
 
 export default function PauseButton(props:{task:task,project_id:string,task_id:string}) {
 

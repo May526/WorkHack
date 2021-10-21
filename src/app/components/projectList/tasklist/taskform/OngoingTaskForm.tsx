@@ -2,10 +2,10 @@ import React from "react";
 import ReactDatetimeClass from "react-datetime";
 import { Controller, useForm } from "react-hook-form";
 import { Col, Row } from "reactstrap";
-import { Feeling } from "../../../../../../lib/classes";
-import { PLEASANT_ENEGY_LABELS, PLEASANT_UNENEGY_LABELS, UNPLEASANT_ENEGY_LABELS, UNPLEASANT_UNENEGY_LABELS } from "../../../../../../lib/constants";
-import { getColorByFeeling } from "../../../../../../lib/constants";
-import { OngoingTaskInput } from "../../../../../../lib/types";
+import { Feeling } from "../../../../../lib/classes";
+import { PLEASANT_ENEGY_LABELS, PLEASANT_UNENEGY_LABELS, UNPLEASANT_ENEGY_LABELS, UNPLEASANT_UNENEGY_LABELS } from "../../../../../lib/constants";
+import { getColorByFeeling } from "../../../../../lib/constants";
+import { OngoingTaskInput } from "../../../../../lib/types";
 
 export default function OngoingTaskForm(props: {
   unique_id: string;

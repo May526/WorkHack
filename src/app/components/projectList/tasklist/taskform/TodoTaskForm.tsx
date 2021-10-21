@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Col, Row } from "reactstrap";
-import { TodoTaskInput } from "../../../../../../lib/types";
+import { TodoTaskInput } from "../../../../../lib/types";
 
 export default function TodoTaskForm(props: {
   unique_id: string;

@@ -8,9 +8,9 @@ import {
   Row,
 } from "reactstrap";
 import TaskFormButton from "./tasklist/TaskFormButton";
-import { task, tasks } from "../../../../lib/types";
+import { task, tasks } from "../../../lib/types";
 import Task from "./tasklist/Task";
-import { getChildren } from "../../../../lib/filters";
+import { getChildren } from "../../../lib/filters";
 
 export default function TaskList(props: {
   project_id: string;

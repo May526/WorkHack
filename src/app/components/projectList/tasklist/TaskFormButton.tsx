@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { Button, Modal, ModalHeader, ModalBody, Row, Col } from "reactstrap";
-import { registerTask } from "../../../../../database/database_write";
-import { Feeling, Task } from "../../../../../lib/classes";
-import { peToNum } from "../../../../../lib/convertTypes";
-import { CompletedTaskInput, OngoingTaskInput, TodoTaskInput } from "../../../../../lib/types";
+import { registerTask } from "../../../../database/database_write";
+import { Feeling, Task } from "../../../../lib/classes";
+import { peToNum } from "../../../../lib/convertTypes";
+import { CompletedTaskInput, OngoingTaskInput, TodoTaskInput } from "../../../../lib/types";
 import CompletedTaskForm from "./taskform/CompletedTaskForm";
 import OngoingTaskForm from "./taskform/OngoingTaskForm";
 import TodoTaskForm from "./taskform/TodoTaskForm";

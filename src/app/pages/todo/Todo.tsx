@@ -1,6 +1,6 @@
 import { Row, Col } from "reactstrap";
-import OngoingTasks from "../../components/todo/OngoingTasks";
-import ProjectList from "../../components/todo/ProjectList";
+import OngoingTasks from "../../components/ongoingTasks/OngoingTasks";
+import ProjectList from "../../components/projectList/ProjectList";
 
 export default function TodoPage() {
   return (

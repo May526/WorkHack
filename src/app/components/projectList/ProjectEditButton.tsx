@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Button, Col, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
-import { updateProject } from "../../../../database/database_write";
-import { project } from "../../../../lib/types";
+import { updateProject } from "../../../database/database_write";
+import { project } from "../../../lib/types";
 
 type ProjectEditInput = {
   name: string;

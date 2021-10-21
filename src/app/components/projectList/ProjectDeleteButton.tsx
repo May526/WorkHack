@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Col, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
-import { deleteProject } from "../../../../database/database_write";
-import { project } from "../../../../lib/types";
+import { deleteProject } from "../../../database/database_write";
+import { project } from "../../../lib/types";
 
 export default function ProjectDeleteButton(props: {
   project_id: string;

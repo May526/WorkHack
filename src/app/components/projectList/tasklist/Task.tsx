@@ -1,6 +1,6 @@
 import React from "react";
 import { Badge, Col, Row } from "reactstrap";
-import { task, tasks } from "../../../../../lib/types";
+import { task, tasks } from "../../../../lib/types";
 import DeleteTaskButton from "./DeleteTaskButton";
 import EditTaskButton from "./EditTaskButton";
 import StartTaskButton from "./StartTaskButton";

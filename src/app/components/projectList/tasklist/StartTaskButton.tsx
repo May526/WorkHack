@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, Row } from "reactstrap";
-import { task } from "../../../../../lib/types";
-import EmotionForm from "../../../common/EmotionForm";
+import { task } from "../../../../lib/types";
+import EmotionForm from "../../emotionForm/EmotionForm";
 
 export default function StartTaskButton(props: {
   project_id: string;
