@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function HelpLink() {
+export default function HelpLink(props:{hyref:string,titleName:string}) {
+    const {hyref,titleName} = props;
     return (
         <div style={{fontSize:"smaller"}}>
-            <a href="https://www.google.com/" target="_blank" rel="noreferrer" title="WorkHackにおける感情とは？">
+            <a href={hyref} target="_blank" rel="noreferrer" title={titleName}>
             ?
             </a>
         </div>

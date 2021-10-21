@@ -217,7 +217,7 @@ export default function EmotionForm(props: {
         <Col className="text-center">活力なし</Col>
       </Row>
       <div style={{ position: "absolute", right: "0", bottom: "0" }}>
-        <HelpLink />
+        <HelpLink hyref={"https://www.google.com/"} titleName={"WorkHackにおける感情とは？"}/>
       </div>
     </Container>
   );
