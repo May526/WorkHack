@@ -4,7 +4,8 @@ import { AuthContext } from "../../../auth/AuthProvider";
 import { fetchProjects } from "../../../database/database_read";
 import { projects } from "../../../lib/types";
 import TasksMindsTable from "../../components/completedTasksTable/CompletedTask";
-import TimeFeelingTable from "../../components/emotionRatioTable/TimeFeelingTable";
+import EmotionTimeGraph from "../../components/emotionTimeGraph/EmotionTimeGraph";
+import { extractTasksFromProjects } from "../../../lib/filters";
 
 export default function Mind() {
   const {currentUser} = useContext(AuthContext);
@@ -16,8 +17,7 @@ export default function Mind() {
   return (
     <div className="summary">
       <div className="summaryTasks">
-        <h2>Time - Feeling Table</h2>
-        <TimeFeelingTable projects={projects} />
+        <EmotionTimeGraph tasks={extractTasksFromProjects(projects,()=>true).map(([task,])=>task)} />
       </div>
       <div className="summaryTasks">
         <h2 className="summaryTitle">Completed Tasks</h2>
