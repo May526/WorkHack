@@ -26,7 +26,6 @@ export default function EmotionForm(props: {
 
   return (
     <Container fluid style={{ position: "relative" }}>
-      
       {start_or_complete === "complete" ? (
         <Row>
           <Col>
@@ -217,7 +216,13 @@ export default function EmotionForm(props: {
         <Col className="text-center">活力なし</Col>
       </Row>
       <div style={{ position: "absolute", right: "0", bottom: "0" }}>
-        <HelpLink hyref={"https://www.google.com/"} titleName={"WorkHackにおける感情とは？"}/>
+        <HelpLink
+          question={"WorkHackにおける感情とは"}
+          hyref={
+            "https://clever-pheasant-e5c.notion.site/WorkHack-1781e2ab43be4475b9798eb106b0d07f"
+          }
+          titleName={"WorkHackにおける感情とは？"}
+        />
       </div>
     </Container>
   );
