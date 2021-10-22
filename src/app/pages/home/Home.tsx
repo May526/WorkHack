@@ -8,6 +8,7 @@ import { projects } from "../../../lib/types";
 import EmotionDayGraph from "../../components/emotionDayGraph/EmotionDayGraph";
 import FeedbackMessage from "../../components/feedbackMessage/FeedbackMessage";
 import PositiveDateGraph from "../../components/positiveDateGraph/PositiveDateGraph";
+import TodayPoints from "../../components/todayPoints/TodayPoints";
 
 function Home() {
 
@@ -40,6 +41,11 @@ function Home() {
         </Col>
         <Col>
           <EmotionDayGraph tasks={tasks}/>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+        <TodayPoints projects={projects}/>
         </Col>
       </Row>
     </Container>
