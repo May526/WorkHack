@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Modal, ModalBody } from "reactstrap";
+import { Col, Modal, ModalBody, Row } from "reactstrap";
 import { computePnRatioWithDate } from "../../../lib/filters";
 import { projects } from "../../../lib/types";
 
@@ -13,7 +13,6 @@ export default function TodayPoints(props: { projects: projects }) {
 
   const [is_calculated, setIsCalculated] = useState<boolean>(false);
   const [point, setPoint] = useState<number>(0);
-
 
   const [is_modal_open, setIsModalOpen] = useState<boolean>(false);
   const toggle_modal = () => setIsModalOpen(!is_modal_open);
@@ -33,9 +32,9 @@ export default function TodayPoints(props: { projects: projects }) {
     const emotinal_point =
       today_pn_ratio === -1
         ? recognitive_point
-            : 3 <= today_pn_ratio && today_pn_ratio <= 5
-            ? 100
-            : 0;
+        : 3 <= today_pn_ratio && today_pn_ratio <= 5
+        ? 100
+        : 0;
 
     setPoint(Math.round(emotinal_point * 0.5 + recognitive_point * 0.5));
     setIsCalculated(true);
@@ -44,13 +43,14 @@ export default function TodayPoints(props: { projects: projects }) {
   return (
     <div>
       {is_calculated ? (
-        <div className="w-100 text-center fs-1 border-top border-bottom"> {point} pts</div>
+        <div className="w-100 text-center fs-1 border-top border-bottom">
+          {" "}
+          {point} pts
+        </div>
       ) : (
-        
-          <button className="w-100" onClick={toggle_modal}>
-            {"今日の well-being point を算出する"}
-          </button>
-        
+        <button className="w-100" onClick={toggle_modal}>
+          {"今日の well-being point を算出する"}
+        </button>
       )}
       <Modal
         isOpen={is_modal_open}
@@ -60,20 +60,36 @@ export default function TodayPoints(props: { projects: projects }) {
       >
         <ModalBody>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <label>
-              {"今日の生活にどのくらい満足していますか？" +
-                watch("day_subjective_wellbeing")}
-              <input
-                type="range"
-                min="1"
-                max="10"
-                step="1"
-                {...register("day_subjective_wellbeing", {
-                  valueAsNumber: true,
-                })}
-              />
-            </label>
-            <button type="submit">{"算出する"}</button>
+            <Row>
+              <Col>
+                <label htmlFor="questionnaire_day_subjective_wellbeing">
+                  {"今日の生活にどのくらい満足していますか？"}
+                </label>
+              </Col>
+              <Col xs="1">{watch("day_subjective_wellbeing")}</Col>
+            </Row>
+            <Row>
+              <Col>
+                <input
+                  className="w-100"
+                  id="questionnaire_day_subjective_wellbeing"
+                  type="range"
+                  min="1"
+                  max="10"
+                  step="1"
+                  {...register("day_subjective_wellbeing", {
+                    valueAsNumber: true,
+                  })}
+                />
+              </Col>
+            </Row>
+            <Row className="border-top">
+              <Col className="mt-2">
+                <button className="w-100" type="submit">
+                  {"算出する"}
+                </button>
+              </Col>
+            </Row>
           </form>
         </ModalBody>
       </Modal>

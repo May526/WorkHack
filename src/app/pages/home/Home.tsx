@@ -1,8 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import {  Col, Container, Row } from "reactstrap";
+import { Col, Container, Row } from "reactstrap";
 import { AuthContext } from "../../../auth/AuthProvider";
 import { fetchProjects } from "../../../database/database_read";
-import { computePnRatioWithDate, extractTasksFromProjects } from "../../../lib/filters";
+import {
+  computePnRatioWithDate,
+  extractTasksFromProjects,
+} from "../../../lib/filters";
 import { extractFeelingsFromProjects } from "../../../lib/no_category";
 import { projects } from "../../../lib/types";
 import EmotionDayGraph from "../../components/emotionDayGraph/EmotionDayGraph";
@@ -11,22 +14,24 @@ import PositiveDateGraph from "../../components/positiveDateGraph/PositiveDateGr
 import TodayPoints from "../../components/todayPoints/TodayPoints";
 
 function Home() {
-
-  const {currentUser} = useContext(AuthContext);
-  const [projects,setProjects] = useState<projects>({});
-  useEffect(()=>{
-    if(currentUser){
-      fetchProjects(currentUser,setProjects)
+  const { currentUser } = useContext(AuthContext);
+  const [projects, setProjects] = useState<projects>({});
+  useEffect(() => {
+    if (currentUser) {
+      fetchProjects(currentUser, setProjects);
     }
-  },[currentUser])
+  }, [currentUser]);
 
-  const tasks = extractTasksFromProjects(projects,(task)=>task.is_completed).map(([task,])=>task);
+  const tasks = extractTasksFromProjects(
+    projects,
+    (task) => task.is_completed
+  ).map(([task]) => task);
 
   return (
     <Container fluid>
       <Row>
         <Col>
-          <FeedbackMessage feelings={extractFeelingsFromProjects(projects)}/>
+          <FeedbackMessage feelings={extractFeelingsFromProjects(projects)} />
         </Col>
       </Row>
       <Row>
@@ -37,15 +42,17 @@ function Home() {
       <Row className="mx-3 row-cols-2">
         <Col>
           <div>日々のポジティブ度合い</div>
-          <PositiveDateGraph positive_negative_ratios={computePnRatioWithDate(projects)}/>
+          <PositiveDateGraph
+            positive_negative_ratios={computePnRatioWithDate(projects)}
+          />
         </Col>
         <Col>
-          <EmotionDayGraph tasks={tasks}/>
+          <EmotionDayGraph tasks={tasks} />
         </Col>
       </Row>
       <Row>
         <Col>
-        <TodayPoints projects={projects}/>
+          <TodayPoints projects={projects} />
         </Col>
       </Row>
     </Container>
