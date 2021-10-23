@@ -44,13 +44,13 @@ export default function TodayPoints(props: { projects: projects }) {
   return (
     <div>
       {is_calculated ? (
-        <div> {point} pts</div>
+        <div className="w-100 text-center fs-1 border-top border-bottom"> {point} pts</div>
       ) : (
-        <div>
-          <button onClick={toggle_modal}>
+        
+          <button className="w-100" onClick={toggle_modal}>
             {"今日の well-being point を算出する"}
           </button>
-        </div>
+        
       )}
       <Modal
         isOpen={is_modal_open}
