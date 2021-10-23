@@ -14,6 +14,7 @@ export default function TodayPoints(props: { projects: projects }) {
   const [is_calculated, setIsCalculated] = useState<boolean>(false);
   const [point, setPoint] = useState<number>(0);
 
+
   const [is_modal_open, setIsModalOpen] = useState<boolean>(false);
   const toggle_modal = () => setIsModalOpen(!is_modal_open);
 
