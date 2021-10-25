@@ -50,11 +50,12 @@ export const getDailyReviewMessage = (feelings:[feeling,number][]) => {
 
 
 
-export const getActionRecommendTopMessage = () => {
-    return "朝にイライラ/緊張/ストレスを感じるときは、以下の行動をしてみてはいかがでしょう？"
+export const getActionRecommendTopMessage = (feelings:[feeling,number][]) => {
+    
+    return "イライラ/緊張/ストレスを感じるときは、以下の行動をしてみてはいかがでしょう？"
 }
 
-export const getRecommendedActionsMessages = () => {
+export const getRecommendedActionsMessages = (feeling:[feeling,number][]) => {
     return ["深呼吸してみましょう","深呼吸してみましょう"]
 }
 

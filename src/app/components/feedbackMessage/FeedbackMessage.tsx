@@ -19,8 +19,8 @@ export default function FeedbackMessage(props:{feelings:[feeling,number][]}) {
           <p>{getGreeting()}</p>
           <p>{getYesterdayReviewMessage(feelings)}</p>
           <p>{getDailyReviewMessage(feelings)}</p>
-          <p>{getActionRecommendTopMessage()}</p>
-          {getRecommendedActionsMessages().map((message) => {
+          <p>{getActionRecommendTopMessage(feelings)}</p>
+          {getRecommendedActionsMessages(feelings).map((message) => {
             return (<p>{"- "+message}</p>)
           })}
           <p>{getEndingMessage()}</p>
