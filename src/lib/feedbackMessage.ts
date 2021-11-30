@@ -73,16 +73,12 @@ export const getRecommendedActionsMessages = (feelings:[feeling,number][]) => {
     switch(feeling_names){
         case getFeelingLabels(peToNum(feeling_order[0])):
             return "何か難しいことに挑戦してみる";
-            break;
         case getFeelingLabels(peToNum(feeling_order[1])):
             return "深呼吸してみる";
-            break;
         case getFeelingLabels(peToNum(feeling_order[2])):
             return "好きな曲を聞いてみる";
-            break;
         case getFeelingLabels(peToNum(feeling_order[3])):
             return "軽い運動をしてみる";
-            break;
     }
 }
 
@@ -141,7 +137,6 @@ export const computeMaximumFeeling = (feelings:[feeling,number][]) => {
             weightedFeeling_ratios[j%3][k]+=oneweekFeeling[j][k]
         }
     }
-    console.log(weightedFeeling_ratios);
     //最大値を取る時間帯名を取ってくる
     //最大値を取る感情名を取ってくる
     var array_time = ["朝","昼","夜"];
