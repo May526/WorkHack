@@ -20,9 +20,7 @@ export default function FeedbackMessage(props:{feelings:[feeling,number][]}) {
           <p>{getYesterdayReviewMessage(feelings)}</p>
           <p>{getDailyReviewMessage(feelings)}</p>
           <p>{getActionRecommendTopMessage(feelings)}</p>
-          {getRecommendedActionsMessages(feelings).map((message) => {
-            return (<p>{"- "+message}</p>)
-          })}
+          <p>{getRecommendedActionsMessages(feelings)}</p>
           <p>{getEndingMessage()}</p>
         </Col>
       </Row>

@@ -53,7 +53,7 @@ export const computeFeelingRatios = (feeling_with_timestamp: [feeling, number][]
 
 export const getPassedTime = (task: task) => {
     if (!(task.completed_at) || !(task.started_at)) {
-        alert("ERROR : getPassedTIme get an uncomleted task. ")
+        alert("ERROR : getPassedTIme get an uncompleted task. ")
         return ""
     }
     let start_to_end_ms = task.completed_at - task.started_at;
